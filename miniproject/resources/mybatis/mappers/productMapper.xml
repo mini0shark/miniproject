@@ -1,1 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.skuniv.springmvc.dao.TodoMapper">
+
+	<select id="getTodo" parameterType="java.lang.Integer"
+		resultType="todo">
+		SELECT id, todo, done FROM todo WHERE id = #{id}
+	</select>
+	<select id="getTodoList" resultType="todo">
+		SELECT id, todo, done FROM
+		todo order by id desc
+	</select>
+	
+	
+	<insert id="addTodo" parameterType="todo" keyProperty="id"
+		useGeneratedKeys="true" keyColumn="id">
+		INSERT INTO todo (todo) VALUES( #{todo})
+		<!-- 만들어진 id키를 바로 얻어와서 쓰고싶다. -->
+		<selectKey keyProperty="id" resultType="java.lang.Integer"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()	<!-- 나중에 id를 넣어준다고 명시(mysql이 지원하는 것) -->
+		</selectKey>
+	</insert>
+	<update id="updateToFalse" parameterType="todo">
+		UPDATE todo SET done = false WHERE id = #{id}
+	</update>
+	<update id="updateToTrue" parameterType="todo">
+		UPDATE todo SET done = true WHERE id = #{id}
+	</update>
+
+	<!-- <update id="updateToFalse"> UPDATE todo SET done = false WHERE id = 
+		#{id} </update> <update id="updateToTrue"> UPDATE todo SET done = false WHERE 
+		id = #{id} </update> -->
+
+</mapper>
