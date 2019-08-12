@@ -1,2 +1,4 @@
 127.0.0.1 - - [12/Aug/2019:12:18:20 +0900] "GET / HTTP/1.1" 404 1074
 0:0:0:0:0:0:0:1 - - [12/Aug/2019:12:18:21 +0900] "GET /miniproject/WEB-INF/classes/com/chinsa/miniproject/config/ApplicationConfig.java HTTP/1.1" 404 1047
+127.0.0.1 - - [12/Aug/2019:14:46:34 +0900] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [12/Aug/2019:14:46:35 +0900] "GET /miniproject/ HTTP/1.1" 404 1090
