@@ -9,7 +9,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.chinsa.miniproject.controllers.ProjectController;
 
 
 @Configuration
@@ -35,10 +34,5 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry
 		.addResourceHandler("/css/**")
 		.addResourceLocations("/css/");
-	}
-	
-	@Bean
-	public ProjectController projectController() {
-		return new ProjectController();
 	}
 }
