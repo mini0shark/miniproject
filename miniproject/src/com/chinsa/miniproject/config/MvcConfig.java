@@ -37,8 +37,4 @@ public class MvcConfig implements WebMvcConfigurer {
 		.addResourceLocations("/css/");
 	}
 	
-	@Bean
-	public ProjectController projectController() {
-		return new ProjectController();
-	}
 }
