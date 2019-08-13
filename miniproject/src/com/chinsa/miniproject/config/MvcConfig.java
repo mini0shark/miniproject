@@ -35,8 +35,4 @@ public class MvcConfig implements WebMvcConfigurer {
 		.addResourceHandler("/css/**")
 		.addResourceLocations("/css/");
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 }
