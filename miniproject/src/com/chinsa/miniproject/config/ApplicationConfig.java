@@ -13,7 +13,7 @@ import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import com.mysql.jdbc.Driver;
 
 @Configuration
-@ComponentScan(basePackages= {"com.chinsa.miniproject.dao","com.chinsa.miniproject.dao"})
+@ComponentScan(basePackages= {"com.chinsa.miniproject.dao","com.chinsa.miniproject.service"})
 //@Import({MybatisConfig.class})
 public class ApplicationConfig {
 	
@@ -21,7 +21,7 @@ public class ApplicationConfig {
 	public DataSource dataSource() {
 		SimpleDriverDataSource simpleDriverDataSource = new SimpleDriverDataSource();
 		simpleDriverDataSource.setDriverClass(Driver.class);
-		simpleDriverDataSource.setUrl("jdbc:mysql://localhost:3306/skudb");
+		simpleDriverDataSource.setUrl("jdbc:mysql://localhost:3306/skudb?serverTimezone=UTC");
 		simpleDriverDataSource.setUsername("sku");
 		simpleDriverDataSource.setPassword("sku");
 		return simpleDriverDataSource;
