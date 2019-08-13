@@ -1,9 +1,14 @@
-
 # Compiled class file
 *.class
-
+*.classpath
+*.project
+*.springBeans
 # Log file
 *.log
+.settings/
+Servers/
+.metadata/
+
 
 # BlueJ files
 *.ctxt
