@@ -5,16 +5,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+
 public class ProjectController {
 	
 	
 	public ProjectController(){
 		System.out.println("생성!!");
 	}
+	
 	@RequestMapping("/")
 	public String mainPage() { 
 		return "mainpage";
 		
+	}
+	
+	public String signUp() {
+		return "signUp";
 	}
 
 }
