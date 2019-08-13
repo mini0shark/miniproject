@@ -4,7 +4,7 @@
 
 	<select id="getTodo" parameterType="java.lang.Integer"
 		resultType="userDTO">
-		SELECT id FROM user WHERE id = #{id}
+		SELECT u_id,  FROM user WHERE u_id = #{u_id}
 	</select>
 
 </mapper>
