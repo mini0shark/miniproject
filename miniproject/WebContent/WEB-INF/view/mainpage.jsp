@@ -82,7 +82,7 @@
 	</div>
 	
 	<div class="goods">
-	
+		<img src="WEB-INF/img/item1.jpg" width="350px"/>
 			<h3>상품명</h3>
 			<p>가격</p>
 	</div>
