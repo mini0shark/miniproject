@@ -1,5 +1,8 @@
 package com.chinsa.miniproject.dao;
 
-public class ProductMapper {
+import com.chinsa.miniproject.mapper.Mapper;
 
+@Mapper
+public interface ProductMapper {
+	
 }
