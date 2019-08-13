@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	
 	<typeAliases>
 		<typeAlias type="com.chinsa.miniproject.dto.UserDTO"
 			alias="userDTO" />
 		<typeAlias type="com.chinsa.miniproject.dto.ProductDTO"
 			alias="productDTO" />
 	</typeAliases>
-	<!-- 모든 설정을 읽어들이는 것 -->
 </configuration>
