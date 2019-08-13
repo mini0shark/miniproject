@@ -1,15 +1,12 @@
 package com.chinsa.miniproject.dto;
 
 public class UserDTO {
-	
-	
-	int u_no;
-	String u_id;
-	String u_pwd;
-	String u_name;
-	String u_phone;
-	String u_address;
-	String u_email;
-	int u_level;
-
+	private int u_no;
+	private String u_id;
+	private String u_pwd;
+	private String u_name;
+	private String u_phone;
+	private String u_address;
+	private String u_email;
+	private int u_level;
 }
