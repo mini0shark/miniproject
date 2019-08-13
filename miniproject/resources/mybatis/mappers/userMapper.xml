@@ -6,5 +6,21 @@
 		resultType="userDTO">
 		SELECT u_no,u_id,u_pwd,u_name,u_phone,u_address,u_email,u_level FROM user WHERE u_id = #{uId}
 	</select>
-
+	
+	<select id="getUsers"
+		resultType="userDTO">
+		SELECT u_no,u_id,u_pwd,u_name,u_phone,u_address,u_email,u_level FROM user
+	</select>
+	
+	<insert id="insertUser" parameterType="userDTO">
+		INSERT INTO user(u_id,u_pwd,u_name,u_phone,u_address,u_email) values(#{uId},#{uPwd},#{uName},#{uPhone},#{uAddress},#{uEmail})
+	</insert>
+	
+	<update id="updateUser" parameterType="userDTO">
+		UPDATE user set u_pwd=#{uPwd},u_name=#{uName},u_phone=#{uPhone},u_address=#{uAddress},u_email=#{uEmail},u_level=#{uLevel} where id=#{uId}
+	</update>
+	
+	<delete id="deleteUser" parameterType="String">
+		delete from user where u_id=#{uId}
+	</delete>
 </mapper>
