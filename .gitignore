@@ -8,8 +8,7 @@
 .settings/
 Servers/
 .metadata/
-**/pom.xml
-**/ApplicationConfig.java
+ApplicationConfig.java
 
 # BlueJ files
 *.ctxt

@@ -7,21 +7,23 @@ import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
-import com.mysql.jdbc.Driver;
+//import com.mysql.jdbc.Driver;
+import com.mysql.cj.jdbc.Driver;
 
 @Configuration
-@ComponentScan(basePackages= {"com.chinsa.miniproject.dao","com.chinsa.miniproject.dao"})
-//@Import({MybatisConfig.class})
+@ComponentScan(basePackages= {"com.chinsa.miniproject.dao","com.chinsa.miniproject.service"})
+@Import({MybatisConfig.class})
 public class ApplicationConfig {
 	
 	@Bean
 	public DataSource dataSource() {
 		SimpleDriverDataSource simpleDriverDataSource = new SimpleDriverDataSource();
 		simpleDriverDataSource.setDriverClass(Driver.class);
-		simpleDriverDataSource.setUrl("jdbc:mysql://localhost:3306/skudb");
+		simpleDriverDataSource.setUrl("jdbc:mysql://localhost:3306/skudb?serverTimezone=UTC");
 		simpleDriverDataSource.setUsername("sku");
 		simpleDriverDataSource.setPassword("sku");
 		return simpleDriverDataSource;
