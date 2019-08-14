@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
 public class ProjectController {
 	
 	
@@ -17,7 +16,7 @@ public class ProjectController {
 		System.out.println("생성!!");
 	}
 	
-	@RequestMapping(".")
+	@RequestMapping("/")
 	public String mainPage() { 
 		return "mainpage";
 		
