@@ -10,6 +10,6 @@ public interface ProductMapper {
 	public ProductDTO getProduct(int pNo);
 	public List<ProductDTO> getProducts();
 	public int updateProduct(ProductDTO product);
-	public int insertUser(ProductDTO product);
-	public int deleteUser(int pNo);
+	public int insertProduct(ProductDTO product);
+	public int deleteProduct(int pNo);
 }
