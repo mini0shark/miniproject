@@ -1,5 +1,7 @@
 package com.chinsa.miniproject.controllers;
 
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,8 +25,9 @@ public class UserController {
 	UserService userService;
 	
 	@PostMapping("/login")
-	public String postLogin(@RequestBody String checkStore, @RequestBody UserDTO userDTO, final HttpSession session,
+	public String postLogin(@RequestBody Map data, final HttpSession session,
 			HttpServletResponse response, @CookieValue(value="storedId", required=false) Cookie storedIdCookie) {
+		UserDTO userDTO = (UserDTO)data.get("user");
 		UserDTO user = userService.getUser(userDTO.getuId());
 		if(user!=null) {
 			if(user.getuPwd().equals(userDTO.getuPwd())) {
@@ -34,7 +37,7 @@ public class UserController {
 					session.setAttribute("auth", "user");
 				session.setAttribute("id", user.getuId());
 				session.setMaxInactiveInterval(60*30);//30분
-				if(checkStore!=null) {
+				if(data.get("checkStore")!=null) {
 					Cookie storeIdCookie = new Cookie("storedId", user.getuId());
 					storeIdCookie.setPath("/");
 					storeIdCookie.setMaxAge(60*30);
@@ -54,9 +57,10 @@ public class UserController {
 	}
 	
 	@PostMapping("/signup")
-	public String postSignUp(@RequestBody String confirmPassword, @RequestBody UserDTO userDTO, HttpServletResponse response) {
+	public String postSignUp(@RequestBody Map data, HttpServletResponse response) {
 		int result = 0;
-		if(userDTO.getuPwd().equals(confirmPassword)) {
+		UserDTO userDTO = (UserDTO) data.get("user");
+		if(userDTO.getuPwd().equals(data.get("confirmPwd"))) {
 			if(userService.insertUser(userDTO)){
 				Cookie storeIdCookie = new Cookie("storedId", userDTO.getuId());
 				storeIdCookie.setPath("/");
