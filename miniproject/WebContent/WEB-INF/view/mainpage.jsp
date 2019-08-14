@@ -8,43 +8,43 @@
 
 <style>
 	body{
-		text-align:center;
+		
 	}
 	header{
 		background:#99CC66;
-		height:300px;
+		height:150px;
 		width:100%;
 		position:fixed;
 		top:0;
 		left:0;
 		z-index:1;
-	}
-	.main{
-		background:#fff;
-		margin-top:300px;
-		position:relative;
-		z-index:3;
-	}
-	footer{
-		background:#99CC66;
-		overflow:hidden;
-		p{
-			margin:0;
-			font-size:18px;
-			text-decoration:none;
-			line-height:100px;
-			display:block;
-		}
+		text-align:center;
 		
+	}
+
+	.menu{
+		background:#99CC66;
+		margin-top:150px;
+		margin-left:0px;
+		width:100%;
+		position:relative;
+		z-index:1;
+		text-align:right;
 	}
 	
 	.goods{
 		width:400px;
 		float:left;
 		margin:0 13px;
+		margin-top:100px;
 		text-align:center;
 	}
-
+	.category{
+		height:300px;
+		width:100px;
+		float:left;
+	}
+	
 </style>
 
 </head>
@@ -53,14 +53,13 @@
 
 	<header>
 		<h1>Chinsa mini</h1>
+		
 	</header>
 	
 	<div class="menu">
 		<nav>
-			<ul>
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
+				<a href="#">로그인</a>
+				<a href="#">회원가입</a>
 		</nav>
 	</div>
 	
@@ -88,10 +87,5 @@
 	</div>
 	
 	
-	
-	<footer>
-		<p>www.chinsa.co.kr
-		</p>
-	</footer>
 </body>
 </html>
