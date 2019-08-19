@@ -5,6 +5,7 @@ public class SellListDTO {
 	private String sName;//'상품 이름',
 	private int sPno; //상품 번호
 	private String sImg;	//대표 이미지
+	private String sSeller;
 	private String sBuyer;//구매자
 	private String sState;//상품 상태( 진행중, 거래중..)
 	private String sCategory;//상품 분류
@@ -33,6 +34,12 @@ public class SellListDTO {
 	}
 	public void setsImg(String sImg) {
 		this.sImg = sImg;
+	}
+	public void setsSeller(String sSeller) {
+		this.sSeller = sSeller;
+	}
+	public String getsSeller() {
+		return sSeller;
 	}
 	public String getsBuyer() {
 		return sBuyer;
