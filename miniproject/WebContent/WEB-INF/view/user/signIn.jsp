@@ -31,20 +31,32 @@
    </c:choose>
             <br>
             <button id="loginBtn" type="button">로그인</button>
-            <button type="button" onclick="view/mainpage.jsp">취소</button>         
+            <button id="cancel" type="button">취소</button>         
 </form>
 
 <script type="text/javascript">
    const btn = document.querySelector("#loginBtn");
+   const btn2 = document.querySelector("#cancel");
    const id = document.querySelector("#uId");
    const pwd = document.querySelector("#uPwd");
    const checkStore = document.querySelector("#checkStore");
    
    const req = new XMLHttpRequest();
+   btn2.addEventListener('click', function(){
+		 location.href("../"); 
+   });
    
    btn.addEventListener('click', function(){
       req.addEventListener('load', function(){
          console.log(this.responseText);
+         if(this.responseText==="login")
+        	 location.href("../");
+         else if(this.responseText==="idErr"){
+        	 alert("해당 id가 존재하지 않습니다");
+         }
+         else{
+        	 alert("패스워드가 틀립니다");
+         }
       });
       req.open('post', 'http://localhost:8080/miniproject/api/user/login');
       req.setRequestHeader("Content-Type","application/json;charset=utf-8");
