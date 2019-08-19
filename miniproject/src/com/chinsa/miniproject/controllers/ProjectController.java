@@ -15,12 +15,8 @@ public class ProjectController {
 	public ProjectController(){
 		System.out.println("생성!!");
 	}
-	
-<<<<<<< HEAD
-	@RequestMapping("/user/mainpage")
-=======
+
 	@RequestMapping("/")
->>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 	public String mainPage() { 
 		return "mainpage";
 		
