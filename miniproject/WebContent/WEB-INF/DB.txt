@@ -1,0 +1,64 @@
+DB
+
+create table user(
+u_no int(11) auto_increment primary key comment '유저 고유번호',
+u_id varchar(20) not null unique comment '유저 id(유니크)',
+u_pwd varchar(20) not null comment '유저 패스워드',
+u_name varchar(10) not null comment '유저 이름',
+u_phone varchar(15) not null comment '유저 폰번호',
+u_address varchar(60) not null comment '유저 주소',
+u_email varchar(30) not null comment '유저 이메일',
+u_level int(2) default 0 comment '유저 등급 ex) general(0), black(3), dia(2), silver(1), etc',
+u_time timestamp default current_timestamp
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table product(
+p_no int(11) auto_increment primary key comment '상품 고유번호',
+p_name varchar(60) not null comment '상품 이름',
+p_price int(20) not null comment '상품 가격',
+p_info text(65535) not null comment '상품 정보',
+p_loc varchar(60) default null comment '판매 위치(직거래일때)',
+p_img varchar(255) not null comment '상품 대표이미지',
+p_seller varchar(20) not null comment '상품 판매자(id)',
+p_state varchar(10) default  'ing' comment '상품 상태(진행중 거래완료 등)',
+p_category varchar(30) not null comment '상품 분류',
+p_time timestamp default current_timestamp
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table sellList(
+s_no int(11) auto_increment primary key comment '판매내역 번호',
+s_name varchar(60) not null comment '상품 이름',
+s_pno int(11) not null comment '상품 번호',
+s_img varchar(255) not null comment '상품 대표이미지',
+s_seller varchar(20) not null comment '상품 판매자(id)',
+s_buyer varchar(20) not null comment '상품 구매자(id)',
+s_state varchar(10) default  'ing' comment '상품 상태(진행중 거래완료 등)',
+s_category varchar(30) not null comment '상품 분류',
+s_time timestamp default current time_stamp not null,
+s_price int(20) not null comment '상품 가격',
+foreign key (s_pno) references product (p_no)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table buyList(
+b_no int(11) auto_increment primary key comment '구매내역 번호',
+b_name varchar(60) not null comment '상품 이름',
+b_pno int(11) not null comment '상품 번호',
+b_img varchar(255) not null comment '상품 대표이미지',
+b_seller varchar(20) not null comment '상품 판매자(id)',
+b_buyer varchar(20) not null comment '상품 구매자(id)',
+b_state varchar(10) default  'ing' comment '상품 상태(진행중 거래완료 등)',
+b_category varchar(30) not null comment '상품 분류',
+b_time timestamp default current_timestamp not null,
+b_price int(20) not null comment '상품 가격',
+foreign key (b_pno) references product (p_no)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table auction(
+a_no int(11) auto_increment primary key comment '경매 고유번호',
+a_start varchar(20) not null comment '경매 시작날짜 시간',
+a_end varchar(20) not null comment '경매 마감 날짜시간',
+a_price int(20) not null comment '경매 시작가',
+a_state varchar(10) default 'waiting' comment '경매 상태(대기중 진행중 완료 등)',
+a_time timestamp default current_timestamp not null
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
