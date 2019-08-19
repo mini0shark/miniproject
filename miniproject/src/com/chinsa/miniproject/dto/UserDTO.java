@@ -9,6 +9,7 @@ public class UserDTO {
 	private String uAddress;
 	private String uEmail;
 	private int uLevel;
+	private String uTime;//유저 등록 시간
 	public int getuNo() {
 		return uNo;
 	}
@@ -17,6 +18,12 @@ public class UserDTO {
 	}
 	public String getuId() {
 		return uId;
+	}
+	public String getuTime() {
+		return uTime;
+	}
+	public void setuTime(String uTime) {
+		this.uTime = uTime;
 	}
 	public void setuId(String uId) {
 		this.uId = uId;
