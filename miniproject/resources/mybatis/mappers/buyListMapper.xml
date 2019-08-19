@@ -20,7 +20,7 @@
 		UPDATE buyList set b_state=#{bState} where b_no=#{bNo}
 	</update>
 	
-	<delete id="deleteBuyList" parameterType="lang.java.Integer">
+	<delete id="deleteBuyList" parameterType="java.lang.Integer">
 		delete from buyList where b_no=#{bNo}
 	</delete>
 </mapper>

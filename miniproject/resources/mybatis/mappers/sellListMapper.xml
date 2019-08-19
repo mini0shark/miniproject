@@ -20,7 +20,7 @@
 		UPDATE sellList set s_state=#{sState} where s_no=#{sNo}
 	</update>
 	
-	<delete id="deleteSellList" parameterType="lang.java.Integer">
+	<delete id="deleteSellList" parameterType="java.lang.Integer">
 		delete from sellList where s_no=#{sNo}
 	</delete>
 </mapper>
