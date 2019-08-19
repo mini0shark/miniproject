@@ -108,10 +108,27 @@ a.home:hover {
 					<th>아이디 :</th>
 					<th><input type="text" name="uId" id="uId" /></th>
 				</tr>
+<<<<<<< HEAD
+=======
+				<br>
+<<<<<<< HEAD
+				<h1>회원가입</h1>
+				<hr>
+				<br> <br> <br>
+				<h3>
+					아이디 : <input type="text" />
+				</h3>
+=======
+>>>>>>> branch 'master' of https://github.com/mini0shark/miniproject
 				<tr>
 					<th>비밀번호 :</th>
 					<th><input type="password" name="uPwd" id="uPwd" /></th>
 				</tr>
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
+				<br>
+>>>>>>> branch 'master' of https://github.com/mini0shark/miniproject
 				<tr>
 					<th>비밀번호 확인:</th>
 					<th><input type="password" name="confirmPwd" id="confirmPwd" />
