@@ -6,6 +6,7 @@ public class BuyListDTO {
 	private int bPno; //상품 번호
 	private String bImg;	//대표 이미지
 	private String bSeller;//판매자
+	private String bBuyer;
 	private String bState;//상품 상태( 진행중, 거래중..)
 	private String bCategory;//상품 분류
 	private String bTime;//상품 등록 시간
@@ -39,6 +40,13 @@ public class BuyListDTO {
 	}
 	public void setbSeller(String bSeller) {
 		this.bSeller = bSeller;
+	}
+	
+	public String getbBuyer() {
+		return bBuyer;
+	}
+	public void setbBuyer(String bBuyer) {
+		this.bBuyer = bBuyer;
 	}
 	public String getbState() {
 		return bState;

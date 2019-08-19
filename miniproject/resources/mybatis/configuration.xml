@@ -10,5 +10,9 @@
 			alias="userDTO" />
 		<typeAlias type="com.chinsa.miniproject.dto.ProductDTO"
 			alias="productDTO" />
+		<typeAlias type="com.chinsa.miniproject.dto.SellListDTO"
+			alias="sellListDTO" />
+		<typeAlias type="com.chinsa.miniproject.dto.BuyListDTO"
+			alias="buyListDTO" />
 	</typeAliases>
 </configuration>
