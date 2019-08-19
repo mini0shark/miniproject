@@ -27,12 +27,8 @@ public class UserController {
 	@PostMapping("/login")
 	public String postLogin(@RequestBody Map<String, Object> data, final HttpSession session,
 			HttpServletResponse response, @CookieValue(value="storedId", required=false) Cookie storedIdCookie) {
-<<<<<<< HEAD
 		System.out.println(data.get("user"));
-		UserDTO userDTO = (UserDTO)data.get("user");
-=======
 		UserDTO userDTO = (UserDTO)(data.get("user"));
->>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 		UserDTO user = userService.getUser(userDTO.getuId());
 		if(user!=null) {
 			if(user.getuPwd().equals(userDTO.getuPwd())) {
