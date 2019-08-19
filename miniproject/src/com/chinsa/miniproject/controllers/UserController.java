@@ -27,6 +27,7 @@ public class UserController {
 	@PostMapping("/login")
 	public String postLogin(@RequestBody Map data, final HttpSession session,
 			HttpServletResponse response, @CookieValue(value="storedId", required=false) Cookie storedIdCookie) {
+		System.out.println(data.get("user"));
 		UserDTO userDTO = (UserDTO)data.get("user");
 		UserDTO user = userService.getUser(userDTO.getuId());
 		if(user!=null) {
