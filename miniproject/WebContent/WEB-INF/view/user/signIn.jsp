@@ -14,11 +14,11 @@
 		<tr>
 			<td bgcolor="skyblue">아이디</td>
 			<td><input type="text" name="uId" id="uId" maxlength="100" value="${storedId}"></td>
-        </tr> 
+        </tr>
         <tr>
         	<td bgcolor="skyblue">비밀번호</td>
         	<td><input type="password" name="uPwd" id="uPwd" maxlength="100"></td>
-        </tr> 
+        </tr>
 	</table>
 	
 	<label for="checkStore">ID저장하기</label>
@@ -32,7 +32,7 @@
    </c:choose>
             <br>
             <button id="loginBtn" type="button">로그인</button>
-            <input type="button" value="취소" onclick="mainpage.jsp" />         
+            <input type="button" value="취소" onclick="mainpage.jsp" />
 </form>
 
 <script type="text/javascript">
@@ -40,9 +40,9 @@
    const id = document.querySelector("#uId");
    const pwd = document.querySelector("#uPwd");
    const checkStore = document.querySelector("#checkStore");
-   
+
    const req = new XMLHttpRequest();
-   
+
    btn.addEventListener('click', function(){
       req.addEventListener('load', function(){
          console.log(this.responseText);
