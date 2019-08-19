@@ -43,14 +43,14 @@
    
    const req = new XMLHttpRequest();
    btn2.addEventListener('click', function(){
-		 location.href("../"); 
+		 location.href = "../"; 
    });
    
    btn.addEventListener('click', function(){
       req.addEventListener('load', function(){
          console.log(this.responseText);
          if(this.responseText==="login")
-        	 location.href("../");
+        	 location.href = "../";
          else if(this.responseText==="idErr"){
         	 alert("해당 id가 존재하지 않습니다");
          }
