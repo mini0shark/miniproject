@@ -25,10 +25,14 @@ public class UserController {
 	UserService userService;
 	
 	@PostMapping("/login")
-	public String postLogin(@RequestBody Map data, final HttpSession session,
+	public String postLogin(@RequestBody Map<String, Object> data, final HttpSession session,
 			HttpServletResponse response, @CookieValue(value="storedId", required=false) Cookie storedIdCookie) {
+<<<<<<< HEAD
 		System.out.println(data.get("user"));
 		UserDTO userDTO = (UserDTO)data.get("user");
+=======
+		UserDTO userDTO = (UserDTO)(data.get("user"));
+>>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 		UserDTO user = userService.getUser(userDTO.getuId());
 		if(user!=null) {
 			if(user.getuPwd().equals(userDTO.getuPwd())) {
@@ -58,9 +62,9 @@ public class UserController {
 	}
 	
 	@PostMapping("/signup")
-	public String postSignUp(@RequestBody Map data, HttpServletResponse response) {
+	public String postSignUp(@RequestBody Map<String, Object> data, HttpServletResponse response) {
 		int result = 0;
-		UserDTO userDTO = (UserDTO) data.get("user");
+		UserDTO userDTO = (UserDTO)(data.get("user"));
 		if(userDTO.getuPwd().equals(data.get("confirmPwd"))) {
 			if(userService.insertUser(userDTO)){
 				Cookie storeIdCookie = new Cookie("storedId", userDTO.getuId());
