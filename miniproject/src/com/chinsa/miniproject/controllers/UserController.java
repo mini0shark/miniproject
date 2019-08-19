@@ -58,6 +58,7 @@ public class UserController {
 					session.setAttribute("auth", "user");
 				session.setAttribute("id", user.getuId());
 				session.setMaxInactiveInterval(60*30);//30분
+				System.out.println(data.get("checkStore"));
 				if(data.get("checkStore")!=null) {
 					Cookie storeIdCookie = new Cookie("storedId", user.getuId());
 					storeIdCookie.setPath("/");
@@ -71,16 +72,35 @@ public class UserController {
 						response.addCookie(storedIdCookie);
 					}
 				}
-				return "login success";
+				return "login";
+			}
+			else {
+				return "pwdErr";
 			}
 		}
-		return "login fail";
+		return "idErr";
 	}
 	
 	@PostMapping("/signup")
-	public String postSignUp(@RequestBody Map<String, Object> data, HttpServletResponse response) {
+	public String postSignUp(@RequestBody Map data, HttpServletResponse response) {
 		int result = 0;
-		UserDTO userDTO = (UserDTO)(data.get("user"));
+		ObjectMapper mapper = new ObjectMapper();
+		UserDTO userDTO = null;
+		try {
+			userDTO = mapper.readValue(mapper.writeValueAsString(data.get("user")), UserDTO.class);
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
 		if(userDTO.getuPwd().equals(data.get("confirmPwd"))) {
 			if(userService.insertUser(userDTO)){
 				Cookie storeIdCookie = new Cookie("storedId", userDTO.getuId());
@@ -91,10 +111,10 @@ public class UserController {
 			}
 		}
 		if(result ==0) {
-			return "signup fail";
+			return "signupErr";
 		}
 		else {
-			return "signup success";
+			return "signup";
 		}
 	}
 }

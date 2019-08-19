@@ -6,7 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login Page</title>
-<link rel="stylesheet" type="text/css" href="css/loginForm.css">
 </head>
 <body>
  <form name="loginInfo">
@@ -14,11 +13,11 @@
 		<tr>
 			<td bgcolor="skyblue">아이디</td>
 			<td><input type="text" name="uId" id="uId" maxlength="100" value="${storedId}"></td>
-        </tr>
+        </tr> 
         <tr>
         	<td bgcolor="skyblue">비밀번호</td>
         	<td><input type="password" name="uPwd" id="uPwd" maxlength="100"></td>
-        </tr>
+        </tr> 
 	</table>
 	
 	<label for="checkStore">ID저장하기</label>
@@ -32,20 +31,32 @@
    </c:choose>
             <br>
             <button id="loginBtn" type="button">로그인</button>
-            <input type="button" value="취소" onclick="mainpage.jsp" />
+            <button id="cancel" type="button">취소</button>         
 </form>
 
 <script type="text/javascript">
    const btn = document.querySelector("#loginBtn");
+   const btn2 = document.querySelector("#cancel");
    const id = document.querySelector("#uId");
    const pwd = document.querySelector("#uPwd");
    const checkStore = document.querySelector("#checkStore");
-
+   
    const req = new XMLHttpRequest();
-
+   btn2.addEventListener('click', function(){
+		 location.href("../"); 
+   });
+   
    btn.addEventListener('click', function(){
       req.addEventListener('load', function(){
          console.log(this.responseText);
+         if(this.responseText==="login")
+        	 location.href("../");
+         else if(this.responseText==="idErr"){
+        	 alert("해당 id가 존재하지 않습니다");
+         }
+         else{
+        	 alert("패스워드가 틀립니다");
+         }
       });
       req.open('post', 'http://localhost:8080/miniproject/api/user/login');
       req.setRequestHeader("Content-Type","application/json;charset=utf-8");
@@ -55,7 +66,7 @@
     				  "uId": id.value,
     				  "uPwd": pwd.value
     			  },
-    			  "checkStore": checkStore.value
+    			  "checkStore": checkStore.checked
     		 }));
    });
 </script>

@@ -4,19 +4,19 @@
 
 	<select id="getProduct" parameterType="String"
 		resultType="productDTO">
-		SELECT p_no,p_name,p_price,p_info,p_loc,p_img,p_seller,p_state,p_category FROM product WHERE p_no = #{pNo}
+		SELECT p_no,p_name,p_price,p_info,p_loc,p_img,p_seller,p_state,p_category,p_time FROM product WHERE p_no = #{pNo}
 	</select>
 
 	<select id="getProducts" resultType="productDTO">
-	SELECT p_no,p_name,p_price,p_info,p_loc,p_img,p_seller,p_state,p_category FROM product
+	SELECT p_no,p_name,p_price,p_info,p_loc,p_img,p_seller,p_state,p_category,p_time FROM product
 	</select>
 	
 	
 	
 
 	<insert id="insertProduct" parameterType="productDTO">
-		INSERT INTO product(p_name,p_price,p_info,p_loc,p_img,p_seller,p_state,p_category) 
-		values(#{pName},#{pPrice},#{pInfo},#{pLoc},#{pImg},#{pSeller},#{pState},#{pCategory})
+		INSERT INTO product(p_name,p_price,p_info,p_loc,p_img,p_seller,p_category) 
+		values(#{pName},#{pPrice},#{pInfo},#{pLoc},#{pImg},#{pSeller},#{pCategory})
 	</insert>
 	
 	<update id="updateProduct" parameterType="productDTO">

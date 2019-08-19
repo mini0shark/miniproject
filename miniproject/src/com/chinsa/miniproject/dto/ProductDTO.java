@@ -10,8 +10,15 @@ public class ProductDTO {
 	private String pSeller;//판매자
 	private String pState;//상품 상태( 진행중, 거래중..)
 	private String pCategory;//상품 분류
+	private String pTime;//상품 등록 시간
 	public int getpNo() {
 		return pNo;
+	}
+	public String getpTime() {
+		return pTime;
+	}
+	public void setpTime(String pTime) {
+		this.pTime = pTime;
 	}
 	public void setpNo(int pNo) {
 		this.pNo = pNo;

@@ -15,7 +15,7 @@ public class ProjectController {
 	public ProjectController(){
 		System.out.println("생성!!");
 	}
-	
+
 	@RequestMapping("/")
 	public String mainPage() { 
 		return "mainpage";
