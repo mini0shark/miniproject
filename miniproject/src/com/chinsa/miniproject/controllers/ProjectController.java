@@ -45,10 +45,20 @@ public class ProjectController {
 		return "user/myPage";
 	}
 	
+	@GetMapping("/user/adminpage")
+	public String getAdminPage() {
+		return "user/adminPage";
+	}
+	
+	@GetMapping("/user/edit")
+	public String getEditUserPage() {
+		return "user/userEdit";
+	}
 	
 	@GetMapping("/product/registration")
 	public String getRegister() {
 		return "product/registration";
 	}
+	
 
 }

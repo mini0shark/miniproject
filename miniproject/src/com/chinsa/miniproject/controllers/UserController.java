@@ -1,6 +1,7 @@
 package com.chinsa.miniproject.controllers;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -9,8 +10,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,7 +61,6 @@ public class UserController {
 					session.setAttribute("auth", "user");
 				session.setAttribute("id", user.getuId());
 				session.setMaxInactiveInterval(60*30);//30분
-				System.out.println(data.get("checkStore"));
 				if(data.get("checkStore")!=null) {
 					Cookie storeIdCookie = new Cookie("storedId", user.getuId());
 					storeIdCookie.setPath("/");
@@ -118,8 +120,8 @@ public class UserController {
 		}
 	}
 	
-	@PostMapping("/update")
-	public String postUpdate(@RequestBody Map data) {
+	@PutMapping("/update")
+	public String putUpdate(@RequestBody Map data) {
 		int result = 0;
 		ObjectMapper mapper = new ObjectMapper();
 		UserDTO userDTO = null;
@@ -195,6 +197,28 @@ public class UserController {
 		}
 		else {
 			return "idErr";
+		}
+	}
+	
+	@GetMapping("/{uId}")
+	public UserDTO getUser(@PathVariable String uId) {
+		UserDTO userDTO = userService.getUser(uId);
+		if(userDTO!=null) {
+			return userDTO;
+		}
+		else {
+			return null;
+		}
+	}
+	
+	@GetMapping("/")
+	public List<UserDTO> getUsers() {
+		List<UserDTO> users = userService.getUsers();
+		if(users!=null) {
+			return users;
+		}
+		else {
+			return null;
 		}
 	}
 }
