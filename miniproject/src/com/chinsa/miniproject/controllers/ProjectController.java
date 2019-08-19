@@ -44,7 +44,9 @@ public class ProjectController {
 	public String getMyPage() {
 		return "user/myPage";
 	}
-	@RequestMapping("/product/registration")
+	
+	
+	@GetMapping("/product/registration")
 	public String getRegister() {
 		return "product/registration";
 	}

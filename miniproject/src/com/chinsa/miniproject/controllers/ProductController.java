@@ -21,11 +21,12 @@ import com.chinsa.miniproject.service.ProductService;
 public class ProductController {
 	@Autowired
 	ProductService productService;
-	
 	@PostMapping("/register")
 	public String postRegister(@RequestBody Map map, 
 			final HttpSession session) {
 		String id = (String)session.getAttribute("id");
+		
+		
 		System.out.println("id : "+id);
 		System.out.println("1=1=1=1=1=1=1=1==");
 		
