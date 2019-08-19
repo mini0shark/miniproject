@@ -39,6 +39,8 @@ li {
 
 #navigation>ul>li>a {
 	display: block;
+	background-color: white;
+	color: black;
 	padding: 10px 20px;
 	border: 1px solid black;
 }
@@ -55,8 +57,8 @@ li {
 <body>
 	<nav id="navigation">
 	<ul>
-		<li><a href="http://www.naver.com">홈으로</a></li>
-		<li><a href="http://www.google.co.kr">로그인</a></li>
+		<li><a href="http://localhost:8080/miniproject/">홈으로</a></li>
+		<li><a href="http://localhost:8080/miniproject/user/signin">로그인</a></li>
 	</ul>
 	</nav>
 	<center>
@@ -64,7 +66,7 @@ li {
 			<br> <br> <br>
 			<div id='form'>
 				<br>
-				<h1>회원가입</h1>
+				<h1>연어 먹고 싶다</h1>
 				<hr>
 				<br> <br> <br>
 				<h3>
