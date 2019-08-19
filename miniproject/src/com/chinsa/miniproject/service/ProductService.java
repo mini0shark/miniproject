@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.chinsa.miniproject.dao.ProductMapper;
 import com.chinsa.miniproject.dto.ProductDTO;
+import com.chinsa.miniproject.dto.UserDTO;
 
 @Service
 public class ProductService {
@@ -18,5 +19,18 @@ public class ProductService {
 	}
 	public List<ProductDTO> getProducts(){
 		return productDao.getProducts();
+	}
+	public boolean insertProduct(ProductDTO productDTO) {
+		// TODO Auto-generated method stub
+		int result = 0;
+		try {
+			result = productDao.insertProduct(productDTO);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		if(result==0)
+			return false;
+		else
+			return true;
 	}
 }

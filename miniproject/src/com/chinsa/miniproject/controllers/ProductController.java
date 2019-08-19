@@ -1,5 +1,6 @@
 package com.chinsa.miniproject.controllers;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -12,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.chinsa.miniproject.dto.ProductDTO;
+import com.chinsa.miniproject.dto.UserDTO;
 import com.chinsa.miniproject.service.ProductService;
+import com.chinsa.miniproject.service.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @RestController
@@ -21,17 +26,35 @@ import com.chinsa.miniproject.service.ProductService;
 public class ProductController {
 	@Autowired
 	ProductService productService;
+	@Autowired
+	UserService userService;
 	@PostMapping("/register")
 	public String postRegister(@RequestBody Map map, 
 			final HttpSession session) {
-		String id = (String)session.getAttribute("id");
+		String uId = (String)session.getAttribute("id");
+		UserDTO seller = userService.getUser(uId);
+		ProductDTO product = null;
+		ObjectMapper mapper = new ObjectMapper();
+		System.out.println("id : "+uId);
+		if(uId==null) {
+			return "loginNeeded";
+		}
 		
+		try {
+			product = mapper.readValue(mapper.writeValueAsString(map.get("product")), ProductDTO.class);
+			product.setpSeller(seller.getuName());
+			product.setpImg("임시로 저장 이거 나중에 바꿔야함!!!!!");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		System.out.println("id : "+id);
-		System.out.println("1=1=1=1=1=1=1=1==");
+		if(productService.insertProduct(product)) {
+			return "registerSuccess";
+		}
 		
-		System.out.println(map.get("product")+"------");
 		return "registerErr";
 	}
 	
 }
+

@@ -11,21 +11,21 @@
       </head>
       <body>
         <form name="productInformation">
-          <input type="text" id="p_name" placeholder="상품명"/>
-          <input type="number" id="p_price" />
-          <input type="text" id="p_info" placeholder="제품 설명"/>
-          <input type="text" id="p_loc" placeholder="거래 위치"/>
-          <input type="text" id="p_category" placeholder="상품 분류"/>
+          <input type="text" id="pName" placeholder="상품명"/>
+          <input type="number" id="pPrice" />
+          <input type="text" id="pInfo" placeholder="제품 설명"/>
+          <input type="text" id="pLoc" placeholder="거래 위치"/>
+          <input type="text" id="pCategory" placeholder="상품 분류"/>
           <button type="button" id="submit_btn" >상품 등록</button>
           <button type="button" id="cancel_btn">취소</button>
         </form>
       </body>
       <script type="text/javascript">
-        const p_name = document.querySelector("#p_name");
-        const p_price = document.querySelector("#p_price");
-        const p_info = document.querySelector("#p_info");
-        const p_loc = document.querySelector("#p_loc");
-        const p_category = document.querySelector("#p_category");
+        const p_name = document.querySelector("#pName");
+        const p_price = document.querySelector("#pPrice");
+        const p_info = document.querySelector("#pInfo");
+        const p_loc = document.querySelector("#pLoc");
+        const p_category = document.querySelector("#pCategory");
         const submit_btn = document.querySelector("#submit_btn");
 
 
@@ -38,11 +38,11 @@
           req.setRequestHeader("Content-Type","application/json;charset=utf-8");
           req.send(JSON.stringify(
         		  {"product":{
-                "p_name":p_name.value,
-                "p_price":p_price.value,
-                "p_info":p_info.value,
-                "p_loc":p_loc.value,
-                "p_category":p_category.value
+                "pName":p_name.value,
+                "pPrice":p_price.value,
+                "pInfo":p_info.value,
+                "pLoc":p_loc.value,
+                "pCategory":p_category.value
               }}));
        });
 
