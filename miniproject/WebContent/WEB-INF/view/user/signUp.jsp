@@ -91,19 +91,17 @@ a.home:hover {
 					<th><input type="text" name="uId" id="uId" /></th>
 				</tr>
 				<br>
-<<<<<<< HEAD
 				<h1>회원가입</h1>
 				<hr>
 				<br> <br> <br>
 				<h3>
 					아이디 : <input type="text" />
 				</h3>
-=======
 				<tr>
 					<th>비밀번호 :</th>
 					<th><input type="password" name="uPwd" id="uPwd" /></th>
 				</tr>
->>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
+
 				<br>
 				<tr>
 					<th>비밀번호 확인:</th>
