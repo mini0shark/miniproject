@@ -66,7 +66,7 @@ li {
 			<br> <br> <br>
 			<div id='form'>
 				<br>
-				<h1>연어 먹고 싶다</h1>
+				<h1>회원가입</h1>
 				<hr>
 				<br> <br> <br>
 				<h3>
