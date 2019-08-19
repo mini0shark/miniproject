@@ -4,12 +4,12 @@
 
 	<select id="getUser" parameterType="String"
 		resultType="userDTO">
-		SELECT u_no,u_id,u_pwd,u_name,u_phone,u_address,u_email,u_level FROM user WHERE u_id = #{uId}
+		SELECT u_no,u_id,u_pwd,u_name,u_phone,u_address,u_email,u_level,u_time FROM user WHERE u_id = #{uId}
 	</select>
 	
 	<select id="getUsers"
 		resultType="userDTO">
-		SELECT u_no,u_id,u_pwd,u_name,u_phone,u_address,u_email,u_level FROM user
+		SELECT u_no,u_id,u_pwd,u_name,u_phone,u_address,u_email,u_level,u_time FROM user
 	</select>
 	
 	<insert id="insertUser" parameterType="userDTO">
