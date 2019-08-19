@@ -8,9 +8,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chinsa.miniproject.dto.ProductDTO;
@@ -55,6 +57,10 @@ public class ProductController {
 		
 		return "registerErr";
 	}
-	
+	@GetMapping("/search")
+	public String getSearch(@RequestParam Map<String, String> map) {
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsString(map.get("category"));
+	}
 }
 

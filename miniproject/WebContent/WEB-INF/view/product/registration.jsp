@@ -13,11 +13,13 @@
 			}
         </script>
         http://localhost:8080/miniproject/api/product/registration 페이지
+        결과값이 registerErr, registerSuccess, loginNeeded로 나옴
         <br>
         확인?
       </head>
       <body>
         <form name="productInformation">
+<<<<<<< HEAD
           <input type="text" id="pName" placeholder="상품명"/><br/>
           <input type="number" id="pPrice" /><br/>
           <textarea id="pInfo"></textarea>
@@ -25,8 +27,19 @@
           	CKEDITOR.replace('pInfo');
           </script>
           <input type="text" id="pLoc" placeholder="거래 위치"/><br/>
-          <input type="text" id="pCategory" placeholder="상품 분류"/><br/>
-          <button type="button" id="submit_btn" >상품 등록</button>
+          <select name="category" id="pCategory">
+			<option value="">--카테고리--</option>
+			<option value="garment">의류</option>
+			<option value="beauty">뷰티</option>
+			<option value="furniture">가구</option>
+			<option value="electro">가전</option>
+			<option value="accessory">악세사리</option>
+			<option value="sports">스포츠</option>
+			<option value="carAccessories">자동차용품</option>
+			<option value="ticket">티켓</option>
+			<option value="books">책</option>
+		</select>
+		<button type="button" id="submit_btn">상품 등록</button>
           <button type="button" id="cancel_btn">취소</button>
         </form>
       </body>
@@ -43,7 +56,10 @@
         submit_btn.addEventListener('click', function(){
        	  FormSubmit(pInfo);
           req.addEventListener('load', function(){
-        	  alert(this.responseText+"왜 안되지??")
+        	  alert(this.responseText+"왜 안되지??");
+        	  //////////////////////////////////
+        	  
+        	  ////////////////////////
           });
           req.open('post', 'http://localhost:8080/miniproject/api/product/register');
           req.setRequestHeader("Content-Type","application/json;charset=utf-8");

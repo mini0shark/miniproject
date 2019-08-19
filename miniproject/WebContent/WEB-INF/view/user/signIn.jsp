@@ -97,8 +97,7 @@ table {
 			location.href = "../";
 		});
 
-		btn
-				.addEventListener(
+		btn.addEventListener(
 						'click',
 						function() {
 							req.addEventListener('load', function() {
