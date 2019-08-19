@@ -1,5 +1,6 @@
 package com.chinsa.miniproject.controllers;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -16,6 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.chinsa.miniproject.dto.UserDTO;
 import com.chinsa.miniproject.service.UserService;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/api/user")
@@ -25,10 +30,25 @@ public class UserController {
 	UserService userService;
 	
 	@PostMapping("/login")
-	public String postLogin(@RequestBody Map<String, Object> data, final HttpSession session,
+	public String postLogin(@RequestBody Map data, final HttpSession session,
 			HttpServletResponse response, @CookieValue(value="storedId", required=false) Cookie storedIdCookie) {
-		System.out.println(data.get("user"));
-		UserDTO userDTO = (UserDTO)(data.get("user"));
+		ObjectMapper mapper = new ObjectMapper();
+		UserDTO userDTO = null;
+		try {
+			userDTO = mapper.readValue(mapper.writeValueAsString(data.get("user")), UserDTO.class);
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
 		UserDTO user = userService.getUser(userDTO.getuId());
 		if(user!=null) {
 			if(user.getuPwd().equals(userDTO.getuPwd())) {
