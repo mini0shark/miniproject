@@ -36,10 +36,10 @@
 	}
 	
 	.goods{
-		width:400px;
+		width:200px;
 		float:left;
 		margin:0 13px;
-		margin-top:100px;
+		margin-top:50px;
 		text-align:center;
 	}
 	.category{
@@ -137,32 +137,32 @@
 	<div class="category">
 		<nav>
 			<ul>
-				<li class='1'><a href="#" style="color:white">의류</a></li>
+				<li class='1'><a href="#" >의류</a></li>
 				
-				<li class='2'><a href="#" style="color:white">뷰티</a></li>
+				<li class='2'><a href="#" >뷰티</a></li>
 				
-				<li class='3'><a href="#" style="color:white">가구</a></li>
+				<li class='3'><a href="#">가구</a></li>
 				
-				<li class='4'><a href="#" style="color:white">가전</a></li>
+				<li class='4'><a href="#">가전</a></li>
 				
-				<li class='5'><a href="#" style="color:white">악세사리</a></li>
+				<li class='5'><a href="#" >악세사리</a></li>
 				
-				<li class='6'><a href="#" style="color:white">스포츠</a></li>
+				<li class='6'><a href="#">스포츠</a></li>
 				
-				<li class='7'><a href="#" style="color:white">자동차용품</a></li>
+				<li class='7'><a href="#" >자동차용품</a></li>
 				
-				<li class='8'><a href="#" style="color:white">공연/티켓</a></li>
+				<li class='8'><a href="#">공연/티켓</a></li>
 				
-				<li class='9'><a href="#" style="color:white">도서</a></li>
+				<li class='9'><a href="#">도서</a></li>
 				
 			</ul>
 		</nav>
 	</div>
 	
 	<div class="goods">
-		<img src="WEB-INF/img/item1.jpg" width="350px"/>
-			<h3>상품명</h3>
-			<p>가격</p>
+		<img src="resources/images/img/item1.jpg" width="250px"/>
+			<h3>티셔츠</h3>
+			<p>10000원</p>
 	</div>
 	
 	
