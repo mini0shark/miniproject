@@ -63,9 +63,27 @@ a.home:hover {
 	text-decoration: none;
 }
 
+#form {
+	margin: 0 auto;
+}
+
 #table {
 	background-color: black;
+	padding: 10px;
+	color : white;
+	margin: 0 auto;
 	color: white;
+	border-collapse: separate;
+	border-spacing: 20px;
+}
+
+#table>tr {
+	margin: 10px;
+}
+
+#button {
+	background-color: red;
+	margin: 0 auto;
 }
 </style>
 </head>
@@ -82,7 +100,7 @@ a.home:hover {
 	</div>
 
 	<hr style="border: 1px solid black;">
-
+	<br><br>
 	<form>
 		<div id="form">
 			<table id="table">
@@ -90,41 +108,37 @@ a.home:hover {
 					<th>아이디 :</th>
 					<th><input type="text" name="uId" id="uId" /></th>
 				</tr>
-				<br>
 				<tr>
 					<th>비밀번호 :</th>
 					<th><input type="password" name="uPwd" id="uPwd" /></th>
 				</tr>
-				<br>
 				<tr>
 					<th>비밀번호 확인:</th>
 					<th><input type="password" name="confirmPwd" id="confirmPwd" />
 					</th>
 				</tr>
-				<br>
-				<br>
 				<tr>
 					<th>이름 :</th>
 					<th><input type="text" name="uName" id="uName" /></th>
 				</tr>
-				<br>
 				<tr>
 					<th>전화번호 :</th>
 					<th><input type="text" name="uPhone" id="uPhone" /></th>
 				</tr>
-				<br>
 				<tr>
 					<th>주소 :</th>
 					<th><input type="text" name="uAddress" id="uAddress" /></th>
 				</tr>
-				<br>
 				<tr>
 					<th>이메일 :</th>
 					<th><input type="text" name="uEmail" id="uEmail" /></th>
 				</tr>
 			</table>
-			<br> <input type="submit" value="가입" id="signUpButton" />
-			<button id="cancelButton" type="button">취소</button>
+			<br><br>
+			<center>
+				<input type="submit" value="가입" id="signUpButton" />
+				<button id="cancelButton" type="button">취소</button>
+			</center>
 		</div>
 	</form>
 
