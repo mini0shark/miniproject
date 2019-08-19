@@ -94,6 +94,17 @@
 			<version>2.9.8</version>
 		</dependency>
 	<!-- 잭슨-> 스프링이 dto를 json형태로 변환 시켜 주는 라이브러리 -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
+ 
+		<dependency>
+		    <groupId>taglibs</groupId>
+		    <artifactId>standard</artifactId>
+		    <version>1.1.2</version>
+		</dependency>
 	</dependencies>
   
   <build>
