@@ -117,4 +117,84 @@ public class UserController {
 			return "signup";
 		}
 	}
+	
+	@PostMapping("/update")
+	public String postUpdate(@RequestBody Map data) {
+		int result = 0;
+		ObjectMapper mapper = new ObjectMapper();
+		UserDTO userDTO = null;
+		try {
+			userDTO = mapper.readValue(mapper.writeValueAsString(data.get("user")), UserDTO.class);
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
+		if(userDTO.getuPwd().equals(data.get("confirmPwd"))) {
+			if(userService.updateUser(userDTO)){
+				result = 1;
+			}
+		}
+		if(result==0) {
+			return "updateErr";
+		}
+		else {
+			return "update";
+		}
+	}
+	
+	@PostMapping("/logout")
+	public String postLogout(final HttpSession session) {
+		if(session.getAttribute("auth")!=null)
+			session.removeAttribute("auth");
+		if(session.getAttribute("id")!=null)
+			session.removeAttribute("id");
+		return "logout";
+	}
+	
+	@PostMapping("/delete")
+	public String postDelete(@RequestBody Map data) {
+		ObjectMapper mapper = new ObjectMapper();
+		UserDTO userDTO = null;
+		try {
+			userDTO = mapper.readValue(mapper.writeValueAsString(data.get("user")), UserDTO.class);
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
+		UserDTO user = userService.getUser(userDTO.getuId());
+		if(user!=null) {
+			if(userDTO.getuPwd().equals(user.getuPwd())) {
+				if(userService.deleteUser(user.getuId())){
+					return "delete";
+				}
+				else {
+					return "dbErr";
+				}
+			}
+			else {
+				return "pwdErr";
+			}
+		}
+		else {
+			return "idErr";
+		}
+	}
 }
