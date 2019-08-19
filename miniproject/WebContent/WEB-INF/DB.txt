@@ -34,7 +34,7 @@ s_seller varchar(20) not null comment '상품 판매자(id)',
 s_buyer varchar(20) not null comment '상품 구매자(id)',
 s_state varchar(10) default  'ing' comment '상품 상태(진행중 거래완료 등)',
 s_category varchar(30) not null comment '상품 분류',
-s_time timestamp default current time_stamp not null,
+s_time timestamp default current_time stamp not null,
 s_price int(20) not null comment '상품 가격',
 foreign key (s_pno) references product (p_no)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -48,7 +48,7 @@ b_seller varchar(20) not null comment '상품 판매자(id)',
 b_buyer varchar(20) not null comment '상품 구매자(id)',
 b_state varchar(10) default  'ing' comment '상품 상태(진행중 거래완료 등)',
 b_category varchar(30) not null comment '상품 분류',
-b_time timestamp default current time_stamp not null,
+b_time timestamp default current_time stamp not null,
 b_price int(20) not null comment '상품 가격',
 foreign key (b_pno) references product (p_no)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
