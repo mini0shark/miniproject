@@ -5,17 +5,27 @@
     <head>
       <meta charset="UTF-8">
         <title>Insert title here</title>
+        <script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+        <script type="text/javascript">
+			function FormSubmit(contents){
+				CKEDITOR.instances.contents.updateElement();
+				return false;
+			}
+        </script>
         http://localhost:8080/miniproject/api/product/registration 페이지
         <br>
         확인?
       </head>
       <body>
         <form name="productInformation">
-          <input type="text" id="pName" placeholder="상품명"/>
-          <input type="number" id="pPrice" />
-          <input type="text" id="pInfo" placeholder="제품 설명"/>
-          <input type="text" id="pLoc" placeholder="거래 위치"/>
-          <input type="text" id="pCategory" placeholder="상품 분류"/>
+          <input type="text" id="pName" placeholder="상품명"/><br/>
+          <input type="number" id="pPrice" /><br/>
+          <textarea id="pInfo"></textarea>
+          <script>
+          	CKEDITOR.replace('pInfo');
+          </script>
+          <input type="text" id="pLoc" placeholder="거래 위치"/><br/>
+          <input type="text" id="pCategory" placeholder="상품 분류"/><br/>
           <button type="button" id="submit_btn" >상품 등록</button>
           <button type="button" id="cancel_btn">취소</button>
         </form>
@@ -31,6 +41,7 @@
 
         const req = new XMLHttpRequest();
         submit_btn.addEventListener('click', function(){
+       	  FormSubmit(pInfo);
           req.addEventListener('load', function(){
         	  alert(this.responseText+"왜 안되지??")
           });
