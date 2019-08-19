@@ -127,8 +127,8 @@
 	
 	<div class="menu">
 		<nav>
-				<a class="login" href="#">로그인</a>
-				<a class="join" href="#">회원가입</a>
+				<a class="login" href="http://localhost:8080/miniproject/user/signin">로그인</a>
+				<a class="join" href="http://localhost:8080/miniproject/user/signup">회원가입</a>
 		</nav>
 		<hr color=black>
 	</div>
