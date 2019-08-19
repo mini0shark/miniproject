@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
 public class ProjectController {
 	
 	
@@ -17,7 +16,11 @@ public class ProjectController {
 		System.out.println("생성!!");
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("/user/mainpage")
+=======
+	@RequestMapping("/")
+>>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 	public String mainPage() { 
 		return "mainpage";
 		

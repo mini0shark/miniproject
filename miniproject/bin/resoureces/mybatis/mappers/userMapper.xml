@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chinsa.miniproject.dao.UserMapper">
@@ -7,4 +8,15 @@
 		SELECT u_id, FROM user WHERE u_id = #{u_id}
 	</select>
 
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinsa.miniproject.dao">
+
+	<select id="getTodo" parameterType="java.lang.Integer"
+		resultType="userDTO">
+		SELECT u_id,  FROM user WHERE u_id = #{u_id}
+	</select>
+
+>>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 </mapper>
