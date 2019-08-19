@@ -6,7 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login Page</title>
-<link rel="stylesheet" type="text/css" href="css/loginForm.css">
 </head>
 <body>
  <form name="loginInfo">
@@ -32,7 +31,7 @@
    </c:choose>
             <br>
             <button id="loginBtn" type="button">로그인</button>
-            <input type="button" value="취소" onclick="mainpage.jsp" />         
+            <button type="button" onclick="view/mainpage.jsp">취소</button>         
 </form>
 
 <script type="text/javascript">
