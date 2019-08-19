@@ -66,7 +66,7 @@
     				  "uId": id.value,
     				  "uPwd": pwd.value
     			  },
-    			  "checkStore": checkStore.value
+    			  "checkStore": checkStore.checked
     		 }));
    });
 </script>
