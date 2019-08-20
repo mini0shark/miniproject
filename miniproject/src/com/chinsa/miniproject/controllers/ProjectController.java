@@ -117,4 +117,8 @@ public class ProjectController {
 	
 	
 
+	@GetMapping("/product/productview")
+	public String productView() {
+		return "product/productView";
+	}
 }

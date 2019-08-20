@@ -3,7 +3,7 @@ package com.chinsa.miniproject.dto;
 public class ProductDTO {
 	private int pNo; //고유번 호 (key)
 	private String pName;//'상품 이름',
-	private int pPrice;
+	private int pPrice; //가격
 	private String pInfo; //정보
 	private String pLoc; // 판매위치(직거래 일때
 	private String pImg;	//대표 이미지
