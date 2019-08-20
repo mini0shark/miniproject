@@ -17,7 +17,11 @@
           <input type="number" id="pPrice" /><br/>
           <textarea name="pInfo" id="pInfo"></textarea>
           <script>
-          	CKEDITOR.replace('pInfo');
+          	CKEDITOR.replace('pInfo',{
+          		//width: '100%'
+          		//height: '400px',
+          		filebrowserUploadUrl: './imageupload'
+          	});
           </script>
           <input type="text" id="pLoc" placeholder="거래 위치"/><br/>
           <select name="category" id="pCategory">
