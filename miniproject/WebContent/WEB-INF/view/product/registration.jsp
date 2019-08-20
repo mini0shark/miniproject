@@ -20,7 +20,7 @@
           	CKEDITOR.replace('pInfo',{
           		//width: '100%'
           		//height: '400px',
-          		filebrowserImageUploadUrl: './imageupload'
+          		filebrowserUploadUrl: './imageupload'
           	});
           </script>
           <input type="text" id="pLoc" placeholder="거래 위치"/><br/>
