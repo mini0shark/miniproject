@@ -1,6 +1,7 @@
 package com.chinsa.miniproject.controllers;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -59,16 +60,38 @@ public class ProductController {
 		return "registerErr";
 	}
 	@GetMapping("/search")
-	public String getSearch(@RequestParam Map<String, String> map) {
+	public List<ProductDTO> getSearch(@RequestParam Map<String, String> map) {
 		ObjectMapper mapper = new ObjectMapper();
-		String str = null;
+		List<ProductDTO> result = null;
+		String pCategory = null;
+		String pLoc = null;
+		String pSeller = null;
+		String pName = null;
+		String orderBy = "DESC";
 		try {
-			str = mapper.writeValueAsString(map.get("category"));
+			pCategory = mapper.readValue(mapper.writeValueAsString(map.get("category")), String.class);
+			pLoc = mapper.readValue(mapper.writeValueAsString(map.get("loc")), String.class);
+			pSeller = mapper.readValue(mapper.writeValueAsString(map.get("seller")), String.class);
+			pName = mapper.readValue(mapper.writeValueAsString(map.get("name")), String.class);
+			orderBy = mapper.readValue(mapper.writeValueAsString(map.get("orderBy")), String.class);
+			System.out.println(pSeller);
+			if(orderBy==null) {
+				orderBy = "DESC";
+			}
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return str;
+		try {
+			result = productService.getProductsInCategory(pCategory,pLoc, pSeller, pName, orderBy);	
+		} catch (NullPointerException e) {
+			// TODO: handle exception
+			result =null;
+		}
+		return result;
 	}
 }
 

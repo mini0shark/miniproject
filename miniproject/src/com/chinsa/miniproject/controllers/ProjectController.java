@@ -17,10 +17,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 public class ProjectController {
 	
-	
-	public ProjectController(){
-		System.out.println("생성!!");
-	}
 
 	@RequestMapping("/")
 	public String mainPage() { 
@@ -54,6 +50,7 @@ public class ProjectController {
 	
 	@GetMapping("/product/registration")
 	public String getRegister() {
+		//로그인 안하면 여기서 튕기게 하기
 		return "product/registration";
 	}
 	
