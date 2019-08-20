@@ -108,10 +108,12 @@ a.home:hover {
 					<th>아이디 :</th>
 					<th><input type="text" name="uId" id="uId" /></th>
 				</tr>
+
 				<tr>
 					<th>비밀번호 :</th>
 					<th><input type="password" name="uPwd" id="uPwd" /></th>
 				</tr>
+
 				<tr>
 					<th>비밀번호 확인:</th>
 					<th><input type="password" name="confirmPwd" id="confirmPwd" />

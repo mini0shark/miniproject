@@ -53,6 +53,7 @@ table {
 			<hr color=black>
 		</div>
 
+
 		<div id="box">
 			<table>
 				<tr>
@@ -123,6 +124,8 @@ table {
 								"checkStore" : checkStore.checked
 							}));
 						});
+
 	</script>
+
 </body>
 </html>
