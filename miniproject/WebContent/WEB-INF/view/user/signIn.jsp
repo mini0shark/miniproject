@@ -41,20 +41,71 @@ table {
 	margin: 0 auto;
 }
 
+a.head:link {
+	color: #CC0000;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.head:visited {
+	color: #CC0000;
+	text-decoration: none;
+}
+
+.search {
+	display: inline-block;
+	width: 366px;
+	height: 34px;
+	border: 3px solid white;
+	background: white;
+}
+
+.input_text {
+	width: 348px;
+	height: 21px;
+	margin: 6px 0 0 9px;
+	border: 0;
+	line-height: 21px;
+	font-weight: bold;
+	font-size: 16px;
+	outline: none;
+}
+
+.sch_smit {
+	width: 54px;
+	height: 40px;
+	margin: 0;
+	border: 0;
+	vertical-align: top;
+	background: white;
+	color: white;
+	font-weight: bold;
+	border-radius: 1px;
+	cursor: pointer;
+}
+
+.sch_smit:hover {
+	background: white;
+}
 </style>
 </head>
 <body>
 	<form name="loginInfo">
 		<header>
-		<h1>Chinsa.</h1>
+		<h1>
+			<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
+		</h1>
+
 		</header>
 		<div class="menu">
-			<nav> <a class="join"
-				href="http://localhost:8080/miniproject/user/signup">회원가입</a> </nav>
+			<nav> <span class="search"> <input type='text'
+				class='input_text' />
+			</span> <a class="join" href="http://localhost:8080/miniproject/user/signup">회원가입</a>
+			</nav>
 			<hr color=black>
 		</div>
 
-<<<<<<< HEAD
+
 		<div id="box">
 			<table>
 				<tr>
@@ -85,6 +136,7 @@ table {
 			<button id="cancel" type="button">취소</button>
 		</div>
 	</form>
+
 
 	<script type="text/javascript">
 		const btn = document.querySelector("#loginBtn");
@@ -126,43 +178,6 @@ table {
 							}));
 						});
 	</script>
-=======
-<script type="text/javascript">
-   const btn = document.querySelector("#loginBtn");
-   const btn2 = document.querySelector("#cancel");
-   const id = document.querySelector("#uId");
-   const pwd = document.querySelector("#uPwd");
-   const checkStore = document.querySelector("#checkStore");
-   
-   const req = new XMLHttpRequest();
-   btn2.addEventListener('click', function(){
-		 location.href = "../"; 
-   });
-   
-   btn.addEventListener('click', function(){
-      req.addEventListener('load', function(){
-         console.log(this.responseText);
-         if(this.responseText==="login")
-        	 location.href = "../";
-         else if(this.responseText==="idErr"){
-        	 alert("해당 id가 존재하지 않습니다");
-         }
-         else{
-        	 alert("패스워드가 틀립니다");
-         }
-      });
-      req.open('post', 'http://localhost:8080/miniproject/api/user/login');
-      req.setRequestHeader("Content-Type","application/json;charset=utf-8");
-      req.send(JSON.stringify(
-    		  {
-    			  "user":{
-    				  "uId": id.value,
-    				  "uPwd": pwd.value
-    			  },
-    			  "checkStore": checkStore.checked
-    		 }));
-   });
-</script>
->>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
+
 </body>
 </html>

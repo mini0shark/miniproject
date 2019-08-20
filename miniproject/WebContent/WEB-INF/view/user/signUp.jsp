@@ -85,17 +85,64 @@ a.home:hover {
 	background-color: red;
 	margin: 0 auto;
 }
+
+a.head:link {
+	color: #CC0000;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.head:visited {
+	color: #CC0000;
+	text-decoration: none;
+}
+
+.search {
+	display: inline-block;
+	width: 366px;
+	height: 34px;
+	border: 3px solid white;
+	background: white;
+}
+
+.input_text {
+	width: 348px;
+	height: 21px;
+	margin: 6px 0 0 9px;
+	border: 0;
+	line-height: 21px;
+	font-weight: bold;
+	font-size: 16px;
+	outline: none;
+}
+
+.sch_smit {
+	width: 54px;
+	height: 40px;
+	margin: 0;
+	border: 0;
+	vertical-align: top;
+	background: white;
+	color: white;
+	font-weight: bold;
+	border-radius: 1px;
+	cursor: pointer;
+}
 </style>
 </head>
 
 <body>
 	<header>
-	<h1>Chinsa.</h1>
+	<h1>
+		<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
+	</h1>
 	</header>
 
 	<div class="menu">
-		<nav> <a class="home" href="http://localhost:8080/miniproject/">메인</a>
-		<a class="login" href="http://localhost:8080/miniproject/user/signin">로그인</a>
+		<nav> <span class="search"> <input type='text'
+			class='input_text' />
+		</span> <a class="home" href="http://localhost:8080/miniproject/">메인</a> <a
+			class="login" href="http://localhost:8080/miniproject/user/signin">로그인</a>
 		</nav>
 	</div>
 
@@ -109,10 +156,12 @@ a.home:hover {
 					<th>아이디 :</th>
 					<th><input type="text" name="uId" id="uId" /></th>
 				</tr>
+
 				<tr>
 					<th>비밀번호 :</th>
 					<th><input type="password" name="uPwd" id="uPwd" /></th>
 				</tr>
+
 				<tr>
 					<th>비밀번호 확인:</th>
 					<th><input type="password" name="confirmPwd" id="confirmPwd" />
@@ -135,8 +184,12 @@ a.home:hover {
 					<th><input type="text" name="uEmail" id="uEmail" /></th>
 				</tr>
 			</table>
+<<<<<<< HEAD
 			<br>
 			<br>
+=======
+			<br> <br>
+>>>>>>> branch 'master' of https://github.com/mini0shark/miniproject
 			<center>
 				<button id="signUpButton" type="button">가입</button>
 				<button id="cancelButton" type="button">취소</button>
