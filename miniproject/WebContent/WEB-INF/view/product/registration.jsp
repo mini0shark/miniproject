@@ -6,12 +6,6 @@
       <meta charset="UTF-8">
         <title>Insert title here</title>
         <script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
-        <script type="text/javascript">
-			function FormSubmit(contents){
-				CKEDITOR.instances.contents.updateElement();
-				return false;
-			}
-        </script>
         http://localhost:8080/miniproject/api/product/registration 페이지
         결과값이 registerErr, registerSuccess, loginNeeded로 나옴
         <br>
@@ -19,10 +13,9 @@
       </head>
       <body>
         <form name="productInformation">
-<<<<<<< HEAD
           <input type="text" id="pName" placeholder="상품명"/><br/>
           <input type="number" id="pPrice" /><br/>
-          <textarea id="pInfo"></textarea>
+          <textarea name="pInfo" id="pInfo"></textarea>
           <script>
           	CKEDITOR.replace('pInfo');
           </script>
@@ -54,7 +47,7 @@
 
         const req = new XMLHttpRequest();
         submit_btn.addEventListener('click', function(){
-       	  FormSubmit(pInfo);
+       	  const info = CKEDITOR.instances.pInfo.getData();
           req.addEventListener('load', function(){
         	  alert(this.responseText+"왜 안되지??");
         	  //////////////////////////////////
@@ -67,7 +60,7 @@
         		  {"product":{
                 "pName":p_name.value,
                 "pPrice":p_price.value,
-                "pInfo":p_info.value,
+                "pInfo":info,
                 "pLoc":p_loc.value,
                 "pCategory":p_category.value
               }}));
