@@ -14,7 +14,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.shiftEnterMode=CKEDITOR.ENTER_P; // 쉬프트 + 엔터를 <p> 로 적용함.
 	config.toolbarCanCollapse=true;
 	config.height='460px';
-	config.removePlugins='elementspath'; // DOM 출력하지 않음
+	config.removePlugins='elementspath,image'; // DOM 출력하지 않음
 	
 	config.font_defaultLabel='나눔고딕';
 	config.font_names="나눔고딕/나눔고딕,Nanum Gothic,ng;굴림/굴림,Gulim;바탕/바탕,Batang; Arial/Arial";

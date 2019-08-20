@@ -56,6 +56,11 @@ public class ProjectController {
 		return "user/myPage";
 	}
 	
+	@GetMapping("/user/update")
+	public String getUserEdit() {
+		return "user/userEdit";
+	}
+	
 	
 	@GetMapping("/product/registration")
 	public String getRegister() {
