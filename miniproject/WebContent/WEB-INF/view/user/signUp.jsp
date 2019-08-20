@@ -70,7 +70,7 @@ a.home:hover {
 #table {
 	background-color: black;
 	padding: 10px;
-	color : white;
+	color: white;
 	margin: 0 auto;
 	color: white;
 	border-collapse: separate;
@@ -100,7 +100,8 @@ a.home:hover {
 	</div>
 
 	<hr style="border: 1px solid black;">
-	<br><br>
+	<br>
+	<br>
 	<form>
 		<div id="form">
 			<table id="table">
@@ -134,7 +135,8 @@ a.home:hover {
 					<th><input type="text" name="uEmail" id="uEmail" /></th>
 				</tr>
 			</table>
-			<br><br>
+			<br>
+			<br>
 			<center>
 				<input type="submit" value="가입" id="signUpButton" />
 				<button id="cancelButton" type="button">취소</button>
