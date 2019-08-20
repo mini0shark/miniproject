@@ -102,8 +102,8 @@ table{
 					<button id="out">회원탈퇴</button>
 		</div>
 		
-		<div class='left-box'>판매내역</div>
-		<div class='right-box'>구매내역</div>
+		<div class='left-box' style="text-align:center; font-weight: bolder;">판매내역<br><input type="text"  style="text-align:center; width:600px; height:470px;"/></div>
+		<div class='right-box' style="text-align:center; font-weight: bolder;">구매내역<br><input type="text"  style="text-align:center; width:600px; height:470px;"/></div>
 	</form>	
 	
 	<script type="text/javascript">
