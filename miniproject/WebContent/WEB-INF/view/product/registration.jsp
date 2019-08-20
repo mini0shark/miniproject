@@ -19,7 +19,6 @@
       </head>
       <body>
         <form name="productInformation">
-<<<<<<< HEAD
           <input type="text" id="pName" placeholder="상품명"/><br/>
           <input type="number" id="pPrice" /><br/>
           <textarea id="pInfo"></textarea>

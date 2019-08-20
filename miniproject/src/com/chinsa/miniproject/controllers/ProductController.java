@@ -19,6 +19,7 @@ import com.chinsa.miniproject.dto.ProductDTO;
 import com.chinsa.miniproject.dto.UserDTO;
 import com.chinsa.miniproject.service.ProductService;
 import com.chinsa.miniproject.service.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -60,7 +61,14 @@ public class ProductController {
 	@GetMapping("/search")
 	public String getSearch(@RequestParam Map<String, String> map) {
 		ObjectMapper mapper = new ObjectMapper();
-		return mapper.writeValueAsString(map.get("category"));
+		String str = null;
+		try {
+			str = mapper.writeValueAsString(map.get("category"));
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return str;
 	}
 }
 
