@@ -56,17 +56,58 @@ table{
   padding: 20px;
   height: 500px;
 }
-
+a.head:link{
+	color:#CC0000;
+	text-decoration:none;
+	font-weight:bold;
+}
+a.head:visited{
+	color:#CC0000;
+	text-decoration:none;
+}
+.search{
+	display:inline-block;
+	width:366px; height:34px;
+	border:3px solid white;
+	background:white;
+		
+}
+.input_text{
+	width:348px; height:21px;
+	margin:6px 0 0 9px;
+	border:0;
+	line-height:21px;
+	font-weight:bold;
+	font-size:16px;
+	outline:none;
+}
+.sch_smit{
+	width:54px; height:40px;
+	margin:0;
+	border:0;
+	vertical-align:top;
+	background:white;
+	color:white;
+	font-weight:bold;
+	border-radius:1px;
+	cursor:pointer;
+}
+.sch_smit:hover{
+	background:white;
+}
 </style>
 </head>
 <body>
 <header>
-		<h1>Chinsa.</h1>
+		<h1><a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a></h1>
 </header>
 	
 	
 	<div class="menu">
 		<nav>
+		<span class="search">
+				<input type='text' class='input_text'/>
+		</span>
 				<a class="login" href="http://localhost:8080/miniproject/user/signin">로그인</a>
 				<a class="join" href="http://localhost:8080/miniproject/user/signup">회원가입</a>
 		</nav>
@@ -98,8 +139,8 @@ table{
 				</tr>
 			</table>
 			<br>
-					<button id="edit">회원정보수정</button>
-					<button id="out">회원탈퇴</button>
+					<button id="edit" type="button">회원정보수정</button>
+					<button id="out" type="button">회원탈퇴</button>
 		</div>
 		
 		<div class='left-box' style="text-align:center; font-weight: bolder;">판매내역<br><input type="text"  style="text-align:center; width:600px; height:470px;"/></div>
@@ -114,11 +155,11 @@ table{
 		const req = new XMLHttpRequest();
 		
 		btn.addEventListener('click', function() {
-			location.href = "#";
+			location.href = "../user/update";
 		});
 
 		btn2.addEventListener('click', function() {
-			location.href = "../";
+			location.href= "../";
 		});
 	</script>
 </body>
