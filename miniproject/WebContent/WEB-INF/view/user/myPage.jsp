@@ -112,12 +112,13 @@ table{
 
 
 		const req = new XMLHttpRequest();
+		
 		btn.addEventListener('click', function() {
-			location.href = "#"
+			location.href = "#";
 		});
 
 		btn2.addEventListener('click', function() {
-			location.href = "../"
+			location.href = "../";
 		});
 	</script>
 </body>
