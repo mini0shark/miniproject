@@ -12,7 +12,7 @@
 리스트 json으로 받아오기
   이거 이미지경로
   값은 orderby=DESC or ASC
-  category, name, loc, seller 아직 4가지 있음
+  pCategory, pName, pLoc, pSeller 아직 4가지 있음
   -->
  <!-- json배열로 productDTO내용 넘어갈 거입 -->
  <!-- [{"pNo":18,"pName":"asdf","pPrice":11231,"pInfo":"<p>dsfasd</p>\n","pLoc":"123","pImg":"임시로 저장 이거 나중에 바꿔야함!!!!!","pSeller":"beom","pState":"ing","pCategory":"garment","pTime":"2019-08-20 14:10:11.0"},

@@ -8,7 +8,7 @@
 
 <style>
 	body{
-		
+
 	}
 	header{
 		background:#fff;
@@ -34,7 +34,7 @@
 		z-index:1;
 		text-align:right;
 	}
-	
+
 	.goods{
 		width:200px;
 		float:left;
@@ -43,13 +43,13 @@
 		text-align:center;
 	}
 	.category{
-		
+
 		height:300px;
 		width:250px;
 		float:left;
-		
+
 	}
-	
+
 	.category a{
 		color:white;
 		text-decoration:none;
@@ -63,7 +63,7 @@
 		margin:0 0px;
 		background:#000;
 	}
-	
+
 	.category a:hover{
 		background:white;
 		color:black;
@@ -76,14 +76,14 @@
 		line-height:0;
 		height:0;
 	}
-	
+
 	ul{
-		
+
 		list-style:none;
 		padding-left:0px;
-		
+
 	}
-	
+
 	a.login:link{
 		color:#CC0000;
 		text-decoration:none;
@@ -119,13 +119,13 @@
 		color:#CC0000;
 		text-decoration:none;
 	}
-	
+
 	.search{
 		display:inline-block;
 		width:366px; height:34px;
 		border:3px solid #CC0000;
 		background:white;
-		
+
 	}
 	.input_text{
 		width:348px; height:21px;
@@ -153,17 +153,14 @@
 </style>
 
 </head>
-<script type="text/javascript">
-
-</script>
 <body>
 
 	<header>
 		<h1><a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a></h1>
-		
+
 	</header>
-	
-	
+
+
 	<div class="menu">
 		<nav>
 			<span class="search">
@@ -175,7 +172,7 @@
 		</nav>
 		<hr color=black>
 	</div>
-	
+
 	<!-- 여기 ajex 로 바꿔서 카테고리를 get으로 넘겨주세요
 	product/search.jsp 파일로 넘어가서 출력할 겁니다.
 	(http://localhost:8080/miniproject/product/search?category=garment 이런식-->
@@ -183,33 +180,60 @@
 		<nav>
 			<ul>
 				<li class='1'><a href="#" >의류</a></li>
-				
+
 				<li class='2'><a href="#" >뷰티</a></li>
-				
+
 				<li class='3'><a href="#">가구</a></li>
-				
+
 				<li class='4'><a href="#">가전</a></li>
-				
+
 				<li class='5'><a href="#" >악세사리</a></li>
-				
+
 				<li class='6'><a href="#">스포츠</a></li>
-				
+
 				<li class='7'><a href="#" >자동차용품</a></li>
-				
+
 				<li class='8'><a href="#">공연/티켓</a></li>
-				
+
 				<li class='9'><a href="#">도서</a></li>
-				
+
 			</ul>
 		</nav>
 	</div>
-	
+
 	<div class="goods">
 		<img src="resources/images/img/item1.jpg" width="250px"/>
 			<h3>티셔츠</h3>
 			<p>10000원</p>
 	</div>
-	
-	
+
+  <script type="text/javascript">
+  init();
+  function init(){
+    const login = document.querySelector('.login');
+    var loginState = true;
+
+    var getCookie = function(name) {
+    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+      return value? value[2] : null;
+    };
+    var hasStoredId = getCookie("storedId");
+    if(hasStoredId==null)
+      loginState = false;
+
+    getCookie();
+     if(!loginState){
+  	   login.setAttribute('href', "http://localhost:8080/miniproject/user/signin");
+       login.innerHTML= "로그인";
+    }else{
+      login.setAttribute('href', "http://localhost:8080/miniproject/user/logout?id="+hasStoredId);
+      login.innerHTML= "로그아웃";
+    }
+  }
+
+
+
+  </script>
+
 </body>
 </html>
