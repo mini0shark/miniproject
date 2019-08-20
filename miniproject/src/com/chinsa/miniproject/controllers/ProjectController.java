@@ -45,4 +45,8 @@ public class ProjectController {
 		return "user/myPage";
 	}
 
+	@GetMapping("/product/productview")
+	public String productView() {
+		return "product/productView";
+	}
 }
