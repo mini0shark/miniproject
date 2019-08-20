@@ -184,12 +184,7 @@ a.head:visited {
 					<th><input type="text" name="uEmail" id="uEmail" /></th>
 				</tr>
 			</table>
-<<<<<<< HEAD
-			<br>
-			<br>
-=======
-			<br> <br>
->>>>>>> branch 'master' of https://github.com/mini0shark/miniproject
+			<br><br>
 			<center>
 				<button id="signUpButton" type="button">가입</button>
 				<button id="cancelButton" type="button">취소</button>
