@@ -70,7 +70,7 @@ a.home:hover {
 #table {
 	background-color: black;
 	padding: 10px;
-	color : white;
+	color: white;
 	margin: 0 auto;
 	color: white;
 	border-collapse: separate;
@@ -100,13 +100,14 @@ a.home:hover {
 	</div>
 
 	<hr style="border: 1px solid black;">
-	<br><br>
+	<br>
+	<br>
 	<form>
 		<div id="form">
 			<table id="table">
 				<tr>
 					<th>아이디 :</th>
-					<th><input type="text" name="uId" id="uId" /></th>
+					<th><input type="text" name="uId" id="uId" readonly/></th>
 				</tr>
 				<tr>
 					<th>비밀번호 :</th>
@@ -134,9 +135,10 @@ a.home:hover {
 					<th><input type="text" name="uEmail" id="uEmail" /></th>
 				</tr>
 			</table>
-			<br><br>
+			<br>
+			<br>
 			<center>
-				<input type="submit" value="가입" id="signUpButton" />
+				<button id="signUpButton" type="button">가입</button>
 				<button id="cancelButton" type="button">취소</button>
 			</center>
 		</div>
@@ -160,10 +162,11 @@ a.home:hover {
 			location.href("../");
 		});
 
-		// 가입 버튼
+		// 수정 버튼
 		signUpButton.addEventListener('click', function() {
 			req.addEventListener('load', function() {
 				console.log(this.responseText);
+				location.href = "../";
 			});
 
 			// 데이터 입력된 거 보내기

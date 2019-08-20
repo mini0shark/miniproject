@@ -138,7 +138,7 @@ a.home:hover {
 			<br>
 			<br>
 			<center>
-				<input type="submit" value="가입" id="signUpButton" />
+				<button id="signUpButton" type="button">가입</button>
 				<button id="cancelButton" type="button">취소</button>
 			</center>
 		</div>
@@ -166,6 +166,7 @@ a.home:hover {
 		signUpButton.addEventListener('click', function() {
 			req.addEventListener('load', function() {
 				console.log(this.responseText);
+				location.href = "../";
 			});
 
 			// 데이터 입력된 거 보내기
