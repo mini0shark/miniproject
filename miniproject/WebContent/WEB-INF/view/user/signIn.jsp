@@ -53,10 +53,7 @@ table {
 			<hr color=black>
 		</div>
 
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 		<div id="box">
 			<table>
 				<tr>
@@ -127,10 +124,8 @@ table {
 								"checkStore" : checkStore.checked
 							}));
 						});
-<<<<<<< HEAD
+
 	</script>
-=======
-	</script>
->>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
+
 </body>
 </html>
