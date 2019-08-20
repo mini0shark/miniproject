@@ -9,7 +9,7 @@ u_phone varchar(15) not null comment '유저 폰번호',
 u_address varchar(60) not null comment '유저 주소',
 u_email varchar(30) not null comment '유저 이메일',
 u_level int(2) default 0 comment '유저 등급 ex) general(0), black(3), dia(2), silver(1), etc',
-u_time timestamp default now()
+u_time timestamp default current_timestamp
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table product(
@@ -22,7 +22,7 @@ p_img varchar(255) not null comment '상품 대표이미지',
 p_seller varchar(20) not null comment '상품 판매자(id)',
 p_state varchar(10) default  'ing' comment '상품 상태(진행중 거래완료 등)',
 p_category varchar(30) not null comment '상품 분류',
-p_time timestamp default now()
+p_time timestamp default current_timestamp
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table sellList(
@@ -48,7 +48,7 @@ b_seller varchar(20) not null comment '상품 판매자(id)',
 b_buyer varchar(20) not null comment '상품 구매자(id)',
 b_state varchar(10) default  'ing' comment '상품 상태(진행중 거래완료 등)',
 b_category varchar(30) not null comment '상품 분류',
-b_time timestamp default current time_stamp not null,
+b_time timestamp default current_timestamp not null,
 b_price int(20) not null comment '상품 가격',
 foreign key (b_pno) references product (p_no)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -59,6 +59,6 @@ a_start varchar(20) not null comment '경매 시작날짜 시간',
 a_end varchar(20) not null comment '경매 마감 날짜시간',
 a_price int(20) not null comment '경매 시작가',
 a_state varchar(10) default 'waiting' comment '경매 상태(대기중 진행중 완료 등)',
-a_time timestamp default current time_stamp not null
+a_time timestamp default current_timestamp not null
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
