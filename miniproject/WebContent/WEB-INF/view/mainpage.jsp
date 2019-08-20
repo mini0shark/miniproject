@@ -133,7 +133,9 @@
 		<hr color=black>
 	</div>
 	
-	
+	<!-- 여기 ajex 로 바꿔서 카테고리를 get으로 넘겨주세요
+	product/search.jsp 파일로 넘어가서 출력할 겁니다.
+	(http://localhost:8080/miniproject/product/search?category=garment 이런식-->
 	<div class="category">
 		<nav>
 			<ul>

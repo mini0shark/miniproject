@@ -9,7 +9,7 @@
 Servers/
 .metadata/
 ApplicationConfig.java
-
+pom.xml
 # BlueJ files
 *.ctxt
 

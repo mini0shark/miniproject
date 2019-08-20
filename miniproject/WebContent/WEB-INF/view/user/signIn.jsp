@@ -40,7 +40,6 @@ table {
 	width: 250px;
 	margin: 0 auto;
 }
-
 </style>
 </head>
 <body>
@@ -54,7 +53,10 @@ table {
 			<hr color=black>
 		</div>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 		<div id="box">
 			<table>
 				<tr>
@@ -86,6 +88,7 @@ table {
 		</div>
 	</form>
 
+
 	<script type="text/javascript">
 		const btn = document.querySelector("#loginBtn");
 		const btn2 = document.querySelector("#cancel");
@@ -98,8 +101,7 @@ table {
 			location.href = "../";
 		});
 
-		btn
-				.addEventListener(
+		btn.addEventListener(
 						'click',
 						function() {
 							req.addEventListener('load', function() {
@@ -125,6 +127,10 @@ table {
 								"checkStore" : checkStore.checked
 							}));
 						});
+<<<<<<< HEAD
 	</script>
+=======
+	</script>
+>>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 </body>
 </html>
