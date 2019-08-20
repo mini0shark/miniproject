@@ -1,27 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<!--<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">-->
 <html>
 <head>
 <title>관리자 페이지</title>
 <style>
-body {
-	font-family: 'Poiret One', cursive;
-	background-image: url('sm3.jpg');
-	background-size: 70%;
-	background-position: center -10%;
-	background-repeat;
+header {
+	background: #fff;
+	height: 150px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	text-align: center;
+	color: #CC0000;
+	font-size: 20px;
+	font-weight: bolder;
+	letter-spacing: 0.2em;
 }
 </style>
+    
 <!-- 초기화 -->
 <style>
 * {
 	margin: 0;
 	padding: 0;
-}
-
-body {
-	font-family: 'Poiret One', cursive;
 }
 
 li {
@@ -30,10 +34,6 @@ li {
 
 a {
 	text-decoration: none;
-}
-
-img {
-	border: 0;
 }
 
 div::selection {
@@ -48,22 +48,16 @@ div::selection {
 	/* 중앙 정렬*/
 	width: 960px;
 	margin: 0 auto;
+    
 	/* 절대 좌표 */
 	height: 160px;
 	position: relative;
-}
-
-#main_header>#title {
-	position: absolute;
-	left: -100px;
-	top: 30px;
 }
 </style>
 
 <!-- 타이틀 -->
 <style>
 #title {
-	font-family: 'Poiret One', cursive;
 	color: #393839;
 	font-size: 150%;
 	text-align: center;
@@ -77,6 +71,7 @@ div::selection {
 	width: 1000px;
 	margin: 0 auto;
 	position: relative;
+    
 	/* 수평 레이아웃 구성 */
 	overflow: hidden;
 }
@@ -112,19 +107,6 @@ div::selection {
 
 #main_aside>ul>li:hover {
 	background: #0A82FF;
-}
-</style>
-<!-- 본문 -->
-<style>
-.main_article {
-	margin-bottom: 10px;
-	padding: 20px;
-	border: 10px solid #0A82FF;
-	background-color: #ffffff;
-	color: black;
-	opacity: 0.9;
-	font-family: 'Poiret One', cursive;
-	height: auto;
 }
 </style>
 
@@ -192,16 +174,19 @@ section.buttons>label {
 	/* 수평 정렬 */
 	display: block;
 	float: left;
+    
 	/* 크기 및 글자 위치 지정*/
 	width: 200px;
 	height: 30px;
 	line-height: 30px;
 	text-align: center;
-	/* 테두리 지정 */
+	
+    /* 테두리 지정 */
 	box-sizing: border-box;
-	border: 1px solid #0A82FF;
-	/* 색상 지정*/
-	background: #0A82FF;
+	border: 1px solid black; /* #0A82FF */
+	
+    /* 색상 지정*/
+	background: black;
 	color: white;
 }
 
@@ -211,112 +196,29 @@ label {
 
 input:nth-of-type(1):checked ~ section.buttons>label:nth-of-type(1) {
 	background: white;
-	color: #0A82FF;
+	color: black;
 }
 
 input:nth-of-type(2):checked ~ section.buttons>label:nth-of-type(2) {
 	background: white;
-	color: #0A82FF;
+	color: black;
 }
 
 input:nth-of-type(3):checked ~ section.buttons>label:nth-of-type(3) {
 	background: white;
-	color: #0A82FF;
+	color: black;
 }
 
 input:nth-of-type(4):checked ~ section.buttons>label:nth-of-type(4) {
 	background: white;
-	color: #0A82FF;
+	color: black;
 }
 </style>
 
-<!-- 내가 만든 사이드2 -->
 <style>
-.enter {
-	overflow: hidden;
-	padding: 10px;
-	border: 1px dotted #0A82FF;
-	margin: 1px;
-	background-color: white;
-}
-
-.enter2 {
-	text-align: center;
-}
-
-.enter3 {
-	text-align: center;
-	border: 1px solid #ffffff;
-	background-color: white;
-	position: absolute;
-	bottom: 0px;
-	width: 180px;
-}
-
 .bodytexts {
 	font-family: 'Dotum', cursive;
 	font-size: 12px;
-}
-
-.top {
-	overflow: hidden;
-	padding: 10px; border 1px solid #0A82FF;
-	backgrund-color: #0A82FF;
-	text-align: center;
-}
-</style>
-
-<!-- 목록 -->
-<style>
-.item {
-	overflow: hidden;
-	padding: 10px;
-	border: 1px solid black;
-	border-top: none;
-	background-color: white;
-}
-
-.thumbnail {
-	float: left;
-}
-
-.description {
-	float: left;
-	margin-left: 10px;
-	font-family: 'Dotum', cursive;
-	font-size: 14px;
-}
-
-.description>strong {
-	display: block;
-	width: 200px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.tab_item {
-	overflow: hidden;
-	width: 760px;
-	margin: 0 auto;
-}
-</style>
-<!-- 푸터 -->
-<style>
-#main_footer {
-	position: absolute;
-	right: -5px;
-	width: 180px;
-	height: 90px;
-	background:
-		url("http://cfile23.uf.tistory.com/image/227668385692351B34D823");
-	margin-top: 40px;
-	-webkit-transition: 2s steps(16);
-	transition: 2s steps(16);
-}
-
-#main_footer:hover {
-	background-position: -2000px 0;
 }
 </style>
 </head>
