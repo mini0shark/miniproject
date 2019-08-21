@@ -22,22 +22,96 @@ header {
 
 .menu {
 	background: #fff;
-	margin-top: 20px;
+	margin-top: 150px;
 	margin-left: 0px;
 	width: 100%;
 	position: relative;
 	z-index: 1;
 	text-align: right;
 }
+
+a.logout:link {
+	color: #CC0000;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.logout:visited {
+	color: #CC0000;
+	text-decoration: none;
+}
+
+a.logout:hover {
+	color: black;
+	text-decoration: none;
+}
+
+a.home:link {
+	color: #CC0000;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.home:visited {
+	color: #CC0000;
+	text-decoration: none;
+}
+
+a.home:hover {
+	color: black;
+	text-decoration: none;
+}
+
+a.head:link {
+	color: #CC0000;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.head:visited {
+	color: #CC0000;
+	text-decoration: none;
+}
+
+.search {
+	display: inline-block;
+	width: 366px;
+	height: 34px;
+	border: 3px solid white;
+	background: white;
+}
+
+.input_text {
+	width: 348px;
+	height: 21px;
+	margin: 6px 0 0 9px;
+	border: 0;
+	line-height: 21px;
+	font-weight: bold;
+	font-size: 16px;
+	outline: none;
+}
+
+.sch_smit {
+	width: 54px;
+	height: 40px;
+	margin: 0;
+	border: 0;
+	vertical-align: top;
+	background: white;
+	color: white;
+	font-weight: bold;
+	border-radius: 1px;
+	cursor: pointer;
+}
+
+.sch_smit:hover {
+	background: white;
+}
 </style>
 
 <!-- 초기화 -->
 <style>
-* {
-	margin: 0;
-	padding: 0;
-}
-
 li {
 	list-style: none;
 }
@@ -224,6 +298,24 @@ input:nth-of-type(4):checked ~ section.buttons>label:nth-of-type(4) {
 	font-family: 'Dotum', cursive;
 	font-size: 12px;
 }
+
+ul.mylist li {
+	padding: 5px 0px 5px 5px;
+	margin-bottom: 5px;
+	border-bottom: 5px solid #efefef;
+	font-size: 12px;
+}
+
+table {
+	padding: 5px 0px 5px 5px;
+	margin-bottom: 5px;
+	border-bottom: 5px solid #efefef;
+	font-size: 12px;
+}
+
+#upgrade, #black, #back, #out {
+	float: right;
+}
 </style>
 </head>
 
@@ -231,65 +323,125 @@ input:nth-of-type(4):checked ~ section.buttons>label:nth-of-type(4) {
 
 
 
+<body>
 
-
-<header id="main_header">
-	<div id="title">
+	<header>
 		<h1>
 			<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
 		</h1>
+	</header>
+	<div class="menu">
+		<nav>
+			<span class="search"> <input type='text' class='input_text' />
+			</span> <a class="home" href="http://localhost:8080/miniproject/">메인</a> <a
+				class="logout" href="http://localhost:8080/miniproject/">로그아웃</a>
+		</nav>
+		<hr color=black>
 	</div>
-</header>
 
-<div class="menu">
-	<nav>
-		<span class="search">
-			<input type='text' class='input_text' />
-		</span>
-		<a class="home" href="http://localhost:8080/miniproject/">메인</a>
-		<a class="logout" href="http://localhost:8080/miniproject/">로그아웃</a>
-	</nav>
-</div>
 
-<hr style="border: 1px solid black;">
+	<div id="content">
+		<aside id="main_aside">
+			<input id="first" type="radio" name="tab" checked="checked" />
+			<input id="second" type="radio" name="tab" />
+			<input id="third" type="radio" name="tab" />
 
-<div id="content">
-	<aside id="main_aside">
-		<input id="first" type="radio" name="tab" checked="checked" /> <input
-			id="second" type="radio" name="tab" /> <input id="third"
-			type="radio" name="tab" />
+			<section class="buttons">
+				<label for="first"><b>회원 관리</b></label>
+				<label for="second"><b>상품 관리</b></label>
+				<label for="third" id="black2"><b>블랙리스트</b></label>
+			</section>
 
-		<section class="buttons">
-			<label for="first"><b>회원 관리</b></label> <label for="second"><b>상품
-					관리</b></label> <label for="third"><b>블랙리스트</b></label>
-		</section>
+			<article class="main_article">
+				<h1>회원 관리</h1>
+				<div class="bodytexts">
+					<br>
+					<h2>회원 목록</h2>
+					<br>
+					<ul class="mylist">
+						<li>회원1
+							<button id="upgrade" type="button">등업</button>
+							<button id="black" type="button">블랙</button>
+						</li>
+						<li>회원2
+							<button id="upgrade" type="button">등업</button>
+							<button id="black" type="button">블랙</button>
+						</li>
+						<li>회원3
+							<button id="upgrade" type="button">등업</button>
+							<button id="black" type="button">블랙</button>
+						</li>
+						<li>회원4
+							<button id="upgrade" type="button">등업</button>
+							<button id="black" type="button">블랙</button>
+						</li>
+						<li>회원5
+							<button id="upgrade" type="button">등업</button>
+							<button id="black" type="button">블랙</button>
+						</li>
+						<li>회원6
+							<button id="upgrade" type="button">등업</button>
+							<button id="black" type="button">블랙</button>
+						</li>
+					</ul>
+				</div>
+			</article>
 
-		<!-- 회원 관리 탭 -->
-		<article class="main_article">
-			<h1>회원 관리</h1><hr><br>
-			<div class="bodytexts">
-				<div style="border: 1px solid black; paddding: 10px; height: 100px;">asdfasdf</div>
-			</div>
-		</article>
 
-		<!-- 상품 관리 탭 -->
-		<article class="main_article">
-			<h1>상품 관리</h1><hr><br>
-			<div class="bodytexts">
-				<div style="border: 1px solid black; paddding: 10px; height: 100px;">asdfasdf</div>
-			</div>
-		</article>
+			<article class="main_article">
+				<h1>상품 관리</h1>
+				<div class="bodytexts">
+					<br> <br>
+					<table style="width: 80%">
+						<tr>
+							<td>번호</td>
+							<td>상품명</td>
+							<td>가격</td>
+							<td>등록일</td>
+							<button id="back" type="button">복귀</button>
+							<button id="out" type="button">삭제</button>
+						</tr>
+					</table>
+				</div>
+	</article>
 
-		<!-- 블랙리스트 탭 -->
-		<article class="main_article">
-			<h1>블랙리스트</h1><hr><br>
-			<div class="bodytexts">
-				<div style="border: 1px solid black; paddding: 10px; height: 100px;">asdfasdf</div>
-			</div>
-		</article>
+
+	<article class="main_article">
+		<h1>블랙리스트</h1>
+		<div class="bodytexts">
+			<br>
+			<h2>회원목록</h2>
+			<br>
+			<ul class="mylist">
+				<li>회원1
+					<button id="back" type="button">복귀</button>
+					<button id="out" type="button">탈퇴</button>
+				</li>
+				<li>회원2
+					<button id="back" type="button">복귀</button>
+					<button id="out" type="button">탈퇴</button>
+				</li>
+				<li>회원3
+					<button id="back" type="button">복귀</button>
+					<button id="out" type="button">탈퇴</button>
+				</li>
+				<li>회원4
+					<button id="back" type="button">복귀</button>
+					<button id="out" type="button">탈퇴</button>
+				</li>
+				<li>회원5
+					<button id="back" type="button">복귀</button>
+					<button id="out" type="button">탈퇴</button>
+				</li>
+				<li>회원6
+					<button id="back" type="button">복귀</button>
+					<button id="out" type="button">탈퇴</button>
+				</li>
+			</ul>
+		</div>
+	</article>
 	</aside>
-</div>
+	</div>
 
-</div>
 </body>
 </html>
