@@ -51,6 +51,37 @@ a.head:visited {
 	color: #CC0000;
 	text-decoration: none;
 }
+a.join:link {
+	color: #CC0000;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.join:visited {
+	color: #CC0000;
+	text-decoration: none;
+}
+
+a.join:hover {
+	color: black;
+	text-decoration: none;
+}
+
+a.home:link {
+	color: #CC0000;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.home:visited {
+	color: #CC0000;
+	text-decoration: none;
+}
+
+a.home:hover {
+	color: black;
+	text-decoration: none;
+}
 
 .search {
 	display: inline-block;
@@ -98,18 +129,23 @@ a.head:visited {
 
 		</header>
 		<div class="menu">
-			<nav> <span class="search"> <input type='text'
-				class='input_text' />
-			</span> <a class="join" href="http://localhost:8080/miniproject/user/signup">회원가입</a>
+			<nav>
+			<span class="search">
+				<input type='text' class='input_text' />
+			</span>
+			<a class="home" href="http://localhost:8080/miniproject/">메인</a>
+			<a class="join" href="http://localhost:8080/miniproject/user/signup">회원가입</a>
 			</nav>
 			<hr color=black>
 		</div>
-
-
-		<div id="box">
-			<table>
+		
+		<br>
+		<br>
+		<form>
+		<div id="form">
+			<table id="table">
 				<tr>
-					<td bgcolor="skyblue">아이디</td>
+					<th>아이디 :</th>
 					<td><input type="text" name="uId" id="uId" maxlength="100"
 						value="${storedId}"></td>
 				</tr>
