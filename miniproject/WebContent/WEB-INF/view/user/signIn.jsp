@@ -160,8 +160,10 @@ a.head:visited {
 									location.href = "../";
 								else if (this.responseText === "idErr") {
 									alert("해당 id가 존재하지 않습니다");
-								} else {
+								} else if(this.resopnseText === "pwdErr"){
 									alert("패스워드가 틀립니다");
+								}else{
+									alert("알수 없는 오류입니다 관리자(김타빈)한테 문의하세요");
 								}
 							});
 							req
