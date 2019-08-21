@@ -1,5 +1,5 @@
 <!--<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">-->
 <html>
 <head>
@@ -19,8 +19,18 @@ header {
 	font-weight: bolder;
 	letter-spacing: 0.2em;
 }
+
+.menu {
+	background: #fff;
+	margin-top: 20px;
+	margin-left: 0px;
+	width: 100%;
+	position: relative;
+	z-index: 1;
+	text-align: right;
+}
 </style>
-    
+
 <!-- 초기화 -->
 <style>
 * {
@@ -48,7 +58,6 @@ div::selection {
 	/* 중앙 정렬*/
 	width: 960px;
 	margin: 0 auto;
-    
 	/* 절대 좌표 */
 	height: 160px;
 	position: relative;
@@ -64,6 +73,18 @@ div::selection {
 }
 </style>
 
+<style>
+.main_article {
+	margin-bottom: 10px;
+	padding: 20px;
+	border: 10px solid black;
+	background-color: #ffffff;
+	color: black;
+	opacity: 0.9;
+	height: auto;
+}
+</style>
+
 <!-- 콘텐츠 -->
 <style>
 #content {
@@ -71,7 +92,6 @@ div::selection {
 	width: 1000px;
 	margin: 0 auto;
 	position: relative;
-    
 	/* 수평 레이아웃 구성 */
 	overflow: hidden;
 }
@@ -161,18 +181,15 @@ section.buttons>label {
 	/* 수평 정렬 */
 	display: block;
 	float: left;
-    
 	/* 크기 및 글자 위치 지정*/
 	width: 200px;
 	height: 30px;
 	line-height: 30px;
 	text-align: center;
-	
-    /* 테두리 지정 */
+	/* 테두리 지정 */
 	box-sizing: border-box;
 	border: 1px solid black; /* #0A82FF */
-	
-    /* 색상 지정*/
+	/* 색상 지정*/
 	background: black;
 	color: white;
 }
@@ -217,47 +234,60 @@ input:nth-of-type(4):checked ~ section.buttons>label:nth-of-type(4) {
 
 
 <header id="main_header">
-    <div id="title">
-        <h1>
-            <b>Chinsa.</b>
-        </h1>
-    </div>
+	<div id="title">
+		<h1>
+			<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
+		</h1>
+	</div>
 </header>
 
+<div class="menu">
+	<nav>
+		<span class="search">
+			<input type='text' class='input_text' />
+		</span>
+		<a class="home" href="http://localhost:8080/miniproject/">메인</a>
+		<a class="logout" href="http://localhost:8080/miniproject/">로그아웃</a>
+	</nav>
+</div>
+
+<hr style="border: 1px solid black;">
 
 <div id="content">
 	<aside id="main_aside">
-        <input id="first" type="radio" name="tab" checked="checked" />
-        <input id="second" type="radio"	name="tab" />
-        <input id="third" type="radio" name="tab" />
+		<input id="first" type="radio" name="tab" checked="checked" /> <input
+			id="second" type="radio" name="tab" /> <input id="third"
+			type="radio" name="tab" />
 
-        <section class="buttons">
-            <label for="first"><b>회원 관리</b></label>
-            <label for="second"><b>상품 관리</b></label>
-            <label for="third"><b>블랙리스트</b></label>
-        </section>
-    
-        <article class="main_article">
-            <h1>회원 관리</h1>
-            <div class="bodytexts">
-               내용 삽입
-            </div>
-        </article>
+		<section class="buttons">
+			<label for="first"><b>회원 관리</b></label> <label for="second"><b>상품
+					관리</b></label> <label for="third"><b>블랙리스트</b></label>
+		</section>
 
-        <article class="main_article">
-            <h1>상품 관리</h1>
-            <div class="bodytexts">
-               내용 삽입
-            </div>
-        </article>
+		<!-- 회원 관리 탭 -->
+		<article class="main_article">
+			<h1>회원 관리</h1><hr><br>
+			<div class="bodytexts">
+				<div style="border: 1px solid black; paddding: 10px; height: 100px;">asdfasdf</div>
+			</div>
+		</article>
 
-        <article class="main_article">
-            <h1>블랙리스트</h1>
-            <div class="bodytexts">
-               내용 삽입
-            </div>
-        </article>
-    </aside>
+		<!-- 상품 관리 탭 -->
+		<article class="main_article">
+			<h1>상품 관리</h1><hr><br>
+			<div class="bodytexts">
+				<div style="border: 1px solid black; paddding: 10px; height: 100px;">asdfasdf</div>
+			</div>
+		</article>
+
+		<!-- 블랙리스트 탭 -->
+		<article class="main_article">
+			<h1>블랙리스트</h1><hr><br>
+			<div class="bodytexts">
+				<div style="border: 1px solid black; paddding: 10px; height: 100px;">asdfasdf</div>
+			</div>
+		</article>
+	</aside>
 </div>
 
 </div>
