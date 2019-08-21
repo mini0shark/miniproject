@@ -37,11 +37,20 @@
 				}
 
 				.goods {
-					width: 200px;
+					display: grid;
+					grid-template-columns: 200px 200px 200px 200px 200px;
+					width: 1200px;
 					float: left;
 					margin: 0 13px;
 					margin-top: 50px;
 					text-align: center;
+				}
+				.good{
+					width: 200px;
+					float: left;
+					padding: 20px;
+					text-align: center;
+					background-color: #E8D9FF;
 				}
 
 				.category {
@@ -191,50 +200,51 @@
 				<div class="category">
 					<nav>
 						<ul id = 'categoryList'>
-							<li class='1'><a href="#">의류</a></li>
+							<li class='1'><a href="#" name='garment'>의류</a></li>
 
-							<li class='2'><a href="#">뷰티</a></li>
+							<li class='2'><a href="#" name="beauty">뷰티</a></li>
 
-							<li class='3'><a href="#">가구</a></li>
+							<li class='3'><a href="#" name="furniture">가구</a></li>
 
-							<li class='4'><a href="#">가전</a></li>
+							<li class='4'><a href="#" name="electro">가전</a></li>
 
-							<li class='5'><a href="#">악세사리</a></li>
+							<li class='5'><a href="#" name="sports">악세사리</a></li>
 
-							<li class='6'><a href="#">스포츠</a></li>
+							<li class='6'><a href="#" name="sports">스포츠</a></li>
 
-							<li class='7'><a href="#">자동차용품</a></li>
+							<li class='7'><a href="#" name="carAccessories">자동차용품</a></li>
 
-							<li class='8'><a href="#">공연/티켓</a></li>
+							<li class='8'><a href="#" name="ticket">공연/티켓</a></li>
 
-							<li class='9'><a href="#">도서</a></li>
+							<li class='9'><a href="#" name="books">도서</a></li>
+
+
+
 
 						</ul>
 					</nav>
 				</div>
 
 				<div class="goods">
-					<img src="resources/images/img/item1.jpg" width="250px" />
-					<h3>티셔츠</h3>
-					<p>10000원</p>
+
 				</div>
 
 				<script type="text/javascript">
-				const items = document.querySelector('#categoryList');
-				for(var i = 0; i<items ; i++){
+				var items = document.querySelectorAll('#categoryList li');
+				for(var i = 0; i<items.length ; i++){
 					items[i].addEventListener('click', function(){
-						const category = this.innerHTML;
+						const category = this.childNodes[0].name;
+						console.log(category);
 						const categoryRequest = new XMLHttpRequest();
 						categoryRequest.addEventListener('load', function(){
 							const productListJson = this.responseText;
 							showList(productListJson);
 						});
-						categoryRequest.open('get', 'http://localhost:8080/miniproject/api/product/search?category='+category);
+						categoryRequest.open('get', 'http://localhost:8080/miniproject/api/product/search?pCategory='+category);
 						categoryRequest.send();
-					})
+					});
 				}
 
-				console.log(test);
 				init();
 				function init(){
 					const login = document.querySelector('.login');
@@ -292,7 +302,36 @@
 				})();
 
 				function showList(jsonList){
-					//json list 데이터에 넣어주기
+					const list = document.querySelector('.goods');
+					const jsonData = JSON.parse(jsonList);
+					const size = Object.keys(jsonData).length;
+					list.innerHTML="";
+					for(var i = 0; i<size; i++){
+						const img = document.createElement('img');
+						const h3 = document.createElement('h3');
+						const p = document.createElement('p');
+						const nav = document.createElement('nav');
+						img.src = jsonData[i].pImg;
+						img.alt=jsonData[i].pNo;
+						h3.appendChild(document.createTextNode(jsonData[i].pName));
+						p.appendChild(document.createTextNode(jsonData[i].pPrice+"원"));
+						nav.setAttribute('class', 'good');
+						nav.appendChild(img);
+						nav.appendChild(h3);
+						nav.appendChild(p);
+						list.appendChild(nav);
+						nav.addEventListener('click', function(event){
+							const checkProductRequest = new XMLHttpRequest();
+							checkProductRequest.addEventListener('load', function(){
+								if(this.responseText==='true')
+								location.href = "http://localhost:8080/miniproject/product/productview?pNo="+img.alt;
+								else
+								alert("해당제품이 존재하지 않습니다. 정상적인 경로로 접근하세요");
+							});
+							checkProductRequest.open('get','http://localhost:8080/miniproject/api/product/checkproduct?pNo='+img.alt);
+							checkProductRequest.send();
+						});
+					}
 				}
 
 				</script>

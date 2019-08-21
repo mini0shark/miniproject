@@ -93,7 +93,7 @@ public class ProductController {
 
 	@GetMapping("/product/productview")
 	public String productView(@RequestParam Map<String, String> map, Model model) {
-		String pNo = map.get("pno");
+		String pNo = map.get("pNo");
 		model.addAttribute("vo", productService.getProduct(Integer.parseInt(pNo)));//??
 		return "product/productView";
 	}
