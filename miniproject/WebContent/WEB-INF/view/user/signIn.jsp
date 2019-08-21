@@ -32,8 +32,18 @@ header {
 	text-align: right;
 }
 
-table {
+#form {
 	margin: 0 auto;
+}
+
+#table {
+	background-color: black;
+	padding: 10px;
+	color: white;
+	margin: 0 auto;
+	color: white;
+	border-collapse: separate;
+	border-spacing: 20px;
 }
 
 #box {
@@ -49,6 +59,37 @@ a.head:link {
 
 a.head:visited {
 	color: #CC0000;
+	text-decoration: none;
+}
+a.join:link {
+	color: #CC0000;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.join:visited {
+	color: #CC0000;
+	text-decoration: none;
+}
+
+a.join:hover {
+	color: black;
+	text-decoration: none;
+}
+
+a.home:link {
+	color: #CC0000;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.home:visited {
+	color: #CC0000;
+	text-decoration: none;
+}
+
+a.home:hover {
+	color: black;
 	text-decoration: none;
 }
 
@@ -90,7 +131,8 @@ a.head:visited {
 </style>
 </head>
 <body>
-	<form name="loginInfo">
+	
+
 		<header>
 		<h1>
 			<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
@@ -98,28 +140,31 @@ a.head:visited {
 
 		</header>
 		<div class="menu">
-			<nav> <span class="search"> <input type='text'
-				class='input_text' />
-			</span> <a class="join" href="http://localhost:8080/miniproject/user/signup">회원가입</a>
+			<nav>
+			<span class="search">
+				<input type='text' class='input_text' />
+			</span>
+			<a class="home" href="http://localhost:8080/miniproject/">메인</a>
+			<a class="join" href="http://localhost:8080/miniproject/user/signup">회원가입</a>
 			</nav>
 			<hr color=black>
 		</div>
-
-
-		<div id="box">
-			<table>
+		
+		<br>
+		<br>
+		<form>
+		<div id="form">
+			<table id="table">
 				<tr>
-					<td bgcolor="skyblue">아이디</td>
-					<td><input type="text" name="uId" id="uId" maxlength="100"
-						value="${storedId}"></td>
-				</tr>
+					<th>아이디 :</th>
+					<th><input type="text" name="uId" id="uId" value="${storedId}"/></th>				</tr>
 				<tr>
-					<td bgcolor="skyblue">비밀번호</td>
-					<td><input type="password" name="uPwd" id="uPwd"
-						maxlength="100"></td>
+					<th>비밀번호</th>
+					<th><input type="password" name="uPwd" id="uPwd" maxlength="100"></th>
 				</tr>
+				
 			</table>
-
+			<center>
 			<label for="checkStore">ID저장하기</label>
 			<c:choose>
 				<c:when test="${checked}">
@@ -132,8 +177,10 @@ a.head:visited {
 				</c:otherwise>
 			</c:choose>
 			<br>
+
 			<button id="loginBtn" type="button">로그인</button>
 			<button id="cancel" type="button">취소</button>
+			</center>
 		</div>
 	</form>
 

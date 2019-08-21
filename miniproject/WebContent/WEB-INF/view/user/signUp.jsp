@@ -139,14 +139,17 @@ a.head:visited {
 	</header>
 
 	<div class="menu">
-		<nav> <span class="search"> <input type='text'
-			class='input_text' />
-		</span> <a class="home" href="http://localhost:8080/miniproject/">메인</a> <a
-			class="login" href="http://localhost:8080/miniproject/user/signin">로그인</a>
+		<nav>
+		<span class="search">
+			<input type='text' class='input_text' />
+		</span>
+		<a class="home" href="http://localhost:8080/miniproject/">메인</a>
+		<a class="login" href="http://localhost:8080/miniproject/user/signin">로그인</a>
 		</nav>
+		<hr style="border: 1px solid black;">
 	</div>
 
-	<hr style="border: 1px solid black;">
+	
 	<br>
 	<br>
 	<form>
