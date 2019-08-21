@@ -53,7 +53,7 @@
         submit_btn.addEventListener('click', function(){
        	  const info = CKEDITOR.instances.pInfo.getData();
           req.addEventListener('load', function(){
-        	  alert(this.responseText+"왜 안되지??");
+        	  alert(this.responseText);
         	  //////////////////////////////////
         	  
         	  ////////////////////////
