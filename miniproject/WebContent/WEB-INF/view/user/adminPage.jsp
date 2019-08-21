@@ -419,17 +419,6 @@ ul.mylist li {
               	</ul>
             </div>
         </article>
-    </aside>
-
-		<article class="main_article">
-			<h1>상품 관리</h1>
-			<div class="bodytexts">내용 삽입</div>
-		</article>
-
-		<article class="main_article">
-			<h1>블랙리스트</h1>
-			<div class="bodytexts">내용 삽입</div>
-		</article>
 	</aside>
 </div>
 
