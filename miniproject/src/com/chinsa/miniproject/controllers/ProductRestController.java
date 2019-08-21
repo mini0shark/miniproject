@@ -45,7 +45,7 @@ public class ProductRestController {
 	ProductService productService;
 	@Autowired
 	UserService userService;
-	@PostMapping("/register")
+	@PostMapping("/registration")
 	public String postRegister(@RequestBody Map map, 
 			final HttpSession session) {
 		String uId = (String)session.getAttribute("id");
@@ -100,12 +100,25 @@ public class ProductRestController {
 			e.printStackTrace();
 		}
 		try {
-			result = productService.getProductsInCategory(pCategory,pLoc, pSeller, pName, orderBy);	
+			if(pLoc==null&&pSeller==null&&pName==null&&pCategory==null)
+				result= productService.getProducts();
+			else {
+				if(pName.equals(""))
+					result= productService.getProducts();
+				else
+					result = productService.getProductsInCategory(pCategory,pLoc, pSeller, pName, orderBy);
+			}
 		} catch (NullPointerException e) {
 			// TODO: handle exception
 			result =null;
 		}
 		return result;
+	}
+	
+
+	@GetMapping("/initproduct")
+	public List<ProductDTO> getInitproduct() {
+		return productService.getProducts();
 	}
 	
 	@RequestMapping(value="/imageupload", method=RequestMethod.POST)

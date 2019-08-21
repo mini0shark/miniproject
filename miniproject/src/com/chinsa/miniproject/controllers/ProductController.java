@@ -36,7 +36,7 @@ public class ProductController {
 	
 	
 	@GetMapping("/product/registration")
-	public String getRegister() {
+	public String getregistration() {
 		//로그인 안하면 여기서 튕기게 하기
 		return "product/registration";
 	}

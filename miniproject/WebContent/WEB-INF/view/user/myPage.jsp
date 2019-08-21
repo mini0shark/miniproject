@@ -161,6 +161,42 @@ a.head:visited{
 		btn2.addEventListener('click', function() {
 			location.href= "../";
 		});
+		
+		
+		
+		
+		
+		
+
+		init();
+		function init(){
+			const login = document.querySelector('.login');
+			const join = document.querySelector('.join');
+			var loginState = true;
+
+			const req = new XMLHttpRequest();
+			req.addEventListener('load', function(){
+				var hasStoredId = this.responseText;
+				if(hasStoredId==="true")
+				loginState = true;
+				else
+				loginState = false;
+
+				if(loginState){
+					login.setAttribute('href', "http://localhost:8080/miniproject/user/logout?id="+hasStoredId);
+					login.innerHTML= "로그아웃";
+					join.setAttribute('href', "http://localhost:8080/miniproject/user/mypage");
+					join.innerHTML="마이페이지";
+				}
+				else{
+					alert("로그인이 필요한 서비스 입니다.");
+					location.href= "http://localhost:8080/miniproject";
+				}
+
+			});
+			req.open('post', "http://localhost:8080/miniproject/api/user/checkLogin");
+			req.send();
+		}
 	</script>
 </body>
 </html>
