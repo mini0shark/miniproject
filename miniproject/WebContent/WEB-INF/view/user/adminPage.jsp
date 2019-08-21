@@ -274,14 +274,18 @@ input:nth-of-type(4):checked ~ section.buttons>label:nth-of-type(4) {
 
 		<!-- 상품 관리 탭 -->
 		<article class="main_article">
-			<h1>상품 관리</h1>
-			<div class="bodytexts">내용 삽입</div>
+			<h1>상품 관리</h1><hr><br>
+			<div class="bodytexts">
+				<div style="border: 1px solid black; paddding: 10px; height: 100px;">asdfasdf</div>
+			</div>
 		</article>
 
 		<!-- 블랙리스트 탭 -->
 		<article class="main_article">
-			<h1>블랙리스트</h1>
-			<div class="bodytexts">내용 삽입</div>
+			<h1>블랙리스트</h1><hr><br>
+			<div class="bodytexts">
+				<div style="border: 1px solid black; paddding: 10px; height: 100px;">asdfasdf</div>
+			</div>
 		</article>
 	</aside>
 </div>
