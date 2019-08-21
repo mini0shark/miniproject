@@ -44,23 +44,14 @@ public class UserController {
 
 
 	@GetMapping("/user/logout")
-	public String postLogin(@RequestParam Map<String, String> data, final HttpSession session,
-			HttpServletResponse response, @CookieValue(value="storedId", required=true) Cookie storedIdCookie) {
-		ObjectMapper mapper = new ObjectMapper();
-		String id = data.get("id");
-
-		if(id!=null) {
-			session.setAttribute("id", id);
-			session.setMaxInactiveInterval(0);//30분
-			Cookie storeIdCookie = new Cookie("storedId", id);
-			storeIdCookie.setPath("/");
-			storeIdCookie.setMaxAge(0);
-			response.addCookie(storeIdCookie);
-		}
+	public String getLogout(final HttpSession session) {
+		if(session.getAttribute("auth")!=null)
+			session.removeAttribute("auth");
+		if(session.getAttribute("id")!=null)
+			session.removeAttribute("id");
 		else {
 			return "aleadyLogout";
 		}
-		System.out.println(id);
 		return "mainpage";
 	}
 
