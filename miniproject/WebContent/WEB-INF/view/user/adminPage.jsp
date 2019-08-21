@@ -218,6 +218,7 @@ input:nth-of-type(3):checked ~ section.buttons>label:nth-of-type(3) {
    color: black;
 }
 
+
 input:nth-of-type(4):checked ~ section.buttons>label:nth-of-type(4) {
    background: white;
    color: black;
@@ -229,6 +230,18 @@ input:nth-of-type(4):checked ~ section.buttons>label:nth-of-type(4) {
    font-family: 'Dotum', cursive;
    font-size: 12px;
 }
+
+ul.mylist li {
+    padding: 5px 0px 5px 5px;
+    margin-bottom: 5px;
+    border-bottom: 5px solid #efefef;
+    font-size: 12px;
+}
+
+#upgrade, #black, #back, #out{
+	float:right;
+}
+
 </style>
 </head>
 
@@ -264,13 +277,40 @@ input:nth-of-type(4):checked ~ section.buttons>label:nth-of-type(4) {
         <section class="buttons">
             <label for="first"><b>회원 관리</b></label>
             <label for="second"><b>상품 관리</b></label>
-            <label for="third"><b>블랙리스트</b></label>
+            <label for="third" id="black2"><b>블랙리스트</b></label>
         </section>
     
         <article class="main_article">
             <h1>회원 관리</h1>
             <div class="bodytexts">
-              내용삽입 
+              	<br><h2>회원목록</h2>
+              	<br>
+              	 <ul class="mylist">
+       				 <li>회원1
+       				 <button id="upgrade" type="button">등업</button>
+               	     <button id="black" type="button">블랙</button>
+               	     </li> 
+       				 <li>회원2
+       				 <button id="upgrade" type="button">등업</button>
+               	     <button id="black" type="button">블랙</button>
+       				 </li>
+       				 <li>회원3
+       				 <button id="upgrade" type="button">등업</button>
+               	     <button id="black" type="button">블랙</button>       				 
+       				 </li>
+       				 <li>회원4
+       				 <button id="upgrade" type="button">등업</button>
+               	     <button id="black" type="button">블랙</button>       				 
+       				 </li>
+       				 <li>회원5
+       				 <button id="upgrade" type="button">등업</button>
+               	     <button id="black" type="button">블랙</button>       				 
+       				 </li>
+       				 <li>회원6
+       				 <button id="upgrade" type="button">등업</button>
+               	     <button id="black" type="button">블랙</button>       				 
+       				 </li>
+              	</ul>
             </div>
         </article>
 
@@ -284,7 +324,34 @@ input:nth-of-type(4):checked ~ section.buttons>label:nth-of-type(4) {
         <article class="main_article">
             <h1>블랙리스트</h1>
             <div class="bodytexts">
-               내용 삽입
+              <br><h2>회원목록</h2>
+              	<br>
+              	 <ul class="mylist">
+       				 <li>회원1
+       				 <button id="back" type="button">복귀</button>
+               	     <button id="out" type="button">탈퇴</button>
+               	     </li> 
+       				 <li>회원2
+       				 <button id="back" type="button">복귀</button>
+               	     <button id="out" type="button">탈퇴</button>
+       				 </li>
+       				 <li>회원3
+       				 <button id="back" type="button">복귀</button>
+               	     <button id="out" type="button">탈퇴</button>       				 
+       				 </li>
+       				 <li>회원4
+       				 <button id="back" type="button">복귀</button>
+               	     <button id="out" type="button">탈퇴</button>     				 
+       				 </li>
+       				 <li>회원5
+       				 <button id="back" type="button">복귀</button>
+               	     <button id="out" type="button">탈퇴</button>      				 
+       				 </li>
+       				 <li>회원6
+       				 <button id="back" type="button">복귀</button>
+               	     <button id="out" type="button">탈퇴</button>       				 
+       				 </li>
+              	</ul>
             </div>
         </article>
     </aside>
