@@ -10,8 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 //import com.mysql.jdbc.Driver;
-import org.mariadb.jdbc.Driver;
-//import com.mysql.cj.jdbc.Driver;
+//import org.mariadb.jdbc.Driver;
+import com.mysql.cj.jdbc.Driver;
 
 @Configuration
 @ComponentScan(basePackages = { "com.chinsa.miniproject.dao", "com.chinsa.miniproject.service" })
