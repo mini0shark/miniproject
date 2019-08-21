@@ -154,7 +154,9 @@ a.head:visited {
 			<table id="table">
 				<tr>
 					<th>아이디 :</th>
-					<th><input type="text" name="uId" id="uId" /></th>
+					<th><input type="text" name="uId" id="uId" />
+					<button id="checkID" type="button">중복확인</button></th>
+
 				</tr>
 
 				<tr>
@@ -173,7 +175,7 @@ a.head:visited {
 				</tr>
 				<tr>
 					<th>전화번호 :</th>
-					<th><input type="text" name="uPhone" id="uPhone" /></th>
+					<th><input type="tel" name="uPhone" id="uPhone" pattern="\d{2,3}-\d{3,4}-\d{4}"/></th>
 				</tr>
 				<tr>
 					<th>주소 :</th>
@@ -181,7 +183,7 @@ a.head:visited {
 				</tr>
 				<tr>
 					<th>이메일 :</th>
-					<th><input type="text" name="uEmail" id="uEmail" /></th>
+					<th><input type="email" name="uEmail" id="uEmail" /></th>
 				</tr>
 			</table>
 			<br><br>
@@ -195,6 +197,7 @@ a.head:visited {
 	<script type="text/javascript">
 		const signUpButton = document.querySelector("#signUpButton");
 		const cancelButton = document.querySelector("#cancelButton");
+		const checkButton = document.querySelector("#checkID");
 
 		const id = document.querySelector("#uId");
 		const pwd = document.querySelector("#uPwd");
@@ -207,14 +210,48 @@ a.head:visited {
 
 		// 취소 버튼
 		cancelButton.addEventListener('click', function() {
+			alert("취소되었습니다.")
 			location.href= "../";
 		});
+		// 중복체크
+		const checkReq = new XMLHttpRequest();
+		checkButton.addEventListener('click', function(){
+			checkReq.addEventListener('load', function(){
+				const resultMsg = this.responseText;
+				var alertMsg = "";
+				if(resultMsg==="duplicateID"){
+					alertMsg = "중복된 아이디 입니다.";
+				}else if (resultMsg==="fineID") {
+					alertMsg = "사용하셔도 좋은 ID입니다.";
+				}
+				alert(alertMsg);
+			});
+			checkReq.open("GET",
+					"http://localhost:8080/miniproject/api/user/checkId?uId="+id.value);
+			checkReq.send();
+		})
 
 		// 가입 버튼
 		signUpButton.addEventListener('click', function() {
 			req.addEventListener('load', function() {
-				console.log(this.responseText);
-				location.href = "../";
+				const resultMsg = this.responseText;
+				var alertMsg = "";
+				console.log(resultMsg);
+
+				if(resultMsg==="signupErr"){
+					alertMsg = "데이터베이스오류 다시 가입해보세요";
+				}
+				else if(resultMsg==="duplicateID"){
+					alertMsg = "ID가 중복됩니다. 다른 ID를 사용하세요.";
+				}
+				else if(resultMsg==="signup"){
+					alertMsg = "회원가입이 완료되었습니다.";
+					location.href = "../";
+				}
+				else{
+					alertMsg = resultMsg;
+				}
+				alert(alertMsg);
 			});
 
 			// 데이터 입력된 거 보내기
