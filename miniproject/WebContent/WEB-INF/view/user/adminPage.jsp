@@ -156,19 +156,6 @@ input:nth-of-type(3):checked ~ article:nth-of-type(3) {
 	display: block;
 }
 
-/* 네 번째 탭 */
-input:nth-of-type(4) {
-	display: none;
-}
-
-input:nth-of-type(4) ~ article:nth-of-type(4) {
-	display: none;
-}
-
-input:nth-of-type(4):checked ~ article:nth-of-type(4) {
-	display: block;
-}
-
 /* 탭 모양 구성 */
 section.buttons {
 	overflow: hidden;
