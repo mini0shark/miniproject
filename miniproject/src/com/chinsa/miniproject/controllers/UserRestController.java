@@ -53,6 +53,7 @@ public class UserRestController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		};
+		
 		UserDTO user = userService.getUser(userDTO.getuId());
 		if(user!=null) {
 			if(user.getuPwd().equals(userDTO.getuPwd())) {
@@ -62,7 +63,7 @@ public class UserRestController {
 					session.setAttribute("auth", "user");
 				session.setAttribute("id", user.getuId());
 				session.setMaxInactiveInterval(60*30);//30분
-				if(data.get("checkStore")!=null) {
+				if((boolean) data.get("checkStore")) {
 					Cookie storeIdCookie = new Cookie("storedId", user.getuId());
 					storeIdCookie.setPath("/");
 					storeIdCookie.setMaxAge(60*30);
@@ -175,15 +176,6 @@ public class UserRestController {
 		else {
 			return "update";
 		}
-	}
-
-	@PostMapping("/logout")
-	public String postLogout(final HttpSession session) {
-		if(session.getAttribute("auth")!=null)
-			session.removeAttribute("auth");
-		if(session.getAttribute("id")!=null)
-			session.removeAttribute("id");
-		return "logout";
 	}
 
 	@PostMapping("/delete")
