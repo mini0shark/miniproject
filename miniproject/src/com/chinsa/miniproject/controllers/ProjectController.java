@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -82,46 +83,52 @@ public class ProjectController {
 		return "product/search";
 	}
 	
-	@SuppressWarnings("deprecation")
-	@RequestMapping("/product/imageupload")
-	public void imageUpload(HttpServletRequest request, HttpServletResponse response,
-			 @RequestParam MultipartFile upload ) throws Exception{
-		//CKEditor 에서 파일을 넘겨주는 이름이 upload 로 설정 되어 있다. 반드시 upload 로 설정
-		//헤더 설정
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=utf-8");
-		
-		OutputStream out =null;
-		PrintWriter printWriter =null;
-		
-		String fileName =upload.getOriginalFilename(); //첨부 파일 이름
-		byte[] bytes =upload.getBytes(); //첨부파일을 바이트 배열로 저장
-	    
-
-		//String uploadPath ="업로드할 디렉토리 경로" + fileName; //물리적 실제 저장소
-	    String uploadPath =UploadPath.path(request) +fileName;
-		
-	    out=new FileOutputStream(new File(uploadPath));
-	    out.write(bytes); //서버에 파일 업로드
-	    
-	    
-	    String callback =request.getParameter("CKEditorFuncNum");
-	    
-	    printWriter=response.getWriter();
-	    //URL 상에서 볼수 있는 이미지 경로
-	   // String fileUrl =request.getContextPath()+"/upload/"+ fileName;
-	    String fileUrl ="/resources/upload/"+ fileName;
-	    
-	    Map<String, Object> data = new HashMap<String, Object>();
-		data.put("uploaded", 1);
-		data.put("fileName", fileName);
-		data.put("url", fileUrl);
-	    
-	    printWriter.println(data);
-	    printWriter.flush();
-	    
-	    
-	}
+	@RequestMapping(value = "/product/imageupload", method = RequestMethod.POST)
+    public void communityImageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) {
+ 
+        OutputStream out = null;
+        PrintWriter printWriter = null;
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+ 
+        try{
+ 
+            String fileName = upload.getOriginalFilename();
+            byte[] bytes = upload.getBytes();
+            String uploadPath = "d://upload//" + fileName;//저장경로
+ 
+            out = new FileOutputStream(new File(uploadPath));
+            out.write(bytes);
+            String callback = request.getParameter("CKEditorFuncNum");
+ 
+            printWriter = response.getWriter();
+            String fileUrl = "d://upload//" + fileName;//url경로
+ 
+            printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
+                    + callback
+                    + ",'"
+                    + fileUrl
+                    + "','이미지를 업로드 하였습니다.'"
+                    + ")</script>");
+            printWriter.flush();
+ 
+        }catch(IOException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+                if (printWriter != null) {
+                    printWriter.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+ 
+        return;
+    }
 	
 	
 
