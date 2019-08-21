@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinsa.miniproject.dao.ImageMapper">
+
+	<select id="getImageNum" parameterType="java.lang.Integer"
+		resultType="userDTO">
+		SELECT i_no,i_,i_path,i_time FROM image WHERE i_no = #{iNo}
+	</select>
+	
+	<select id="getImagePath" parameterType="String"
+		resultType="userDTO">
+		SELECT i_no,i_,i_path,i_time FROM image WHERE i_path = #{iPath}
+	</select>
+	
+	<insert id="insertImage" parameterType="imageDTO">
+		INSERT INTO image(i_filename,i_path) values(#{iFilename},#{iPath})
+	</insert>
+</mapper>

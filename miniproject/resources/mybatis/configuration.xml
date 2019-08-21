@@ -14,5 +14,7 @@
 			alias="sellListDTO" />
 		<typeAlias type="com.chinsa.miniproject.dto.BuyListDTO"
 			alias="buyListDTO" />
+			<typeAlias type="com.chinsa.miniproject.dto.ImageDTO"
+			alias="imageDTO" />
 	</typeAliases>
 </configuration>

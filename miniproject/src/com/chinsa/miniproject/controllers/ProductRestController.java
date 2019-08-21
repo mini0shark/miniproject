@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.regex.Matcher;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.chinsa.miniproject.dto.FileUploadDTO;
 import com.chinsa.miniproject.dto.ProductDTO;
 import com.chinsa.miniproject.dto.UserDTO;
 import com.chinsa.miniproject.service.ProductService;
@@ -45,7 +45,7 @@ public class ProductRestController {
 	ProductService productService;
 	@Autowired
 	UserService userService;
-	@PostMapping("/register")
+	@PostMapping("/registration")
 	public String postRegister(@RequestBody Map map, 
 			final HttpSession session) {
 		String uId = (String)session.getAttribute("id");
@@ -100,7 +100,14 @@ public class ProductRestController {
 			e.printStackTrace();
 		}
 		try {
-			result = productService.getProductsInCategory(pCategory,pLoc, pSeller, pName, orderBy);	
+			if(pLoc==null&&pSeller==null&&pName==null&&pCategory==null)
+				result= productService.getProducts();
+			else {
+				if(pName.equals(""))
+					result= productService.getProducts();
+				else
+					result = productService.getProductsInCategory(pCategory,pLoc, pSeller, pName, orderBy);
+			}
 		} catch (NullPointerException e) {
 			// TODO: handle exception
 			result =null;
@@ -108,38 +115,44 @@ public class ProductRestController {
 		return result;
 	}
 	
+
+	@GetMapping("/initproduct")
+	public List<ProductDTO> getInitproduct() {
+		return productService.getProducts();
+	}
+	
 	@RequestMapping(value="/imageupload", method=RequestMethod.POST)
-	public String fileUpload(HttpServletRequest request, HttpServletResponse response,
-			MultipartHttpServletRequest multiFile) throws Exception{
+	public String fileUpload(HttpServletRequest request, HttpServletResponse response, MultipartFile upload) throws Exception{
 		PrintWriter printWriter = null;
 		OutputStream out = null;
 		ObjectMapper mapper = new ObjectMapper();
-		MultipartFile file = multiFile.getFile("upload");
-		if(file!=null) {
-			if(file.getSize()>0 && file.getName()!=null) {//추후 확인 필요
-				if(file.getContentType().toLowerCase().startsWith("image/")) {
+		System.out.println(upload);
+		if(upload!=null) {
+			if(upload.getSize()>0 && upload.getName()!=null) {//추후 확인 필요
+				if(upload.getContentType().toLowerCase().startsWith("image/")) {
 					try {
-						String fileName = file.getName();
-						byte[] bytes = file.getBytes();
-						String uploadPath = request.getServletContext().getRealPath("/img");
+						String fileName = upload.getName();
+						byte[] bytes = upload.getBytes();
+						String uploadPath = "C:\\hahaha\\miniproject\\miniproject\\WebContent\\resources\\images\\img";
 						File uploadFile = new File(uploadPath);
 						if(!uploadFile.exists()) {
 							uploadFile.mkdirs();
 						}
-						fileName = UUID.randomUUID().toString();
-						uploadPath = uploadPath +"/"+fileName;
+						fileName = UUID.randomUUID().toString() + ".jpg";
+						uploadPath = uploadPath +"\\"+fileName;
+						System.out.println(uploadPath);
 						out = new FileOutputStream(new File(uploadPath));
 						out.write(bytes);
 						printWriter = response.getWriter();
 						response.setContentType("text/html");
-						String fileUrl = request.getContextPath()+"/img"+fileName;
-						
+						String fileUrl = "../resources/images/img/"+fileName;
+						System.out.println(fileUrl);
+						System.out.println(request.getContextPath());
 						Map<String, Object> data = new HashMap<String, Object>();
 						data.put("uploaded", 1);
 						data.put("fileName", fileName);
 						data.put("url", fileUrl);
-						System.out.println(data);
-						printWriter.println(data);
+						printWriter.println(mapper.writeValueAsString(data));
 					}catch(IOException e) {
 						e.printStackTrace();
 					}finally {
