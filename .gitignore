@@ -7,8 +7,8 @@
 *.log
 .settings/
 Servers/
-.metadata/
 ApplicationConfig.java
+.metadata/
 pom.xml
 # BlueJ files
 *.ctxt
