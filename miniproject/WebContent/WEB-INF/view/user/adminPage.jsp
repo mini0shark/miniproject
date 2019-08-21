@@ -64,6 +64,18 @@ div::selection {
 }
 </style>
 
+<style>
+	.main_article {
+        margin-bottom: 10px;
+        padding: 20px;
+        border: 10px solid black;
+        background-color: #ffffff;
+        color: black;
+        opacity: 0.9;
+        height: auto;
+    }
+</style>
+
 <!-- 콘텐츠 -->
 <style>
 #content {
