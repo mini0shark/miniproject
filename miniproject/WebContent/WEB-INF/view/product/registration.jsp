@@ -58,7 +58,7 @@
         	  
         	  ////////////////////////
           });
-          req.open('post', 'http://localhost:8080/miniproject/api/product/register');
+          req.open('post', 'http://localhost:8080/miniproject/api/product/registration');
           req.setRequestHeader("Content-Type","application/json;charset=utf-8");
           req.send(JSON.stringify(
         		  {"product":{

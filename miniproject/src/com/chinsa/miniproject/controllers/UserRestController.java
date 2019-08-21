@@ -84,7 +84,18 @@ public class UserRestController {
 		}
 		return "idErr";
 	}
-
+	
+	@PostMapping("/checkLogin")
+	public String postCheckLogin(final HttpSession session) {
+		System.out.println("실행");
+		if(session.getAttribute("id")!=null)
+			return "true";
+		System.out.println("false");
+		return "false";
+	}
+	
+	
+	
 
 	@GetMapping("/checkId")
 	public String getCehckId(@RequestParam Map<String, String> data) {
