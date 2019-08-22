@@ -83,6 +83,16 @@ a.join:hover {
 	margin: 0 auto;
 	width: 1000px;
 }
+
+#commentTable {
+	margin: 0 auto;
+	width: 1000px;
+	border: 1px solid black;
+}
+
+#commentTable > tr{
+	border: 1px solid black;
+}
 </style>
 </head>
 <script type="text/javascript">
@@ -137,6 +147,7 @@ a.join:hover {
 		</td>
 	</tr>
 	</table>
+	<br><br>
 	<div id = "pInfo">
 		${vo.pInfo}
 	</div>
@@ -158,17 +169,17 @@ a.join:hover {
 
 		<!-- 여기는 해당 글 번호에 존재하는 모든 댓글들을 가져와 출력 -->
 		<!-- 작성자 이름, 작성 날짜 -->
-		<table>
+		<table id = "commentTable">
 			<tr>
-				<th></th>
-				<th></th>
+				<th>작성자: ${user.getuName}</th>
+				<th>작성날짜: </th>
 			</tr>
 			<tr>
 			<!-- 댓글 에리어, 수정 삭제 버튼 -->
-				<td></td>
+				<td>댓글이다</td>
 				<td>
 					<button>수정</button>
-					
+					<button>삭제</button>
 				</td>
 			</tr>
 		</table>

@@ -65,7 +65,7 @@ public class ProductRestController {
 						try {
 							String fileName = upload.getName();
 							byte[] bytes = upload.getBytes();
-							String uploadPath = "C:\\hahaha\\miniproject\\miniproject\\resources\\images\\img";
+							String uploadPath = ".\\miniproject\\resources\\images\\img";
 							File uploadFile = new File(uploadPath);
 							if(!uploadFile.exists()) {
 								uploadFile.mkdirs();
@@ -184,7 +184,7 @@ public class ProductRestController {
 					try {
 						String fileName = upload.getName();
 						byte[] bytes = upload.getBytes();
-						String uploadPath = "C:\\hahaha\\miniproject\\miniproject\\resources\\images\\img";
+						String uploadPath = ".\\miniproject\\resources\\images\\img";
 						File uploadFile = new File(uploadPath);
 						if(!uploadFile.exists()) {
 							uploadFile.mkdirs();

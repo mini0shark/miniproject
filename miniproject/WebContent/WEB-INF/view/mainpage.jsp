@@ -317,7 +317,7 @@
 						const nav = document.createElement('nav');
 						img.src = jsonData[i].pImg;
 						img.alt=jsonData[i].pNo;
-						img.width=150;
+						img.width=180;
 						img.height=200;
 						h3.appendChild(document.createTextNode(jsonData[i].pName));
 						p.appendChild(document.createTextNode(jsonData[i].pPrice+"원"));
