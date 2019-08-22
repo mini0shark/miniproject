@@ -8,9 +8,9 @@
 <style>
 header {
 	background: #fff;
-	height: 150px;
+	
 	width: 100%;
-	position: fixed;
+	
 	top: 0;
 	left: 0;
 	z-index: 1;
@@ -172,7 +172,7 @@ a.head:visited{
 					<th>${user.getuAddress}</th>
 				</tr>
 				<tr>
-					<th>상태:</th>
+					<th>등급:</th>
 					<th>${user.getuLevel}</th>
 				</tr>
 			</table>

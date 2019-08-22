@@ -9,9 +9,9 @@
 <style>
 header {
 	background: #fff;
-	height: 150px;
+	
 	width: 100%;
-	position: fixed;
+	
 	top: 0;
 	left: 0;
 	z-index: 1;
