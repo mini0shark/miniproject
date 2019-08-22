@@ -61,8 +61,8 @@
           req.addEventListener('load', function(){
         	  alert(this.responseText);
           });
-          const formid = document.querySelector("#form");
-          const formData = new FormData(formid);
+          const formId = document.querySelector("#form");
+          const formData = new FormData(formId);
           req.open('post', 'http://localhost:8080/miniproject/api/product/registration');
           req.send(formData);
        });

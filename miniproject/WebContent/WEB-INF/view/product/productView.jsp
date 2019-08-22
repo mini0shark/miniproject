@@ -7,7 +7,7 @@
 <title>제품 상세 페이지</title>
 <style>
 body {
-	
+
 }
 
 header {
@@ -94,8 +94,8 @@ a.join:hover {
 			<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
 		</h1>
 	</header>
-	
-	
+
+
 	<div class="menu">
 		<nav>
 				<a class="login" href="http://localhost:8080/miniproject/user/signin">로그인</a>
@@ -103,7 +103,7 @@ a.join:hover {
 		</nav>
 		<hr color=black>
 	</div>
-	
+
 	<br><br>
 	<div>
 	<table style="margin-left:auto; margin-right:auto;">
@@ -125,12 +125,14 @@ a.join:hover {
 				<td colspan="2">
 				<form name="form1" method="post" action="">
 					<input type="hidden" name="productId" value="">
-					<select name="amount">
-						
+					<select name="method" id = "method">
+						<option value="">--구매방법--</option>
+						<option value="direct">직거래</option>
+						<option value="delivery">택배거래</option>
 					</select>
-					<input type="submit" value="장바구니에 담기">
+					<button type="button" id="requestButton" value="구매 요청">
 				</form>
-				<a href="#">상품목록</a>
+				<a href="#?pSeller=${vo.pSeller}">판매자의 판매목록</a>
 				</td>
 			</tr>
 		</table>
@@ -168,14 +170,31 @@ a.join:hover {
 				<td></td>
 				<td>
 					<button>수정</button>
-					
+
 				</td>
 			</tr>
 		</table>
 	</div>
 	</div>
-	
+
 	<script type="text/javascript">
+  console.log(${vo.pNo});
+	const requestButton = document.querySelector('.requestButton');
+	requestButton.addEventListener('click', function(){
+		const checkpStateRequest = new XMLHttpRequest();
+    const pNo = document.querySelector('#pNo').innerHTML;
+		checkpStateRequest.addEventListener('load', function(){
+			msg = this.responseText;
+			if(msg==='ing')
+				console.log('판매 요청이 완료되었습니다.');
+			else if(msg==='cancel')
+				console.log('판매자가 상품을 내렸습니다.');
+			else if(msg ==='sold')
+				console.log('이미 판매된 상품입니다.');
+		});
+		checkpStateRequest.open('get', 'http://localhost:8080/miniproject/api/product/checkpstate?pNo='+${vo.pNo});
+		checkpStateRequest.send();
+	});
 
 	init();
 	function init(){

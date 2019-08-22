@@ -149,6 +149,13 @@ public class ProductRestController {
 
 		return result;
 	}
+	
+	
+	
+	@GetMapping("/checkpstate")
+	public String getCheckpState(@RequestParam String pNo) {
+		return productService.getProduct(Integer.parseInt(pNo)).getpState();
+	}
 
 
 	@GetMapping("/initproduct")
