@@ -77,6 +77,12 @@ a.join:hover {
 	z-index: 1;
 	text-align: right;
 }
+
+#pInfo {
+	border: 1px solid black;
+	margin: 0 auto;
+	width: 1000px;
+}
 </style>
 </head>
 <script type="text/javascript">
@@ -99,6 +105,7 @@ a.join:hover {
 	</div>
 	
 	<br><br>
+	<div>
 	<table style="margin-left:auto; margin-right:auto;">
 	<tr>
 		<td>
@@ -130,6 +137,44 @@ a.join:hover {
 		</td>
 	</tr>
 	</table>
+	<div id = "pInfo">
+		${vo.pInfo}
+	</div>
+	<!-- 댓글창 만들기 -->
+	<!-- 댓글창 만들 때 필요한 것, 댓글 번호(삭제나 수정시 필요), 글 번호(해당 글의 댓글만 가져올 때 필요)
+	, 작성날짜(댓글 정렬), 작성자의 이름 -->
+	<div>
+		<table height = 200 align = center>
+			<tr>
+				<th><!-- 작성자 이름 --></th>
+				<th><!-- 작성 날짜 --></th>
+			</tr>
+			<tr>
+				<td><!-- 작성 텍스트 에리어 --></td>
+				<td><!-- 확인 버튼 --></td>
+			</tr>
+		</table>
+		<br>
+
+		<!-- 여기는 해당 글 번호에 존재하는 모든 댓글들을 가져와 출력 -->
+		<!-- 작성자 이름, 작성 날짜 -->
+		<table>
+			<tr>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr>
+			<!-- 댓글 에리어, 수정 삭제 버튼 -->
+				<td></td>
+				<td>
+					<button>수정</button>
+					
+				</td>
+			</tr>
+		</table>
+	</div>
+	</div>
+	
 	<script type="text/javascript">
 
 	init();
