@@ -6,10 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>제품 상세 페이지</title>
 <style>
-body {
-	
-}
-
 header {
 	background: #fff;
 	
@@ -84,13 +80,13 @@ a.join:hover {
 	width: 1000px;
 }
 
-#commentTable {
+.commentTable {
 	margin: 0 auto;
 	width: 1000px;
 	border: 1px solid black;
 }
 
-#commentTable > tr{
+.commentTable > tr{
 	border: 1px solid black;
 }
 </style>
@@ -155,7 +151,7 @@ a.join:hover {
 	<!-- 댓글창 만들 때 필요한 것, 댓글 번호(삭제나 수정시 필요), 글 번호(해당 글의 댓글만 가져올 때 필요)
 	, 작성날짜(댓글 정렬), 작성자의 이름 -->
 	<div>
-		<table height = 200 align = center>
+		<table class="commentTable">
 			<tr>
 				<th><!-- 작성자 이름 --></th>
 				<th><!-- 작성 날짜 --></th>
@@ -169,8 +165,8 @@ a.join:hover {
 
 		<!-- 여기는 해당 글 번호에 존재하는 모든 댓글들을 가져와 출력 -->
 		<!-- 작성자 이름, 작성 날짜 -->
-		<table id = "commentTable">
-			<tr>
+		<table class = "commentTable">
+			<tr style="border: 1px solid black;">
 				<th>작성자: ${user.getuName}</th>
 				<th>작성날짜: </th>
 			</tr>
