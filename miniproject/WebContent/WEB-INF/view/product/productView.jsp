@@ -99,10 +99,11 @@ a.join:hover {
 	</div>
 	
 	<br><br>
+	<div>
 	<table style="margin-left:auto; margin-right:auto;">
 	<tr>
 		<td>
-			<img src="${path}/images/${vo.pImg}" width="340px" height="300"/>
+			<img src="${vo.pImg}" width="340px" height="300"/>
 		</td>
 		<td>
 		<table style="height:300px; width:400px;">
@@ -130,6 +131,10 @@ a.join:hover {
 		</td>
 	</tr>
 	</table>
+	</div>
+	<div>
+		${vo.pInfo}
+	</div>
 	<script type="text/javascript">
 
 	init();
