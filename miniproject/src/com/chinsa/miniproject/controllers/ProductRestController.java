@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.chinsa.miniproject.dto.ImageDTO;
 import com.chinsa.miniproject.dto.ProductDTO;
@@ -107,7 +106,7 @@ public class ProductRestController {
 		}
 		return result;
 	}
-	
+
 	@GetMapping("/search")
 	public List<ProductDTO> getSearch(@RequestParam Map<String, String> map) {
 		ObjectMapper mapper = new ObjectMapper();
@@ -117,13 +116,13 @@ public class ProductRestController {
 		String pSeller = null;
 		String pName = null;
 		String orderBy = "DESC";
+
 		try {
 			pCategory = mapper.readValue(mapper.writeValueAsString(map.get("pCategory")), String.class);
 			pLoc = mapper.readValue(mapper.writeValueAsString(map.get("pLoc")), String.class);
 			pSeller = mapper.readValue(mapper.writeValueAsString(map.get("pCeller")), String.class);
 			pName = mapper.readValue(mapper.writeValueAsString(map.get("pName")), String.class);
 			orderBy = mapper.readValue(mapper.writeValueAsString(map.get("orderBy")), String.class);
-			System.out.println(pSeller);
 			if(orderBy==null) {
 				orderBy = "DESC";
 			}
@@ -135,14 +134,43 @@ public class ProductRestController {
 			e.printStackTrace();
 		}
 		try {
-			result = productService.getProductsInCategory(pCategory,pLoc, pSeller, pName, orderBy);	
+			if(pName==null&& pCategory==null&& pLoc==null && pSeller==null) {
+				result= productService.getProducts();
+			}
+			else {
+				result = productService.getProductsInCategory(pCategory,pLoc, pSeller, pName, orderBy);
+			}
 		} catch (NullPointerException e) {
-			// TODO: handle exception
+			e.printStackTrace();
 			result =null;
 		}
+
 		return result;
 	}
-	
+
+
+	@GetMapping("/initproduct")
+	public List<ProductDTO> getInitproduct() {
+		return productService.getProducts();
+	}
+	@GetMapping("/checkproduct")
+	public String getCheckProduct(@RequestParam Map<String,Integer> map) {
+		ObjectMapper mapper = new ObjectMapper();
+		int pNo;
+		try {
+			pNo = mapper.readValue(mapper.writeValueAsString(map.get("pNo")), Integer.class);
+			ProductDTO dto = productService.getProduct(pNo);
+			if(dto==null)
+				return "false";
+			else
+				return "true";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "false";
+	}
+
 	@RequestMapping(value="/imageupload", method=RequestMethod.POST)
 	public String fileUpload(HttpServletRequest request, HttpServletResponse response, MultipartFile upload) throws Exception{
 		ImageDTO image = new ImageDTO();
