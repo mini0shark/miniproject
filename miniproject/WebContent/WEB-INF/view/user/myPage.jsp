@@ -10,7 +10,6 @@ header {
 	background: #fff;
 	height: 150px;
 	width: 100%;
-	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 1;
@@ -158,25 +157,6 @@ a.head:visited{
 	
 	<form>
 		<div id ="box">
-			<table id="table">
-				<tr>
-					<th>이름:</th>
-					<th>${user.getuName}</th>
-				</tr>
-				<tr>
-					<th>아이디:</th>
-					<th>${user.getuId}</th>
-				</tr>
-				<tr>
-					<th>주소:</th>
-					<th>${user.getuAddress}</th>
-				</tr>
-				<tr>
-					<th>상태:</th>
-					<th>${user.getuLevel}</th>
-				</tr>
-			</table>
-			<br>
 			<center>
 				<button id="edit" type="button">회원정보수정</button>
 				<button id="out" type="button">회원탈퇴</button>
