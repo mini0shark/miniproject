@@ -161,12 +161,12 @@ a.join:hover {
 		<!-- 작성자 이름, 작성 날짜 -->
 		<table>
 			<tr>
-				<th></th>
-				<th></th>
+				<th>asdfasdf</th>
+				<th>fdsafdsa</th>
 			</tr>
 			<tr>
 			<!-- 댓글 에리어, 수정 삭제 버튼 -->
-				<td></td>
+				<td>asdfasdf</td>
 				<td>
 					<button>수정</button>
 					
