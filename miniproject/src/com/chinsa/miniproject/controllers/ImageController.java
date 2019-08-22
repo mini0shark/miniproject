@@ -24,11 +24,14 @@ public class ImageController {
 	@Autowired
 	ImageService imageService;
 	
-	@GetMapping("/path/{iPath}")
-	public @ResponseBody byte[] displayFile(@PathVariable String iPath) throws IOException {
+	@GetMapping("/path/{iFilename}")
+	public @ResponseBody byte[] displayFile(@PathVariable String iFilename) throws IOException {
 		InputStream in = null;
-		ImageDTO image = imageService.getImagePath(iPath);
+		System.out.println(iFilename);
+		ImageDTO image = imageService.getImageName(iFilename+".jpg");
+		System.out.println(image.getiPath()+" 되는건가");
 		in = new BufferedInputStream(new FileInputStream(image.getiPath()));
+		System.out.println("제발되라");
 		return IOUtils.toByteArray(in);
 	}
 	

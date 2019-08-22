@@ -77,6 +77,12 @@ a.join:hover {
 	z-index: 1;
 	text-align: right;
 }
+
+#pInfo {
+	border: 1px solid black;
+	margin: 0 auto;
+	width: 1000px;
+}
 </style>
 </head>
 <script type="text/javascript">
@@ -99,10 +105,11 @@ a.join:hover {
 	</div>
 	
 	<br><br>
+	<div>
 	<table style="margin-left:auto; margin-right:auto;">
 	<tr>
 		<td>
-			<img src="${path}/images/${vo.pImg}" width="340px" height="300"/>
+			<img src="${vo.pImg}" width="340px" height="300"/>
 		</td>
 		<td>
 		<table style="height:300px; width:400px;">
@@ -130,7 +137,9 @@ a.join:hover {
 		</td>
 	</tr>
 	</table>
-	
+	<div id = "pInfo">
+		${vo.pInfo}
+	</div>
 	<!-- 댓글창 만들기 -->
 	<!-- 댓글창 만들 때 필요한 것, 댓글 번호(삭제나 수정시 필요), 글 번호(해당 글의 댓글만 가져올 때 필요)
 	, 작성날짜(댓글 정렬), 작성자의 이름 -->
@@ -164,7 +173,7 @@ a.join:hover {
 			</tr>
 		</table>
 	</div>
-	
+	</div>
 	
 	<script type="text/javascript">
 
