@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,8 +36,9 @@ public class ProductController {
 	
 	
 	@GetMapping("/product/registration")
-	public String getregistration() {
+	public String getregistration(final HttpSession session) {
 		//로그인 안하면 여기서 튕기게 하기
+		String loginId = (String) session.getAttribute("id");
 		return "product/registration";
 	}
 	
