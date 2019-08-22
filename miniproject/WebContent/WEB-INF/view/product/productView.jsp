@@ -169,7 +169,7 @@ a.join:hover {
 				<td>asdfasdf</td>
 				<td>
 					<button>수정</button>
-					
+					<button>삭제</button>
 				</td>
 			</tr>
 		</table>
