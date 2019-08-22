@@ -137,14 +137,18 @@ a.join:hover {
 								</form>
 							</td>
 						</tr>
-
 						<tr>
 							<a href="#?pSeller=${vo.pSeller}">판매자의 판매목록</a>
 						</tr>
 					</table>
+			</tr>
+			<tr>
+				<td style="text-align: center;">
+					<button type="button" onclick="add()">등록</button>
 				</td>
 			</tr>
 		</table>
+		<br>
 		<br> <br>
 		<div id="pInfo">${vo.pInfo}</div>
 		<br> <br>
@@ -245,6 +249,23 @@ a.join:hover {
 		initProductListRequest.open('get','http://localhost:8080/miniproject/api/product/initproduct');
 		initProductListRequest.send();
 	}
+	
+	
+	function add(){     
+		    const table = document.querySelector('#comment');
+		    const tr = document.createElement('tr');
+		    const td = document.createElement('td');
+		    const td2 = document.createElement('td');
+		    const button = document.createElement('button');
+		    const textarea = document.querySelector("#textarea").value;
+		    tr.appendChild(td);
+		    td.appendChild(document.createTextNode(textarea));
+		    tr.appendChild(td2);
+		    td2.appendChild(button);
+		    button.innerHTML = "삭제";
+		    table.appendChild(tr);	   
+	}
+	
 	</script>
 
 </body>
