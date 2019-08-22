@@ -25,52 +25,87 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.chinsa.miniproject.dto.ImageDTO;
 import com.chinsa.miniproject.dto.ProductDTO;
 import com.chinsa.miniproject.dto.UserDTO;
+import com.chinsa.miniproject.service.ImageService;
 import com.chinsa.miniproject.service.ProductService;
 import com.chinsa.miniproject.service.UserService;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @RestController
 @RequestMapping("/api/product")
-//@RequestMapping("/product")
 public class ProductRestController {
 	@Autowired
 	ProductService productService;
 	@Autowired
 	UserService userService;
-	@PostMapping("/register")
-	public String postRegister(@RequestBody Map map, 
-			final HttpSession session) {
-		String uId = (String)session.getAttribute("id");
-		UserDTO seller = userService.getUser(uId);
-		ProductDTO product = null;
-		ObjectMapper mapper = new ObjectMapper();
-		System.out.println("id : "+uId);
-		if(uId==null) {
-			return "loginNeeded";
+	@Autowired
+	ImageService imageService;
+	@PostMapping("/registration")
+	public String postRegister(@RequestParam MultipartFile upload, ProductDTO product,
+			final HttpSession session) throws JsonParseException, JsonMappingException, IOException {
+		String result = null;
+		ImageDTO image = new ImageDTO();
+		OutputStream out = null;
+		String loginUser = (String) session.getAttribute("id");
+		if(loginUser!=null) {
+			product.setpSeller(loginUser);
+			if(upload!=null) {
+				if(upload.getSize()>0 && upload.getName()!=null) {//추후 확인 필요
+					if(upload.getContentType().toLowerCase().startsWith("image/")) {
+						try {
+							String fileName = upload.getName();
+							byte[] bytes = upload.getBytes();
+							String uploadPath = "C:\\hahaha\\miniproject\\miniproject\\resources\\images\\img";
+							File uploadFile = new File(uploadPath);
+							if(!uploadFile.exists()) {
+								uploadFile.mkdirs();
+							}
+							fileName = UUID.randomUUID().toString() + ".jpg";
+							image.setiFilename(fileName);
+							uploadPath = uploadPath +"\\"+fileName;
+							image.setiPath(uploadPath);
+							imageService.insertImage(image);
+							System.out.println(uploadPath);
+							out = new FileOutputStream(new File(uploadPath));
+							out.write(bytes);
+							String fileUrl = "http://localhost:8080/miniproject/display/path/"+fileName;
+							product.setpImg(fileUrl);
+							if(productService.insertProduct(product))
+								result = "register";
+							else
+								result = "registerErr";
+						}catch(IOException e) {
+							e.printStackTrace();
+						}finally {
+							if(out!=null) {
+								out.close();
+							}
+						}
+					}
+					else {
+						result = "notImage";
+					}
+				}
+			}
+			else {
+				result = "fileErr";
+			}
 		}
-		
-		try {
-			product = mapper.readValue(mapper.writeValueAsString(map.get("product")), ProductDTO.class);
-			product.setpSeller(seller.getuName());
-			product.setpImg("임시로 저장 이거 나중에 바꿔야함!!!!!");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		else {
+			result = "notLogin";
 		}
-		
-		if(productService.insertProduct(product)) {
-			return "registerSuccess";
-		}
-		
-		return "registerErr";
+		return result;
 	}
 	
 	@GetMapping("/search")
@@ -110,6 +145,7 @@ public class ProductRestController {
 	
 	@RequestMapping(value="/imageupload", method=RequestMethod.POST)
 	public String fileUpload(HttpServletRequest request, HttpServletResponse response, MultipartFile upload) throws Exception{
+		ImageDTO image = new ImageDTO();
 		PrintWriter printWriter = null;
 		OutputStream out = null;
 		ObjectMapper mapper = new ObjectMapper();
@@ -120,19 +156,22 @@ public class ProductRestController {
 					try {
 						String fileName = upload.getName();
 						byte[] bytes = upload.getBytes();
-						String uploadPath = "C:\\hahaha\\miniproject\\miniproject\\WebContent\\resources\\images\\img";
+						String uploadPath = "C:\\hahaha\\miniproject\\miniproject\\resources\\images\\img";
 						File uploadFile = new File(uploadPath);
 						if(!uploadFile.exists()) {
 							uploadFile.mkdirs();
 						}
 						fileName = UUID.randomUUID().toString() + ".jpg";
+						image.setiFilename(fileName);
 						uploadPath = uploadPath +"\\"+fileName;
+						image.setiPath(uploadPath);
+						imageService.insertImage(image);
 						System.out.println(uploadPath);
 						out = new FileOutputStream(new File(uploadPath));
 						out.write(bytes);
 						printWriter = response.getWriter();
 						response.setContentType("text/html");
-						String fileUrl = "../resources/images/img/"+fileName;
+						String fileUrl = "http://localhost:8080/miniproject/display/path/"+fileName;
 						System.out.println(fileUrl);
 						System.out.println(request.getContextPath());
 						Map<String, Object> data = new HashMap<String, Object>();

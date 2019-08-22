@@ -8,6 +8,6 @@ import com.chinsa.miniproject.mapper.Mapper;
 @Mapper
 public interface ImageMapper {
 	public ImageDTO getImageNum(int iNo);
-	public ImageDTO getImagePath(String iPath);
+	public ImageDTO getImageName(String iFilename);
 	public int insertImage(ImageDTO image);
 }

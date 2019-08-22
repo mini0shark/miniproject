@@ -3,13 +3,13 @@
 <mapper namespace="com.chinsa.miniproject.dao.ImageMapper">
 
 	<select id="getImageNum" parameterType="java.lang.Integer"
-		resultType="userDTO">
-		SELECT i_no,i_,i_path,i_time FROM image WHERE i_no = #{iNo}
+		resultType="imageDTO">
+		SELECT i_no,i_path,i_time FROM image WHERE i_no = #{iNo}
 	</select>
 	
-	<select id="getImagePath" parameterType="String"
-		resultType="userDTO">
-		SELECT i_no,i_,i_path,i_time FROM image WHERE i_path = #{iPath}
+	<select id="getImageName" parameterType="String"
+		resultType="imageDTO">
+		SELECT i_no,i_path,i_time FROM image WHERE i_filename = #{iFilename}
 	</select>
 	
 	<insert id="insertImage" parameterType="imageDTO">

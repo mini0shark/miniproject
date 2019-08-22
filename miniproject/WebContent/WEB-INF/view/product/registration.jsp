@@ -12,9 +12,14 @@
         확인?
       </head>
       <body>
-        <form name="productInformation">
-          <input type="text" id="pName" placeholder="상품명"/><br/>
-          <input type="number" id="pPrice" /><br/>
+        <form  id = "form" name="productInformation" enctype="multipart/form-data" method="post">
+          <label for="pName">상품명</label>
+          <input type="text" id="pName" name="pName" placeholder="상품명"/><br/>
+          <label for="pPrice">상품가격</label>
+          <input type="number" name="pPrice" id="pPrice" /><br/>
+          <label for="upload">대표 이미지</label>
+          	<input type="file" id="upload" name="upload"/><br/>
+          <label for="pInfo">상품 정보</label>
           <textarea name="pInfo" id="pInfo"></textarea>
           <script>
           	CKEDITOR.replace('pInfo',{
@@ -23,8 +28,8 @@
           		filebrowserUploadUrl: '../api/product/imageupload'
           	});
           </script>
-          <input type="text" id="pLoc" placeholder="거래 위치"/><br/>
-          <select name="category" id="pCategory">
+          <input type="text" id="pLoc" name="pLoc" placeholder="거래 위치"/><br/>
+          <select name="pCategory" id="pCategory">
 			<option value="">--카테고리--</option>
 			<option value="garment">의류</option>
 			<option value="beauty">뷰티</option>
@@ -43,32 +48,23 @@
       <script type="text/javascript">
         const p_name = document.querySelector("#pName");
         const p_price = document.querySelector("#pPrice");
+        const p_img = document.querySelector("#pImg");
         const p_info = document.querySelector("#pInfo");
         const p_loc = document.querySelector("#pLoc");
         const p_category = document.querySelector("#pCategory");
         const submit_btn = document.querySelector("#submit_btn");
-
-
+        const upload = document.querySelector("#upload");
         const req = new XMLHttpRequest();
+        
         submit_btn.addEventListener('click', function(){
-       	  const info = CKEDITOR.instances.pInfo.getData();
+       	  CKEDITOR.instances.pInfo.updateElement();
           req.addEventListener('load', function(){
         	  alert(this.responseText);
-        	  //////////////////////////////////
-        	  
-        	  ////////////////////////
           });
-          req.open('post', 'http://localhost:8080/miniproject/api/product/register');
-          req.setRequestHeader("Content-Type","application/json;charset=utf-8");
-          req.send(JSON.stringify(
-        		  {"product":{
-                "pName":p_name.value,
-                "pPrice":p_price.value,
-                "pInfo":info,
-                "pLoc":p_loc.value,
-                "pCategory":p_category.value
-              }}));
+          const formid = document.querySelector("#form");
+          const formData = new FormData(formid);
+          req.open('post', 'http://localhost:8080/miniproject/api/product/registration');
+          req.send(formData);
        });
-
       </script>
     </html>
