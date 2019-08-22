@@ -41,13 +41,13 @@ public class ProductController {
 		return "product/registration";
 	}
 	
-	@GetMapping("/product/search")
-	public String getSearch(@RequestParam Map<String, String> map) {
-		System.out.println(map.get("category"));
-		System.out.println(map.get("soso"));
-		System.out.println(map.get("good"));
-		return "product/search";
-	}
+//	@GetMapping("/product/search")
+//	public String getSearch(@RequestParam Map<String, String> map) {
+//		System.out.println(map.get("category"));
+//		System.out.println(map.get("soso"));
+//		System.out.println(map.get("good"));
+//		return "product/search";
+//	}
 	
 
 	@GetMapping("/product/productview")

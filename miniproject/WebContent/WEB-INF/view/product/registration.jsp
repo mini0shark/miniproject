@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+  pageEncoding="UTF-8"%>
+  <!DOCTYPE html>
+  <html>
 <head>
 <meta charset="UTF-8">
 <title>상품 등록</title>
@@ -151,7 +151,6 @@
 	const submit_btn = document.querySelector("#submit_btn");
 	const upload = document.querySelector("#upload");
 	const req = new XMLHttpRequest();
-
 	submit_btn.addEventListener('click', function() {
 		CKEDITOR.instances.pInfo.updateElement();
 		req.addEventListener('load', function() {
