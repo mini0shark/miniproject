@@ -125,12 +125,10 @@ a.join:hover {
 				<td colspan="2">
 				<form name="form1" method="post" action="">
 					<input type="hidden" name="productId" value="">
-					<select name="amount">
-						
-					</select>
+					
 					<input type="submit" value="장바구니에 담기">
 				</form>
-				<a href="#">상품목록</a>
+				
 				</td>
 			</tr>
 		</table>
@@ -160,7 +158,7 @@ a.join:hover {
 			</tr>
 			<tr>
 				<td style="text-align: center;">
-					<button>등록</button>
+					<button type="button" onclick="">등록</button>
 				</td>
 			</tr>
 		</table>
