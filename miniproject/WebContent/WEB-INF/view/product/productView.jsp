@@ -161,16 +161,16 @@ a.join:hover {
 		<div>
 			<table class="commentTable">
 				<tr>
-					<th style="text-align: center; width: 980px; height: 20px;">여긴
-						작성자 이름이 들어갑니다.</th>
+					<th style="text-align: center; width: 980px; height: 20px;"></th>
 				</tr>
 				<tr>
-					<td style="text-align: center; width: 980px; height: 50px;"><input
-						type="text" style="width: 980px; height: 50px;"> </textarea></td>
+					<td style="text-align: center; width: 980px; height: 50px;">
+						<input type="text" style="width: 980px; height: 50px;" id = "textarea">
+					</td>
 				</tr>
 				<tr>
 					<td style="text-align: center;">
-						<button type="button" onclick="">등록</button>
+						<button type="button" onclick="add()">등록</button>
 					</td>
 				</tr>
 			</table>
@@ -183,6 +183,8 @@ a.join:hover {
 					<th>작성자: ${user.getuName}</th>
 					<th>작성날짜:</th>
 				</tr>
+			</table>
+			<table class="commentTable" id = "comment">
 				<tr style="text-align: center;">
 					<!-- 댓글 에리어, 수정 삭제 버튼 -->
 					<td style="text-align: center;">댓글이다</td>
@@ -201,14 +203,34 @@ a.join:hover {
     const pNo = document.querySelector('#pNo').innerHTML;
 		checkpStateRequest.addEventListener('load', function(){
 			msg = this.responseText;
-			if(msg==='ing')
-				console.log('판매 요청이 완료되었습니다.');
+			if(msg==='ing'){
+				const requestRequest = new XMLHttpRequest();
+				requestRequest.addEventListener('load',function(){
+					const result = this.responseText;
+					var resultText = '';
+					console.log('---')
+					if(result==='true'){
+						resultText = '요청에 성공했습니다. 거래 중 목록에서 확인하세요';
+						location.href='';
+					}
+					else if(result ==='notLogin'){
+						resultText = '로그인이 필요한 서비스 입니다.';
+					}
+					else{
+						resultText = '알수 없는 원인으로 중지됐습니다.';
+					}
+					alert(resultText);
+				});
+				requestRequest.open('post', 'http://localhost:8080/miniproject/api/product/buyrequest');
+				requestRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+				requestRequest.send(JSON.stringify({"pNo":"${vo.pNo}"}));
+			}
 			else if(msg==='cancel')
 				console.log('판매자가 상품을 내렸습니다.');
 			else if(msg ==='sold')
 				console.log('이미 판매된 상품입니다.');
 		});
-		checkpStateRequest.open('get', 'http://localhost:8080/miniproject/api/product/checkpstate?pNo=${vo.pNo}');
+		checkpStateRequest.open('get', 'http://localhost:8080/miniproject/api/product/checkpstate?pNo=${vo.pNo}&method='+document.querySelector("#method").value);
 		checkpStateRequest.send();
 	});
 
@@ -251,20 +273,34 @@ a.join:hover {
 	}
 	
 	
-	function add(){     
-		    const table = document.querySelector('#comment');
+	function add(){
+		
+		const commentRegisterRequest = new XMLHttpRequest();
+	    const textarea = document.querySelector("#textarea").value;
+		commentRegisterRequest.addEventListener('load', function(){
+			const table = document.querySelector('#comment');
 		    const tr = document.createElement('tr');
 		    const td = document.createElement('td');
 		    const td2 = document.createElement('td');
 		    const button = document.createElement('button');
-		    const textarea = document.querySelector("#textarea").value;
+		    document.querySelector("#textarea").value = '';
 		    tr.appendChild(td);
 		    td.appendChild(document.createTextNode(textarea));
-		    tr.appendChild(td2);
 		    td2.appendChild(button);
+		    td.setAttribute('style','text-align: center;');
+		    td2.setAttribute('style','text-align: center;');
+		    tr.appendChild(td2);
 		    button.innerHTML = "삭제";
-		    table.appendChild(tr);	   
-	}
+		   	table.appendChild(tr);
+		   	
+		   	console.log(this.responseText);//==> 사용자 id 리턴
+		});
+		commentRegisterRequest.open('post','http://localhost:8080/miniproject/api/product/commentresister');
+		commentRegisterRequest.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+		commentRegisterRequest.send(JSON.stringify({
+			"comment":textarea
+		}));
+		}
 	
 	</script>
 
