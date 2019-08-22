@@ -78,7 +78,7 @@
 <body>
 	<header>
 		<h1>
-			<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
+			<a class="head" href="http://117.17.143.71:8080/miniproject/">Chinsa.</a>
 		</h1>
 	</header>
 	
@@ -87,8 +87,8 @@
 			<span class="search">
 				<input type='text' class='input_text' />
 			</span>
-				<a class="login" href="http://localhost:8080/miniproject/user/signin"></a>
-				<a class="join" href="http://localhost:8080/miniproject/user/signup"></a>
+				<a class="login" href="http://117.17.143.71:8080/miniproject/user/signin"></a>
+				<a class="join" href="http://117.17.143.71:8080/miniproject/user/signup"></a>
 		</nav>
 		<hr color=black>
 	</div>
@@ -154,12 +154,25 @@
 	submit_btn.addEventListener('click', function() {
 		CKEDITOR.instances.pInfo.updateElement();
 		req.addEventListener('load', function() {
-			alert(this.responseText);
+			const responseMsg = this.responseText;
+			
+			if(responseMsg ==='register'){
+				alert('등록되었습니다.');
+				location.href= '../';
+			}
+			else if(responseMsg ==='notImage'){
+				alert('대표이미지를 등록하세요!');
+			}
+			else if(responseMsg ==='notLogin'){
+				alert('로그인이 필요한 서비스입니다.');
+				location.href= 'http://117.17.143.71:8080/miniproject/user/signin';
+			}
+			
 		});
 		const formid = document.querySelector("#form");
 		const formData = new FormData(formid);
 		req.open('post',
-				'http://localhost:8080/miniproject/api/product/registration');
+				'http://117.17.143.71:8080/miniproject/api/product/registration');
 		req.send(formData);
 	});
 </script>

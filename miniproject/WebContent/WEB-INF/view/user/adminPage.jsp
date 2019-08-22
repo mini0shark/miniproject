@@ -327,14 +327,14 @@ table {
 
 	<header>
 		<h1>
-			<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
+			<a class="head" href="http://117.17.143.71:8080/miniproject/">Chinsa.</a>
 		</h1>
 	</header>
 	<div class="menu">
 		<nav>
 			<span class="search"> <input type='text' class='input_text' />
-			</span> <a class="home" href="http://localhost:8080/miniproject/">메인</a> <a
-				class="logout" href="http://localhost:8080/miniproject/">로그아웃</a>
+			</span> <a class="home" href="http://117.17.143.71:8080/miniproject/">메인</a> <a
+				class="logout" href="http://117.17.143.71:8080/miniproject/">로그아웃</a>
 		</nav>
 		<hr color=black>
 	</div>

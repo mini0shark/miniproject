@@ -135,7 +135,7 @@ a.home:hover {
 
 		<header>
 		<h1>
-			<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
+			<a class="head" href="http://117.17.143.71:8080/miniproject/">Chinsa.</a>
 		</h1>
 
 		</header>
@@ -144,8 +144,8 @@ a.home:hover {
 			<span class="search">
 				<input type='text' class='input_text' />
 			</span>
-			<a class="home" href="http://localhost:8080/miniproject/">메인</a>
-			<a class="join" href="http://localhost:8080/miniproject/user/signup">회원가입</a>
+			<a class="home" href="http://117.17.143.71:8080/miniproject/">메인</a>
+			<a class="join" href="http://117.17.143.71:8080/miniproject/user/signup">회원가입</a>
 			</nav>
 			<hr color=black>
 		</div>
@@ -205,8 +205,9 @@ a.home:hover {
 		function clickLogin() {
 			req.addEventListener('load', function() {
 				console.log(this.responseText);
-				if (this.responseText === "login")
-					location.href = "../";
+				if (this.responseText === "login"){
+					history.back();
+				}
 				else if (this.responseText === "idErr") {
 					alert("해당 id가 존재하지 않습니다");
 				} else if(this.resopnseText === "pwdErr"){
@@ -216,7 +217,7 @@ a.home:hover {
 				}
 			});
 			req.open('post',
-							'http://localhost:8080/miniproject/api/user/login');
+							'http://117.17.143.71:8080/miniproject/api/user/login');
 			req.setRequestHeader("Content-Type",
 					"application/json;charset=utf-8");
 			req.send(JSON.stringify({

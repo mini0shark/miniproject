@@ -134,7 +134,7 @@ a.head:visited {
 <body>
 	<header>
 	<h1>
-		<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
+		<a class="head" href="http://117.17.143.71:8080/miniproject/">Chinsa.</a>
 	</h1>
 	</header>
 
@@ -143,8 +143,8 @@ a.head:visited {
 		<span class="search"> <input type='text'
 			class='input_text' />
 		</span>
-		<a class="home" href="http://localhost:8080/miniproject/">메인</a>
-		<a class="login" href="http://localhost:8080/miniproject/user/signin">로그인</a>
+		<a class="home" href="http://117.17.143.71:8080/miniproject/">메인</a>
+		<a class="login" href="http://117.17.143.71:8080/miniproject/user/signin">로그인</a>
 		</nav>
 	</div>
 
@@ -156,32 +156,32 @@ a.head:visited {
 			<table id="table">
 				<tr>
 					<th>아이디 :</th>
-					<th><input type="text" name="uId" id="uId" readonly/></th>
+					<th><input type="text" name="uId" id="uId" value="${user.uId}" readonly/></th>
 				</tr>
 				<tr>
 					<th>비밀번호 :</th>
-					<th><input type="password" name="uPwd" id="uPwd" /></th>
+					<th><input type="password" name="uPwd" id="uPwd" value="${user.uPwd}"/></th>
 				</tr>
 				<tr>
 					<th>비밀번호 확인:</th>
-					<th><input type="password" name="confirmPwd" id="confirmPwd" />
+					<th><input type="password" name="confirmPwd" id="confirmPwd" value="${user.uPwd}"/>
 					</th>
 				</tr>
 				<tr>
 					<th>이름 :</th>
-					<th><input type="text" name="uName" id="uName" /></th>
+					<th><input type="text" name="uName" id="uName" value="${user.uName}"/></th>
 				</tr>
 				<tr>
 					<th>전화번호 :</th>
-					<th><input type="text" name="uPhone" id="uPhone" /></th>
+					<th><input type="text" name="uPhone" id="uPhone" value="${user.uPhone}"/></th>
 				</tr>
 				<tr>
 					<th>주소 :</th>
-					<th><input type="text" name="uAddress" id="uAddress" /></th>
+					<th><input type="text" name="uAddress" id="uAddress" value="${user.uAddress}"/></th>
 				</tr>
 				<tr>
 					<th>이메일 :</th>
-					<th><input type="text" name="uEmail" id="uEmail" /></th>
+					<th><input type="text" name="uEmail" id="uEmail" value="${user.uEmail}"/></th>
 				</tr>
 			</table>
 			<br>
@@ -220,7 +220,7 @@ a.head:visited {
 
 			// 데이터 입력된 거 보내기
 			req.open("POST",
-					"http://localhost:8080/miniproject/api/user/signup");
+					"http://117.17.143.71:8080/miniproject/api/user/signup");
 			req.setRequestHeader("Content-Type",
 					"application/json;charset=UTF-8");
 			req.send(JSON.stringify({

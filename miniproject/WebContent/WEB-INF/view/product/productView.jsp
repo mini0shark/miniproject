@@ -95,15 +95,15 @@ a.join:hover {
 <body>
 	<header>
 	<h1>
-		<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
+		<a class="head" href="http://117.17.143.71:8080/miniproject/">Chinsa.</a>
 	</h1>
 	</header>
 
 
 	<div class="menu">
 		<nav> <a class="login"
-			href="http://localhost:8080/miniproject/user/signin">로그인</a> <a
-			class="join" href="http://localhost:8080/miniproject/user/signup">회원가입</a>
+			href="http://117.17.143.71:8080/miniproject/user/signin">로그인</a> <a
+			class="join" href="http://117.17.143.71:8080/miniproject/user/signup">회원가입</a>
 		</nav>
 		<hr color=black>
 	</div>
@@ -123,6 +123,17 @@ a.join:hover {
 						<tr align="center">
 							<td>가격</td>
 							<td>${vo.pPrice}</td>
+						</tr>
+						<tr align="center">
+							<td>판매자</td>
+							<td>${vo.pSeller}/${user.uName}</td>
+						</tr>
+						<tr align="center">
+							<td>전화번호</td>
+							<td>${user.uPhone}</td>
+						</tr><tr align="center">
+							<td>E-mail</td>
+							<td>${user.uEmail}</td>
 						</tr>
 						<tr align="center">
 							<td colspan="2">
@@ -180,7 +191,7 @@ a.join:hover {
 			<!-- 작성자 이름, 작성 날짜 -->
 			<table class="commentTable">
 				<tr style="text-align: center;">
-					<th>작성자: ${user.getuName}</th>
+					<th>작성자: </th>
 					<th>작성날짜:</th>
 				</tr>
 			</table>
@@ -221,7 +232,7 @@ a.join:hover {
 					}
 					alert(resultText);
 				});
-				requestRequest.open('post', 'http://localhost:8080/miniproject/api/product/buyrequest');
+				requestRequest.open('post', 'http://117.17.143.71:8080/miniproject/api/product/buyrequest');
 				requestRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 				requestRequest.send(JSON.stringify({"pNo":"${vo.pNo}"}));
 			}
@@ -230,7 +241,7 @@ a.join:hover {
 			else if(msg ==='sold')
 				console.log('이미 판매된 상품입니다.');
 		});
-		checkpStateRequest.open('get', 'http://localhost:8080/miniproject/api/product/checkpstate?pNo=${vo.pNo}&method='+document.querySelector("#method").value);
+		checkpStateRequest.open('get', 'http://117.17.143.71:8080/miniproject/api/product/checkpstate?pNo=${vo.pNo}&method='+document.querySelector("#method").value);
 		checkpStateRequest.send();
 	});
 
@@ -248,27 +259,27 @@ a.join:hover {
 			loginState = false;
 
 			if(loginState){
-				login.setAttribute('href', "http://localhost:8080/miniproject/user/logout?id="+hasStoredId);
+				login.setAttribute('href', "http://117.17.143.71:8080/miniproject/user/logout?id="+hasStoredId);
 				login.innerHTML= "로그아웃";
-				join.setAttribute('href', "http://localhost:8080/miniproject/user/mypage");
+				join.setAttribute('href', "http://117.17.143.71:8080/miniproject/user/mypage");
 				join.innerHTML="마이페이지";
 			}
 			else{
-				login.setAttribute('href', "http://localhost:8080/miniproject/user/signin");
+				login.setAttribute('href', "http://117.17.143.71:8080/miniproject/user/signin");
 				login.innerHTML= "로그인";
-				join.setAttribute('href', "http://localhost:8080/miniproject/user/signup");
+				join.setAttribute('href', "http://117.17.143.71:8080/miniproject/user/signup");
 				join.innerHTML="회원가입";
 			}
 
 		});
-		req.open('post', "http://localhost:8080/miniproject/api/user/checkLogin");
+		req.open('post', "http://117.17.143.71:8080/miniproject/api/user/checkLogin");
 		req.send();
 
 		const initProductListRequest = new XMLHttpRequest();
 		initProductListRequest.addEventListener('load', function(){
 			const productListJson = this.responseText;
 		});
-		initProductListRequest.open('get','http://localhost:8080/miniproject/api/product/initproduct');
+		initProductListRequest.open('get','http://117.17.143.71:8080/miniproject/api/product/initproduct');
 		initProductListRequest.send();
 	}
 	
@@ -295,7 +306,7 @@ a.join:hover {
 		   	
 		   	console.log(this.responseText);//==> 사용자 id 리턴
 		});
-		commentRegisterRequest.open('post','http://localhost:8080/miniproject/api/product/commentresister');
+		commentRegisterRequest.open('post','http://117.17.143.71:8080/miniproject/api/product/commentresister');
 		commentRegisterRequest.setRequestHeader("Content-Type","application/json;charset=UTF-8");
 		commentRegisterRequest.send(JSON.stringify({
 			"comment":textarea
