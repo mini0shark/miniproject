@@ -348,6 +348,14 @@
 							checkProductRequest.open('get','http://localhost:8080/miniproject/api/product/checkproduct?pNo='+img.alt);
 							checkProductRequest.send();
 						});
+						function changecolor1(){
+							h3.style.color='#CC0000';
+						}
+						function changecolor2(){
+							h3.style.color='black';
+						}
+						h3.addEventListener('mouseover',changecolor1);
+						h3.addEventListener('mouseout',changecolor2)
 					}
 				}
 
