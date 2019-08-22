@@ -326,7 +326,18 @@
 						nav.appendChild(h3);
 						nav.appendChild(p);
 						list.appendChild(nav);
-						nav.addEventListener('click', function(event){
+						img.addEventListener('click', function(event){
+							const checkProductRequest = new XMLHttpRequest();
+							checkProductRequest.addEventListener('load', function(){
+								if(this.responseText==='true')
+								location.href = "http://localhost:8080/miniproject/product/productview?pNo="+img.alt;
+								else
+								alert("해당제품이 존재하지 않습니다. 정상적인 경로로 접근하세요");
+							});
+							checkProductRequest.open('get','http://localhost:8080/miniproject/api/product/checkproduct?pNo='+img.alt);
+							checkProductRequest.send();
+						});
+						h3.addEventListener('click', function(event){
 							const checkProductRequest = new XMLHttpRequest();
 							checkProductRequest.addEventListener('load', function(){
 								if(this.responseText==='true')
