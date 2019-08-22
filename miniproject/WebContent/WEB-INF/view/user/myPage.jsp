@@ -119,23 +119,20 @@ a.head:visited{
 			<table>
 				<tr>
 					<td bgcolor="skyblue">이름</td>
-					<td><input type="text" name="uName" id="uId" maxlength="100"
+					<td><input type="text" name="uName" id="uName" maxlength="100"
 						value="${storedId}"></td>
 				</tr>
 				<tr>
 					<td bgcolor="skyblue">아이디</td>
-					<td><input type="text" name="uId" id="uPwd"
-						maxlength="100"></td>
+					<td><input type="text" name="uId" id="uId" maxlength="100"></td>
 				</tr>
 				<tr>
-					<td bgcolor="skyblue">주소</td>
-					<td><input type="text" name="uAdd" id="uPwd"
-						maxlength="100"></td>
+					<td bgcolor="skyblue">지역</td>
+					<td><input type="text" name="uLoc" id="uLoc" maxlength="100"></td>
 				</tr>
 				<tr>
-					<td bgcolor="skyblue">상태</td>
-					<td><input type="text" name="uSta" id="uPwd"
-						maxlength="100"></td>
+					<td bgcolor="skyblue">회원등급</td>
+					<td><input type="text" name="uSta" id="uState" maxlength="100"></td>
 				</tr>
 			</table>
 			<br>

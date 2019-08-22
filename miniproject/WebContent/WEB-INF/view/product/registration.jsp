@@ -24,7 +24,7 @@
           	});
           </script>
           <input type="text" id="pLoc" placeholder="거래 위치"/><br/>
-          <select name="category" id="pCategory">
+          <select name="pCategory" id="pCategory">
 			<option value="">--카테고리--</option>
 			<option value="garment">의류</option>
 			<option value="beauty">뷰티</option>

@@ -102,7 +102,7 @@ a.join:hover {
 	<table style="margin-left:auto; margin-right:auto;">
 	<tr>
 		<td>
-			<img src="${path}/images/${vo.pImg}" width="340px" height="300"/>
+			<img src="${vo.pImg}" width="340px" height="300"/>
 		</td>
 		<td>
 		<table style="height:300px; width:400px;">
