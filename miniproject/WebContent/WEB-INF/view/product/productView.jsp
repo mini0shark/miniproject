@@ -137,6 +137,7 @@ a.join:hover {
 		</td>
 	</tr>
 	</table>
+	<br><br>
 	<div id = "pInfo">
 		${vo.pInfo}
 	</div>
