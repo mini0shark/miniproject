@@ -196,36 +196,37 @@ a.home:hover {
 		btn2.addEventListener('click', function() {
 			location.href = "../";
 		});
+		pwd.addEventListener('keyup', function(){
+			if(window.event.keyCode==13)
+				clickLogin();
+		});
 
-		btn
-				.addEventListener(
-						'click',
-						function() {
-							req.addEventListener('load', function() {
-								console.log(this.responseText);
-								if (this.responseText === "login")
-									location.href = "../";
-								else if (this.responseText === "idErr") {
-									alert("해당 id가 존재하지 않습니다");
-								} else if(this.resopnseText === "pwdErr"){
-									alert("패스워드가 틀립니다");
-								}else{
-									alert("알수 없는 오류입니다 관리자(김타빈)한테 문의하세요");
-								}
-							});
-							req
-									.open('post',
-											'http://localhost:8080/miniproject/api/user/login');
-							req.setRequestHeader("Content-Type",
-									"application/json;charset=utf-8");
-							req.send(JSON.stringify({
-								"user" : {
-									"uId" : id.value,
-									"uPwd" : pwd.value
-								},
-								"checkStore" : checkStore.checked
-							}));
-						});
+		btn.addEventListener('click', clickLogin);
+		function clickLogin() {
+			req.addEventListener('load', function() {
+				console.log(this.responseText);
+				if (this.responseText === "login")
+					location.href = "../";
+				else if (this.responseText === "idErr") {
+					alert("해당 id가 존재하지 않습니다");
+				} else if(this.resopnseText === "pwdErr"){
+					alert("패스워드가 틀립니다");
+				}else{
+					alert("알수 없는 오류입니다 관리자(김타빈)한테 문의하세요");
+				}
+			});
+			req.open('post',
+							'http://localhost:8080/miniproject/api/user/login');
+			req.setRequestHeader("Content-Type",
+					"application/json;charset=utf-8");
+			req.send(JSON.stringify({
+				"user" : {
+					"uId" : id.value,
+					"uPwd" : pwd.value
+				},
+				"checkStore" : checkStore.checked
+			}));
+		}
 	</script>
 
 </body>

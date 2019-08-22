@@ -284,9 +284,14 @@
 					initProductListRequest.open('get','http://localhost:8080/miniproject/api/product/initproduct');
 					initProductListRequest.send();
 				}
+				const searchText = document.querySelector(".input_text");
 				const searchButton = document.querySelector(".sch_smit");
-				searchButton.addEventListener('click', function(){
-					const searchText = document.querySelector(".input_text");
+				searchButton.addEventListener('click', clickSearch);
+				searchText.addEventListener('keyup', function(){
+					if(window.event.keyCode==13)
+						clickSearch();
+				});
+				function clickSearch(){
 					const searchRequest = new XMLHttpRequest();
 					searchRequest.addEventListener('load', function(){
 						const productListJson = this.responseText;
@@ -295,7 +300,8 @@
 					});
 					searchRequest.open('get', 'http://localhost:8080/miniproject/api/product/search?pName='+searchText.value);
 					searchRequest.send();
-				});
+				}
+				
 
 
 				(function category(){
