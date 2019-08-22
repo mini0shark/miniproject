@@ -31,8 +31,50 @@ header {
 	text-align: right;
 }
 
-table{
+a.login:link {
+	color: #CC0000;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.login:visited {
+	color: #CC0000;
+	text-decoration: none;
+}
+
+a.login:hover {
+	color: black;
+	text-decoration: none;
+}
+
+a.join:link {
+	color: #CC0000;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.join:visited {
+	color: #CC0000;
+	text-decoration: none;
+}
+
+a.join:hover {
+	color: black;
+	text-decoration: none;
+}
+
+#table{
+	background-color: black;
+	padding: 10px;
+	color: white;
 	margin: 0 auto;
+	color: white;
+	border-collapse: separate;
+	border-spacing: 20px;
+}
+
+#table>tr {
+	margin: 10px;
 }
 
 #box {
@@ -111,36 +153,34 @@ a.head:visited{
 				<a class="login" href="http://localhost:8080/miniproject/user/signin">로그인</a>
 				<a class="join" href="http://localhost:8080/miniproject/user/signup">회원가입</a>
 		</nav>
-		<hr color=black>
+		<hr style="border: 1px solid black;">
 	</div>
 	
 	<form>
 		<div id ="box">
-			<table>
+			<table id="table">
 				<tr>
-					<td bgcolor="skyblue">이름</td>
-					<td><input type="text" name="uName" id="uId" maxlength="100"
-						value="${storedId}"></td>
+					<th>이름:</th>
+					<th>${user.getuName}</th>
 				</tr>
 				<tr>
-					<td bgcolor="skyblue">아이디</td>
-					<td><input type="text" name="uId" id="uPwd"
-						maxlength="100"></td>
+					<th>아이디:</th>
+					<th>${user.getuId}</th>
 				</tr>
 				<tr>
-					<td bgcolor="skyblue">주소</td>
-					<td><input type="text" name="uAdd" id="uPwd"
-						maxlength="100"></td>
+					<th>주소:</th>
+					<th>${user.getuAddress}</th>
 				</tr>
 				<tr>
-					<td bgcolor="skyblue">상태</td>
-					<td><input type="text" name="uSta" id="uPwd"
-						maxlength="100"></td>
+					<th>상태:</th>
+					<th>${user.getuLevel}</th>
 				</tr>
 			</table>
 			<br>
-					<button id="edit" type="button">회원정보수정</button>
-					<button id="out" type="button">회원탈퇴</button>
+			<center>
+				<button id="edit" type="button">회원정보수정</button>
+				<button id="out" type="button">회원탈퇴</button>
+			</center>
 		</div>
 		
 		<div class='left-box' style="text-align:center; font-weight: bolder;">판매내역<br><input type="text"  style="text-align:center; width:600px; height:470px;"/></div>

@@ -342,20 +342,21 @@ table {
 
 	<div id="content">
 		<aside id="main_aside">
-			<input id="first" type="radio" name="tab" checked="checked" /> <input
-				id="second" type="radio" name="tab" /> <input id="third"
-				type="radio" name="tab" />
+			<input id="first" type="radio" name="tab" checked="checked" />
+			<input id="second" type="radio" name="tab" />
+			<input id="third" type="radio" name="tab" />
 
 			<section class="buttons">
-				<label for="first"><b>회원 관리</b></label> <label for="second"><b>상품
-						관리</b></label> <label for="third" id="black2"><b>블랙리스트</b></label>
+				<label for="first"><b>회원 관리</b></label>
+				<label for="second"><b>상품 관리</b></label>
+				<label for="third" id="black2"><b>블랙리스트</b></label>
 			</section>
 
 			<article class="main_article">
 				<h1>회원 관리</h1>
 				<div class="bodytexts">
 					<br>
-					<h2>회원목록</h2>
+					<h2>회원 목록</h2>
 					<br>
 					<ul class="mylist">
 						<li>회원1

@@ -17,11 +17,11 @@ public class ImageService {
 		return imageDao.getImageNum(iNo);
 	}
 	
-	public ImageDTO getImagePath(String iPath) {
-		return imageDao.getImagePath(iPath);
+	public ImageDTO getImageName(String iFilename) {
+		return imageDao.getImageName(iFilename);
 	}
 	
-	public boolean insertUser(ImageDTO image) {
+	public boolean insertImage(ImageDTO image) {
 		// TODO Auto-generated method stub
 		int result = 0;
 		try {
