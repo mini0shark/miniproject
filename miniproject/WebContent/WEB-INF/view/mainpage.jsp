@@ -13,9 +13,9 @@
 
 				header {
 					background: #fff;
-					height: 150px;
+					
 					width: 100%;
-					position: fixed;
+					
 					top: 0;
 					left: 0;
 					z-index: 1;
@@ -38,9 +38,9 @@
 
 				.goods {
 					display: grid;
-					grid-template-columns: 200px 200px 200px 200px 200px;
-					width: 1200px;
-					float: left;
+					grid-template-columns: 350px 350px 350px 350px;
+					width: 1500px;
+					
 					margin: 0 13px;
 					margin-top: 50px;
 					text-align: center;
@@ -50,7 +50,7 @@
 					float: left;
 					padding: 20px;
 					text-align: center;
-					background-color: #E8D9FF;
+					background-color:white;
 				}
 
 				.category {
@@ -301,18 +301,24 @@
 				(function category(){
 				})();
 
+				
+				
+				
 				function showList(jsonList){
 					const list = document.querySelector('.goods');
 					const jsonData = JSON.parse(jsonList);
 					const size = Object.keys(jsonData).length;
 					list.innerHTML="";
 					for(var i = 0; i<size; i++){
+						
 						const img = document.createElement('img');
 						const h3 = document.createElement('h3');
 						const p = document.createElement('p');
 						const nav = document.createElement('nav');
 						img.src = jsonData[i].pImg;
 						img.alt=jsonData[i].pNo;
+						img.width=180;
+						img.height=200;
 						h3.appendChild(document.createTextNode(jsonData[i].pName));
 						p.appendChild(document.createTextNode(jsonData[i].pPrice+"원"));
 						nav.setAttribute('class', 'good');
@@ -320,7 +326,18 @@
 						nav.appendChild(h3);
 						nav.appendChild(p);
 						list.appendChild(nav);
-						nav.addEventListener('click', function(event){
+						img.addEventListener('click', function(event){
+							const checkProductRequest = new XMLHttpRequest();
+							checkProductRequest.addEventListener('load', function(){
+								if(this.responseText==='true')
+								location.href = "http://localhost:8080/miniproject/product/productview?pNo="+img.alt;
+								else
+								alert("해당제품이 존재하지 않습니다. 정상적인 경로로 접근하세요");
+							});
+							checkProductRequest.open('get','http://localhost:8080/miniproject/api/product/checkproduct?pNo='+img.alt);
+							checkProductRequest.send();
+						});
+						h3.addEventListener('click', function(event){
 							const checkProductRequest = new XMLHttpRequest();
 							checkProductRequest.addEventListener('load', function(){
 								if(this.responseText==='true')

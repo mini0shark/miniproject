@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -45,7 +44,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 @RequestMapping("/api/product")
 public class ProductRestController {
-	final static String IMG_PATH = "C:\\hahaha\\miniproject\\miniproject\\resources\\images\\img";
 	@Autowired
 	ProductService productService;
 	@Autowired
@@ -67,7 +65,7 @@ public class ProductRestController {
 						try {
 							String fileName = upload.getName();
 							byte[] bytes = upload.getBytes();
-							String uploadPath = IMG_PATH;
+							String uploadPath = "C:\\miniproject\\img\\";
 							File uploadFile = new File(uploadPath);
 							if(!uploadFile.exists()) {
 								uploadFile.mkdirs();
@@ -193,7 +191,7 @@ public class ProductRestController {
 					try {
 						String fileName = upload.getName();
 						byte[] bytes = upload.getBytes();
-						String uploadPath = IMG_PATH;
+						String uploadPath = "C:\\miniproject\\img\\";
 						File uploadFile = new File(uploadPath);
 						if(!uploadFile.exists()) {
 							uploadFile.mkdirs();

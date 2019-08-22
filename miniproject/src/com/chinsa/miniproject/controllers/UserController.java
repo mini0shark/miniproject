@@ -7,6 +7,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.chinsa.miniproject.dto.UserDTO;
+import com.chinsa.miniproject.service.ProductService;
+import com.chinsa.miniproject.service.UserService;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -24,6 +27,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 public class UserController {
 
+	@Autowired
+	UserService userService;
+	
 	@GetMapping("/user/signup")
 	public String getSignUp() {
 		return "user/signUp";
@@ -57,6 +63,7 @@ public class UserController {
 
 	@GetMapping("/user/mypage")
 	public String getMyPage() {
+		
 		return "user/myPage";
 	}
 

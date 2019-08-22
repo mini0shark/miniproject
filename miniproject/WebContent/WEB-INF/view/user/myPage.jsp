@@ -8,9 +8,7 @@
 <style>
 header {
 	background: #fff;
-	height: 150px;
 	width: 100%;
-	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 1;
@@ -158,28 +156,12 @@ a.head:visited{
 	
 	<form>
 		<div id ="box">
-			<table id="table">
-				<tr>
-					<th>이름:</th>
-					<th>${user.getuName}</th>
-				</tr>
-				<tr>
-					<th>아이디:</th>
-					<th>${user.getuId}</th>
-				</tr>
-				<tr>
-					<th>주소:</th>
-					<th>${user.getuAddress}</th>
-				</tr>
-				<tr>
-					<th>상태:</th>
-					<th>${user.getuLevel}</th>
-				</tr>
-			</table>
+			
 			<br>
 			<center>
 				<button id="edit" type="button">회원정보수정</button>
 				<button id="out" type="button">회원탈퇴</button>
+				<button id="regi" type="button">상품등록</button>
 			</center>
 		</div>
 		
@@ -190,7 +172,7 @@ a.head:visited{
 	<script type="text/javascript">
 		const btn = document.querySelector("#edit");
 		const btn2 = document.querySelector("#out");
-
+		const btn3 = document.querySelector("#regi");
 
 		const req = new XMLHttpRequest();
 		
@@ -202,7 +184,9 @@ a.head:visited{
 			location.href= "../";
 		});
 		
-		
+		btn3.addEventListener('click', function() {
+			location.href= "http://localhost:8080/miniproject/product/registration";
+		});		
 		
 		
 		
