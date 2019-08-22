@@ -145,13 +145,6 @@ public class ProductRestController {
 		return result;
 	}
 
-	@PostMapping("/commentresister")
-	public String postCommentResister(@RequestBody Map<String, String> map, final HttpSession session) {
-		String comment = map.get("comment");
-		System.out.println(comment);
-
-		return (String) session.getAttribute("id");
-	}
 
 	@GetMapping("/checkpstate")
 	public String getCheckpState(@RequestParam String pNo) {

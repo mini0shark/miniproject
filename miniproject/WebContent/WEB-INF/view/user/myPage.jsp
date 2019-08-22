@@ -7,9 +7,9 @@
 <style>
 header {
 	background: #fff;
-	
+
 	width: 100%;
-	
+
 	top: 0;
 	left: 0;
 	z-index: 1;
@@ -340,10 +340,10 @@ table {
 		</nav>
 		<hr style="border: 1px solid black;">
 	</div>
-	
+
 	<form>
 		<div id ="box">
-			
+
 			<br>
 			<center>
 				<button id="edit" type="button">회원정보수정</button>
@@ -400,15 +400,15 @@ table {
 	</article>
 	</aside>
 	</div>
-	</form>	
-	
+	</form>
+
 	<script type="text/javascript">
 		const btn = document.querySelector("#edit");
 		const btn2 = document.querySelector("#out");
 		const btn3 = document.querySelector("#regi");
 
 		const req = new XMLHttpRequest();
-		
+
 		btn.addEventListener('click', function() {
 			location.href = "../user/update";
 		});
@@ -416,14 +416,14 @@ table {
 		btn2.addEventListener('click', function() {
 			location.href= "../";
 		});
-		
+
 		btn3.addEventListener('click', function() {
 			location.href= "http://117.17.143.71:8080/miniproject/product/registration";
-		});		
-		
-		
-		
-		
+		});
+
+
+
+
 
 		init();
 		function init(){
