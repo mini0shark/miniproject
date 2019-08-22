@@ -13,9 +13,9 @@
 
 				header {
 					background: #fff;
-					height: 150px;
+					
 					width: 100%;
-					position: fixed;
+					
 					top: 0;
 					left: 0;
 					z-index: 1;
@@ -38,9 +38,9 @@
 
 				.goods {
 					display: grid;
-					grid-template-columns: 200px 200px 200px 200px 200px;
-					width: 1200px;
-					float: left;
+					grid-template-columns: 350px 350px 350px 350px;
+					width: 1500px;
+					
 					margin: 0 13px;
 					margin-top: 50px;
 					text-align: center;
@@ -50,7 +50,7 @@
 					float: left;
 					padding: 20px;
 					text-align: center;
-					background-color: #E8D9FF;
+					background-color:white;
 				}
 
 				.category {
@@ -301,12 +301,16 @@
 				(function category(){
 				})();
 
+				
+				
+				
 				function showList(jsonList){
 					const list = document.querySelector('.goods');
 					const jsonData = JSON.parse(jsonList);
 					const size = Object.keys(jsonData).length;
 					list.innerHTML="";
 					for(var i = 0; i<size; i++){
+						
 						const img = document.createElement('img');
 						const h3 = document.createElement('h3');
 						const p = document.createElement('p');
