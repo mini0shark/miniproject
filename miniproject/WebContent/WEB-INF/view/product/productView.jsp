@@ -8,9 +8,7 @@
 <style>
 header {
 	background: #fff;
-	
 	width: 100%;
-	
 	top: 0;
 	left: 0;
 	z-index: 1;
@@ -85,10 +83,6 @@ a.join:hover {
 	width: 1000px;
 	border: 1px solid black;
 }
-
-.commentTable > tr{
-	border: 1px solid black;
-}
 </style>
 </head>
 <script type="text/javascript">
@@ -147,18 +141,27 @@ a.join:hover {
 	<div id = "pInfo">
 		${vo.pInfo}
 	</div>
+	<br><br>
+	<h1 align=center>Comment</h1>
+	<hr style="border: 2px solid black; width: 1000px;">
+	
 	<!-- 댓글창 만들기 -->
 	<!-- 댓글창 만들 때 필요한 것, 댓글 번호(삭제나 수정시 필요), 글 번호(해당 글의 댓글만 가져올 때 필요)
 	, 작성날짜(댓글 정렬), 작성자의 이름 -->
 	<div>
 		<table class="commentTable">
 			<tr>
-				<th><!-- 작성자 이름 --></th>
-				<th><!-- 작성 날짜 --></th>
+				<th style="text-align: center; width: 980px; height: 20px;">여긴 작성자 이름이 들어갑니다.</th>
 			</tr>
 			<tr>
-				<td><!-- 작성 텍스트 에리어 --></td>
-				<td><!-- 확인 버튼 --></td>
+				<td style="text-align: center; width: 980px; height: 50px;">
+					<input type="text" style="width: 980px; height: 50px;"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">
+					<button>등록</button>
+				</td>
 			</tr>
 		</table>
 		<br>
@@ -166,15 +169,14 @@ a.join:hover {
 		<!-- 여기는 해당 글 번호에 존재하는 모든 댓글들을 가져와 출력 -->
 		<!-- 작성자 이름, 작성 날짜 -->
 		<table class = "commentTable">
-			<tr style="border: 1px solid black;">
+			<tr style="text-align: center;">
 				<th>작성자: ${user.getuName}</th>
 				<th>작성날짜: </th>
 			</tr>
-			<tr>
+			<tr style="text-align: center;">
 			<!-- 댓글 에리어, 수정 삭제 버튼 -->
-				<td>댓글이다</td>
-				<td>
-					<button>수정</button>
+				<td style="text-align: center;">댓글이다</td>
+				<td style="text-align: center;">
 					<button>삭제</button>
 				</td>
 			</tr>
