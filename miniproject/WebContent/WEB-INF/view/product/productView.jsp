@@ -120,52 +120,8 @@ a.join:hover {
 	<br>
 	<br>
 	<div>
-<<<<<<< HEAD
-	<table style="margin-left:auto; margin-right:auto;">
-	<tr>
-		<td>
-			<img src="${vo.pImg}" width="340px" height="300"/>
-		</td>
-		<td>
-		<table style="height:300px; width:400px;">
-			<tr align="center">
-				<td>상품명</td>
-				<td>${vo.pName}</td>
-			</tr>
-			<tr align="center">
-				<td>가격</td>
-				<td>${vo.pPrice}</td>
-			</tr>
-			<tr align="center">
-				<td colspan="2">
-				<form name="form1" method="post" action="">
-					<input type="hidden" name="productId" value="">
-					
-					
-				</form>
-				
-				</td>
-			</tr>
-		</table>
-		</td>
-	</tr>
-	</table>
-	<br><br>
-	<div id = "pInfo">
-		${vo.pInfo}
-	</div>
-	<br><br>
-	<h1 align=center>Comment</h1>
-	<hr style="border: 2px solid black; width: 1000px;">
-	
-	<!-- 댓글창 만들기 -->
-	<!-- 댓글창 만들 때 필요한 것, 댓글 번호(삭제나 수정시 필요), 글 번호(해당 글의 댓글만 가져올 때 필요)
-	, 작성날짜(댓글 정렬), 작성자의 이름 -->
-	<div>
-		<table class="commentTable">
-=======
+
 		<table style="margin-left: auto; margin-right: auto;">
->>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 			<tr>
 				<td><img src="${vo.pImg}" width="340px" height="300" /></td>
 				<td>
@@ -284,7 +240,7 @@ a.join:hover {
 		});
 		buyRequest.open('post', 'http://117.17.143.71:8080/miniproject/api/buylist/add');
 		buyRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-		buyRequest.send(JSON.stringify({"pNo":${vo.pNo}}));
+		buyRequest.send(JSON.stringify({"pNo":${vo.pNo} }));
 	});
 
 	init();
