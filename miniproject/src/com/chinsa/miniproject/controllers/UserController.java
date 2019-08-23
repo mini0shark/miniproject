@@ -30,6 +30,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	
 	@GetMapping("/user/signup")
 	public String getSignUp() {
 		return "user/signUp";
@@ -62,13 +63,18 @@ public class UserController {
 	}
 
 	@GetMapping("/user/mypage")
-	public String getMyPage() {
-		
+	public String getMyPage(final HttpSession session, Model model) {
+		String loginId = (String) session.getAttribute("id");
+		UserDTO user = userService.getUser(loginId);
+		model.addAttribute("user", user);
 		return "user/myPage";
 	}
 
 	@GetMapping("/user/update")
-	public String getUserEdit() {
+	public String getUserEdit(final HttpSession session, Model model) {
+		String loginId = (String) session.getAttribute("id");
+		UserDTO user = userService.getUser(loginId);
+		model.addAttribute("user", user);
 		return "user/userEdit";
 	}
 

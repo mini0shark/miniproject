@@ -8,9 +8,11 @@
 <style>
 header {
 	background: #fff;
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 	width: 100%;
-	
 	top: 0;
 	left: 0;
 	z-index: 1;
@@ -134,7 +136,7 @@ a.head:visited {
 <body>
 	<header>
 	<h1>
-		<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
+		<a class="head" href="http://117.17.143.71:8080/miniproject/">Chinsa.</a>
 	</h1>
 	</header>
 
@@ -143,13 +145,13 @@ a.head:visited {
 		<span class="search">
 			<input type='text' class='input_text' />
 		</span>
-		<a class="home" href="http://localhost:8080/miniproject/">메인</a>
-		<a class="login" href="http://localhost:8080/miniproject/user/signin">로그인</a>
+		<a class="home" href="http://117.17.143.71:8080/miniproject/">메인</a>
+		<a class="login" href="http://117.17.143.71:8080/miniproject/user/signin">로그인</a>
 		</nav>
 		<hr style="border: 1px solid black;">
 	</div>
 
-	
+
 	<br>
 	<br>
 	<form>
@@ -230,7 +232,7 @@ a.head:visited {
 				alert(alertMsg);
 			});
 			checkReq.open("GET",
-					"http://localhost:8080/miniproject/api/user/checkId?uId="+id.value);
+					"http://117.17.143.71:8080/miniproject/api/user/checkId?uId="+id.value);
 			checkReq.send();
 		})
 
@@ -259,7 +261,7 @@ a.head:visited {
 
 			// 데이터 입력된 거 보내기
 			req.open("POST",
-					"http://localhost:8080/miniproject/api/user/signup");
+					"http://117.17.143.71:8080/miniproject/api/user/signup");
 			req.setRequestHeader("Content-Type",
 					"application/json;charset=UTF-8");
 			req.send(JSON.stringify({

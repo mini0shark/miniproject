@@ -9,9 +9,9 @@
 <style>
 header {
 	background: #fff;
-	
+
 	width: 100%;
-	
+
 	top: 0;
 	left: 0;
 	z-index: 1;
@@ -131,11 +131,11 @@ a.home:hover {
 </style>
 </head>
 <body>
-	
+
 
 		<header>
 		<h1>
-			<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
+			<a class="head" href="http://117.17.143.71:8080/miniproject/">Chinsa.</a>
 		</h1>
 
 		</header>
@@ -144,12 +144,12 @@ a.home:hover {
 			<span class="search">
 				<input type='text' class='input_text' />
 			</span>
-			<a class="home" href="http://localhost:8080/miniproject/">메인</a>
-			<a class="join" href="http://localhost:8080/miniproject/user/signup">회원가입</a>
+			<a class="home" href="http://117.17.143.71:8080/miniproject/">메인</a>
+			<a class="join" href="http://117.17.143.71:8080/miniproject/user/signup">회원가입</a>
 			</nav>
 			<hr color=black>
 		</div>
-		
+
 		<br>
 		<br>
 		<form>
@@ -162,10 +162,14 @@ a.home:hover {
 					<th>비밀번호</th>
 					<th><input type="password" name="uPwd" id="uPwd" maxlength="100"></th>
 				</tr>
-				
+
 			</table>
 			<center>
+<<<<<<< HEAD
 			<br/>
+=======
+			<br>
+>>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 			<label for="checkStore">ID저장하기</label>
 			<c:choose>
 				<c:when test="${checked}">
@@ -197,36 +201,38 @@ a.home:hover {
 		btn2.addEventListener('click', function() {
 			location.href = "../";
 		});
+		pwd.addEventListener('keyup', function(){
+			if(window.event.keyCode==13)
+				clickLogin();
+		});
 
-		btn
-				.addEventListener(
-						'click',
-						function() {
-							req.addEventListener('load', function() {
-								console.log(this.responseText);
-								if (this.responseText === "login")
-									location.href = "../";
-								else if (this.responseText === "idErr") {
-									alert("해당 id가 존재하지 않습니다");
-								} else if(this.resopnseText === "pwdErr"){
-									alert("패스워드가 틀립니다");
-								}else{
-									alert("알수 없는 오류입니다 관리자(김타빈)한테 문의하세요");
-								}
-							});
-							req
-									.open('post',
-											'http://localhost:8080/miniproject/api/user/login');
-							req.setRequestHeader("Content-Type",
-									"application/json;charset=utf-8");
-							req.send(JSON.stringify({
-								"user" : {
-									"uId" : id.value,
-									"uPwd" : pwd.value
-								},
-								"checkStore" : checkStore.checked
-							}));
-						});
+		btn.addEventListener('click', clickLogin);
+		function clickLogin() {
+			req.addEventListener('load', function() {
+				console.log(this.responseText);
+				if (this.responseText === "login"){
+					history.back();
+				}
+				else if (this.responseText === "idErr") {
+					alert("해당 id가 존재하지 않습니다");
+				} else if(this.resopnseText === "pwdErr"){
+					alert("패스워드가 틀립니다");
+				}else{
+					alert("알수 없는 오류입니다 관리자(김타빈)한테 문의하세요");
+				}
+			});
+			req.open('post',
+							'http://117.17.143.71:8080/miniproject/api/user/login');
+			req.setRequestHeader("Content-Type",
+					"application/json;charset=utf-8");
+			req.send(JSON.stringify({
+				"user" : {
+					"uId" : id.value,
+					"uPwd" : pwd.value
+				},
+				"checkStore" : checkStore.checked
+			}));
+		}
 	</script>
 
 </body>

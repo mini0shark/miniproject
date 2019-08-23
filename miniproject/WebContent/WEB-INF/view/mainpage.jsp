@@ -13,9 +13,9 @@
 
 				header {
 					background: #fff;
-					
+
 					width: 100%;
-					
+
 					top: 0;
 					left: 0;
 					z-index: 1;
@@ -40,7 +40,7 @@
 					display: grid;
 					grid-template-columns: 350px 350px 350px 350px;
 					width: 1500px;
-					
+
 					margin: 0 13px;
 					margin-top: 50px;
 					text-align: center;
@@ -177,7 +177,7 @@
 
 				<header>
 					<h1>
-						<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
+						<a class="head" href="http://117.17.143.71:8080/miniproject/">Chinsa.</a>
 					</h1>
 
 				</header>
@@ -188,15 +188,15 @@
 						class='input_text' />
 					</span>
 					<button type='submit' class='sch_smit'>검색</button>
-					<a class="login" href="http://localhost:8080/miniproject/user/signin">로그인</a>
-					<a class="join" href="http://localhost:8080/miniproject/user/signup">회원가입</a>
+					<a class="login" href="http://117.17.143.71:8080/miniproject/user/signin">로그인</a>
+					<a class="join" href="http://117.17.143.71:8080/miniproject/user/signup">회원가입</a>
 				</nav>
 				<hr color=black>
 				</div>
 
 				<!-- 여기 ajex 로 바꿔서 카테고리를 get으로 넘겨주세요
 				product/search.jsp 파일로 넘어가서 출력할 겁니다.
-				(http://localhost:8080/miniproject/product/search?category=garment 이런식-->
+				(http://117.17.143.71:8080/miniproject/product/search?category=garment 이런식-->
 				<div class="category">
 					<nav>
 						<ul id = 'categoryList'>
@@ -208,7 +208,7 @@
 
 							<li class='4'><a href="#" name="electro">가전</a></li>
 
-							<li class='5'><a href="#" name="sports">악세사리</a></li>
+							<li class='5'><a href="#" name="accessory">악세사리</a></li>
 
 							<li class='6'><a href="#" name="sports">스포츠</a></li>
 
@@ -240,7 +240,7 @@
 							const productListJson = this.responseText;
 							showList(productListJson);
 						});
-						categoryRequest.open('get', 'http://localhost:8080/miniproject/api/product/search?pCategory='+category);
+						categoryRequest.open('get', 'http://117.17.143.71:8080/miniproject/api/product/search?pCategory='+category);
 						categoryRequest.send();
 					});
 				}
@@ -260,20 +260,20 @@
 						loginState = false;
 
 						if(loginState){
-							login.setAttribute('href', "http://localhost:8080/miniproject/user/logout?id="+hasStoredId);
+							login.setAttribute('href', "http://117.17.143.71:8080/miniproject/user/logout");
 							login.innerHTML= "로그아웃";
-							join.setAttribute('href', "http://localhost:8080/miniproject/user/mypage");
+							join.setAttribute('href', "http://117.17.143.71:8080/miniproject/user/mypage");
 							join.innerHTML="마이페이지";
 						}
 						else{
-							login.setAttribute('href', "http://localhost:8080/miniproject/user/signin");
+							login.setAttribute('href', "http://117.17.143.71:8080/miniproject/user/signin");
 							login.innerHTML= "로그인";
-							join.setAttribute('href', "http://localhost:8080/miniproject/user/signup");
+							join.setAttribute('href', "http://117.17.143.71:8080/miniproject/user/signup");
 							join.innerHTML="회원가입";
 						}
 
 					});
-					req.open('post', "http://localhost:8080/miniproject/api/user/checkLogin");
+					req.open('post', "http://117.17.143.71:8080/miniproject/api/user/checkLogin");
 					req.send();
 
 					const initProductListRequest = new XMLHttpRequest();
@@ -281,36 +281,38 @@
 						const productListJson = this.responseText;
 						showList(productListJson);
 					});
-					initProductListRequest.open('get','http://localhost:8080/miniproject/api/product/initproduct');
+					initProductListRequest.open('get','http://117.17.143.71:8080/miniproject/api/product/initproduct');
 					initProductListRequest.send();
 				}
+				const searchText = document.querySelector(".input_text");
 				const searchButton = document.querySelector(".sch_smit");
-				searchButton.addEventListener('click', function(){
-					const searchText = document.querySelector(".input_text");
+				searchButton.addEventListener('click', clickSearch);
+				searchText.addEventListener('keyup', function(){
+					if(window.event.keyCode==13)
+						clickSearch();
+				});
+				function clickSearch(){
 					const searchRequest = new XMLHttpRequest();
 					searchRequest.addEventListener('load', function(){
 						const productListJson = this.responseText;
 						console.log(productListJson);
 						showList(productListJson);
 					});
-					searchRequest.open('get', 'http://localhost:8080/miniproject/api/product/search?pName='+searchText.value);
+					searchRequest.open('get', 'http://117.17.143.71:8080/miniproject/api/product/search?pName='+searchText.value);
 					searchRequest.send();
-				});
+				}
 
 
-				(function category(){
-				})();
 
-				
-				
-				
+
+
 				function showList(jsonList){
 					const list = document.querySelector('.goods');
 					const jsonData = JSON.parse(jsonList);
 					const size = Object.keys(jsonData).length;
 					list.innerHTML="";
 					for(var i = 0; i<size; i++){
-						
+
 						const img = document.createElement('img');
 						const h3 = document.createElement('h3');
 						const p = document.createElement('p');
@@ -330,22 +332,22 @@
 							const checkProductRequest = new XMLHttpRequest();
 							checkProductRequest.addEventListener('load', function(){
 								if(this.responseText==='true')
-								location.href = "http://localhost:8080/miniproject/product/productview?pNo="+img.alt;
+								location.href = "http://117.17.143.71:8080/miniproject/product/productview?pNo="+img.alt;
 								else
 								alert("해당제품이 존재하지 않습니다. 정상적인 경로로 접근하세요");
 							});
-							checkProductRequest.open('get','http://localhost:8080/miniproject/api/product/checkproduct?pNo='+img.alt);
+							checkProductRequest.open('get','http://117.17.143.71:8080/miniproject/api/product/checkproduct?pNo='+img.alt);
 							checkProductRequest.send();
 						});
 						h3.addEventListener('click', function(event){
 							const checkProductRequest = new XMLHttpRequest();
 							checkProductRequest.addEventListener('load', function(){
 								if(this.responseText==='true')
-								location.href = "http://localhost:8080/miniproject/product/productview?pNo="+img.alt;
+								location.href = "http://117.17.143.71:8080/miniproject/product/productview?pNo="+img.alt;
 								else
 								alert("해당제품이 존재하지 않습니다. 정상적인 경로로 접근하세요");
 							});
-							checkProductRequest.open('get','http://localhost:8080/miniproject/api/product/checkproduct?pNo='+img.alt);
+							checkProductRequest.open('get','http://117.17.143.71:8080/miniproject/api/product/checkproduct?pNo='+img.alt);
 							checkProductRequest.send();
 						});
 						function changecolor1(){

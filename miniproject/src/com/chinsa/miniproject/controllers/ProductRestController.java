@@ -40,7 +40,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 @RestController
 @RequestMapping("/api/product")
 public class ProductRestController {
@@ -50,58 +49,56 @@ public class ProductRestController {
 	UserService userService;
 	@Autowired
 	ImageService imageService;
+
 	@PostMapping("/registration")
-	public String postRegister(@RequestParam MultipartFile upload, ProductDTO product,
-			final HttpSession session) throws JsonParseException, JsonMappingException, IOException {
+	public String postRegister(@RequestParam MultipartFile upload, ProductDTO product, final HttpSession session)
+			throws JsonParseException, JsonMappingException, IOException {
 		String result = null;
 		ImageDTO image = new ImageDTO();
 		OutputStream out = null;
 		String loginUser = (String) session.getAttribute("id");
-		if(loginUser!=null) {
+		if (loginUser != null) {
 			product.setpSeller(loginUser);
-			if(upload!=null) {
-				if(upload.getSize()>0 && upload.getName()!=null) {//추후 확인 필요
-					if(upload.getContentType().toLowerCase().startsWith("image/")) {
+			if (upload != null) {
+				if (upload.getSize() > 0 && upload.getName() != null) {// 추후 확인 필요
+					if (upload.getContentType().toLowerCase().startsWith("image/")) {
 						try {
 							String fileName = upload.getName();
 							byte[] bytes = upload.getBytes();
 							String uploadPath = "C:\\miniproject\\img\\";
 							File uploadFile = new File(uploadPath);
-							if(!uploadFile.exists()) {
+							if (!uploadFile.exists()) {
 								uploadFile.mkdirs();
 							}
 							fileName = UUID.randomUUID().toString() + ".jpg";
 							image.setiFilename(fileName);
-							uploadPath = uploadPath +"\\"+fileName;
+							uploadPath = uploadPath + "\\" + fileName;
 							image.setiPath(uploadPath);
 							imageService.insertImage(image);
 							System.out.println(uploadPath);
 							out = new FileOutputStream(new File(uploadPath));
 							out.write(bytes);
-							String fileUrl = "http://localhost:8080/miniproject/display/path/"+fileName;
+							String fileUrl = "http://117.17.143.71:8080/miniproject/display/path/" + fileName;
 							product.setpImg(fileUrl);
-							if(productService.insertProduct(product))
+							if (productService.insertProduct(product))
 								result = "register";
 							else
 								result = "registerErr";
-						}catch(IOException e) {
+						} catch (IOException e) {
 							e.printStackTrace();
-						}finally {
-							if(out!=null) {
+						} finally {
+							if (out != null) {
 								out.close();
 							}
 						}
-					}
-					else {
+					} else {
 						result = "notImage";
 					}
 				}
-			}
-			else {
+			} else {
 				result = "fileErr";
 			}
-		}
-		else {
+		} else {
 			result = "notLogin";
 		}
 		return result;
@@ -119,11 +116,12 @@ public class ProductRestController {
 
 		try {
 			pCategory = mapper.readValue(mapper.writeValueAsString(map.get("pCategory")), String.class);
+			System.out.println(pCategory);
 			pLoc = mapper.readValue(mapper.writeValueAsString(map.get("pLoc")), String.class);
 			pSeller = mapper.readValue(mapper.writeValueAsString(map.get("pCeller")), String.class);
 			pName = mapper.readValue(mapper.writeValueAsString(map.get("pName")), String.class);
 			orderBy = mapper.readValue(mapper.writeValueAsString(map.get("orderBy")), String.class);
-			if(orderBy==null) {
+			if (orderBy == null) {
 				orderBy = "DESC";
 			}
 		} catch (JsonProcessingException e) {
@@ -134,33 +132,39 @@ public class ProductRestController {
 			e.printStackTrace();
 		}
 		try {
-			if(pName==null&& pCategory==null&& pLoc==null && pSeller==null) {
-				result= productService.getProducts();
-			}
-			else {
-				result = productService.getProductsInCategory(pCategory,pLoc, pSeller, pName, orderBy);
+			if (pName == null && pCategory == null && pLoc == null && pSeller == null) {
+				result = productService.getProducts();
+			} else {
+				result = productService.getProductsInCategory(pCategory, pLoc, pSeller, pName, orderBy);
 			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-			result =null;
+			result = null;
 		}
 
 		return result;
 	}
 
 
+	@GetMapping("/checkpstate")
+	public String getCheckpState(@RequestParam String pNo) {
+		String result = productService.getProduct(Integer.parseInt(pNo)).getpState();
+		return result;
+	}
+
 	@GetMapping("/initproduct")
 	public List<ProductDTO> getInitproduct() {
 		return productService.getProducts();
 	}
+
 	@GetMapping("/checkproduct")
-	public String getCheckProduct(@RequestParam Map<String,Integer> map) {
+	public String getCheckProduct(@RequestParam Map<String, Integer> map) {
 		ObjectMapper mapper = new ObjectMapper();
 		int pNo;
 		try {
 			pNo = mapper.readValue(mapper.writeValueAsString(map.get("pNo")), Integer.class);
 			ProductDTO dto = productService.getProduct(pNo);
-			if(dto==null)
+			if (dto == null)
 				return "false";
 			else
 				return "true";
@@ -171,27 +175,28 @@ public class ProductRestController {
 		return "false";
 	}
 
-	@RequestMapping(value="/imageupload", method=RequestMethod.POST)
-	public String fileUpload(HttpServletRequest request, HttpServletResponse response, MultipartFile upload) throws Exception{
+	@RequestMapping(value = "/imageupload", method = RequestMethod.POST)
+	public String fileUpload(HttpServletRequest request, HttpServletResponse response, MultipartFile upload)
+			throws Exception {
 		ImageDTO image = new ImageDTO();
 		PrintWriter printWriter = null;
 		OutputStream out = null;
 		ObjectMapper mapper = new ObjectMapper();
 		System.out.println(upload);
-		if(upload!=null) {
-			if(upload.getSize()>0 && upload.getName()!=null) {//추후 확인 필요
-				if(upload.getContentType().toLowerCase().startsWith("image/")) {
+		if (upload != null) {
+			if (upload.getSize() > 0 && upload.getName() != null) {// 추후 확인 필요
+				if (upload.getContentType().toLowerCase().startsWith("image/")) {
 					try {
 						String fileName = upload.getName();
 						byte[] bytes = upload.getBytes();
 						String uploadPath = "C:\\miniproject\\img\\";
 						File uploadFile = new File(uploadPath);
-						if(!uploadFile.exists()) {
+						if (!uploadFile.exists()) {
 							uploadFile.mkdirs();
 						}
 						fileName = UUID.randomUUID().toString() + ".jpg";
 						image.setiFilename(fileName);
-						uploadPath = uploadPath +"\\"+fileName;
+						uploadPath = uploadPath + "\\" + fileName;
 						image.setiPath(uploadPath);
 						imageService.insertImage(image);
 						System.out.println(uploadPath);
@@ -199,7 +204,7 @@ public class ProductRestController {
 						out.write(bytes);
 						printWriter = response.getWriter();
 						response.setContentType("text/html");
-						String fileUrl = "http://localhost:8080/miniproject/display/path/"+fileName;
+						String fileUrl = "http://117.17.143.71:8080/miniproject/display/path/" + fileName;
 						System.out.println(fileUrl);
 						System.out.println(request.getContextPath());
 						Map<String, Object> data = new HashMap<String, Object>();
@@ -207,13 +212,13 @@ public class ProductRestController {
 						data.put("fileName", fileName);
 						data.put("url", fileUrl);
 						printWriter.println(mapper.writeValueAsString(data));
-					}catch(IOException e) {
+					} catch (IOException e) {
 						e.printStackTrace();
-					}finally {
-						if(out!=null) {
+					} finally {
+						if (out != null) {
 							out.close();
 						}
-						if(printWriter!=null) {
+						if (printWriter != null) {
 							printWriter.close();
 						}
 					}
@@ -223,4 +228,3 @@ public class ProductRestController {
 		return null;
 	}
 }
-

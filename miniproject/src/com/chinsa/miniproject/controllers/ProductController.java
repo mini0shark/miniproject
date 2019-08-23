@@ -24,15 +24,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.chinsa.miniproject.dto.ProductDTO;
 import com.chinsa.miniproject.dto.UserDTO;
 import com.chinsa.miniproject.service.ProductService;
+import com.chinsa.miniproject.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class ProductController {
 	@Autowired
 	ProductService productService;
-	
+	@Autowired
+	UserService userService;
 	
 	
 	@GetMapping("/product/registration")
@@ -41,42 +44,23 @@ public class ProductController {
 		return "product/registration";
 	}
 	
-	@GetMapping("/product/search")
-	public String getSearch(@RequestParam Map<String, String> map) {
-		System.out.println(map.get("category"));
-		System.out.println(map.get("soso"));
-		System.out.println(map.get("good"));
-		return "product/search";
-	}
+//	@GetMapping("/product/search")
+//	public String getSearch(@RequestParam Map<String, String> map) {
+//		System.out.println(map.get("category"));
+//		System.out.println(map.get("soso"));
+//		System.out.println(map.get("good"));
+//		return "product/search";
+//	}
 	
 
 	@GetMapping("/product/productview")
 	public String productView(@RequestParam Map<String, String> map, Model model) {
-		String pNo = map.get("pNo");
-		model.addAttribute("vo", productService.getProduct(Integer.parseInt(pNo)));//??
+		int pNo = Integer.parseInt(map.get("pNo"));
+		ProductDTO product = productService.getProduct(pNo);
+		
+		model.addAttribute("vo", product);//??
+		model.addAttribute("user", userService.getUser(product.getpSeller()));//??
 		return "product/productView";
 	}
 	
-}
-
-class UploadPath {
-
-	public static String attach_path="resources/upload/";
-	
-	public static String path( HttpServletRequest request){
-		String uploadPath ="/";
-		try{
-			
-			String root_path =request.getSession().getServletContext().getRealPath("/");
-				
-			uploadPath=root_path+attach_path.replace('/', '\\');;	  
-			
-			return uploadPath;
-		}catch(Exception e){
-			e.printStackTrace();
-		
-			return uploadPath;
-		}
-	}
-
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+  pageEncoding="UTF-8"%>
+  <!DOCTYPE html>
+  <html>
 <head>
 <meta charset="UTF-8">
 <title>상품 등록</title>
@@ -20,18 +20,18 @@
 		font-weight: bolder;
 		letter-spacing: 0.2em;
 	}
-	
+
 	a.head:link {
 		color: #CC0000;
 		text-decoration: none;
 		font-weight: bold;
 	}
-	
+
 	a.head:visited {
 		color: #CC0000;
 		text-decoration: none;
 	}
-	
+
 	.search {
 		display: inline-block;
 		width: 366px;
@@ -39,7 +39,7 @@
 		border: 3px solid white;
 		background: white;
 	}
-	
+
 	.input_text {
 		width: 348px;
 		height: 21px;
@@ -50,7 +50,7 @@
 		font-size: 16px;
 		outline: none;
 	}
-	
+
 	.sch_smit {
 		width: 54px;
 		height: 40px;
@@ -63,11 +63,11 @@
 		border-radius: 1px;
 		cursor: pointer;
 	}
-	
+
 	.sch_smit:hover {
 		background: white;
 	}
-	
+
 	#productDiv {
 		width: 800px;
 		margin: 0 auto;
@@ -78,21 +78,21 @@
 <body>
 	<header>
 		<h1>
-			<a class="head" href="http://localhost:8080/miniproject/">Chinsa.</a>
+			<a class="head" href="http://117.17.143.71:8080/miniproject/">Chinsa.</a>
 		</h1>
 	</header>
-	
+
 	<div class="menu">
 		<nav>
 			<span class="search">
 				<input type='text' class='input_text' />
 			</span>
-				<a class="login" href="http://localhost:8080/miniproject/user/signin"></a>
-				<a class="join" href="http://localhost:8080/miniproject/user/signup"></a>
+				<a class="login" href="http://117.17.143.71:8080/miniproject/user/signin"></a>
+				<a class="join" href="http://117.17.143.71:8080/miniproject/user/signup"></a>
 		</nav>
 		<hr color=black>
 	</div>
-	
+
 	<form id="form" name="productInformation" enctype="multipart/form-data"	method="post">
 		<br><br>
 		<div id="productDiv">
@@ -126,7 +126,7 @@
 		</div>
 			<center>
 			<textarea name="pInfo" id="pInfo"></textarea>
-			
+
 			<script>
 				CKEDITOR.replace('pInfo', {
 					width : '1000px',
@@ -151,16 +151,28 @@
 	const submit_btn = document.querySelector("#submit_btn");
 	const upload = document.querySelector("#upload");
 	const req = new XMLHttpRequest();
-
 	submit_btn.addEventListener('click', function() {
 		CKEDITOR.instances.pInfo.updateElement();
 		req.addEventListener('load', function() {
-			alert(this.responseText);
+			const responseMsg = this.responseText;
+
+			if(responseMsg ==='register'){
+				alert('등록되었습니다.');
+				location.href= '../';
+			}
+			else if(responseMsg ==='notImage'){
+				alert('대표이미지를 등록하세요!');
+			}
+			else if(responseMsg ==='notLogin'){
+				alert('로그인이 필요한 서비스입니다.');
+				location.href= 'http://117.17.143.71:8080/miniproject/user/signin';
+			}
+
 		});
 		const formid = document.querySelector("#form");
 		const formData = new FormData(formid);
 		req.open('post',
-				'http://localhost:8080/miniproject/api/product/registration');
+				'http://117.17.143.71:8080/miniproject/api/product/registration');
 		req.send(formData);
 	});
 </script>
