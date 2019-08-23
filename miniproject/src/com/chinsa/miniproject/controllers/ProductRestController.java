@@ -53,7 +53,9 @@ public class ProductRestController {
 	@PostMapping("/registration")
 	public String postRegister(@RequestParam MultipartFile upload, ProductDTO product, final HttpSession session)
 			throws JsonParseException, JsonMappingException, IOException {
-		String result = null;
+		System.out.println(upload.getSize()+"-------"+upload.getName());
+		System.out.println(upload.getSize()+"-------"+upload);
+		String result = "defult";
 		ImageDTO image = new ImageDTO();
 		OutputStream out = null;
 		String loginUser = (String) session.getAttribute("id");
@@ -94,6 +96,8 @@ public class ProductRestController {
 					} else {
 						result = "notImage";
 					}
+				}else {
+					result="notImage";
 				}
 			} else {
 				result = "fileErr";

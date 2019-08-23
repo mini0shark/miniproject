@@ -539,7 +539,7 @@ table {
 								button.parentNode.remove();
 							}
 							else{
-								alert("삭제할 수 없습니다.");
+								alert("삭제할 수 없습니다."+this.responseText);
 							}
 						});
 						req3.open('post', 'http://117.17.143.71:8080/miniproject/api/selllist/delete');

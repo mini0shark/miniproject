@@ -120,10 +120,6 @@ a.join:hover {
 	<br>
 	<br>
 	<div>
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 		<table style="margin-left: auto; margin-right: auto;">
 			<tr>
 				<td><img src="${vo.pImg}" width="340px" height="300" /></td>
@@ -243,7 +239,7 @@ a.join:hover {
 		});
 		buyRequest.open('post', 'http://117.17.143.71:8080/miniproject/api/buylist/add');
 		buyRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-		buyRequest.send(JSON.stringify({"pNo":${vo.pNo} }));
+		buyRequest.send(JSON.stringify({"pNo":${vo.pNo}}));
 	});
 
 	init();

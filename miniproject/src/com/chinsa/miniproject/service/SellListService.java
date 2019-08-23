@@ -29,18 +29,17 @@ public class SellListService {
 		int result = 0;
 		System.out.println(sellList.toString());
 		result = sellListDao.updateSellList(sellList);
-		System.out.println(result);
-		if(result==1) {
+		if(result>0) {
 			result = 0;
 			BuyListDTO buyList = buyListDao.getBuyList(sellList.getsPno());
 			buyList.setbState(sellList.getsState());
 			result = buyListDao.updateBuyList(buyList);
-			if(result==1) {
+			if(result>0) {
 				result = 0;
 				ProductDTO product = productDao.getProduct(sellList.getsPno());
 				product.setpState(sellList.getsState());
 				result = productDao.updateProduct(product);
-				if(result==1) {
+				if(result>0) {
 					return true;
 				}
 				else {
@@ -59,21 +58,18 @@ public class SellListService {
 	public boolean deleteSellList(int sPno) {
 		int result = 0;
 		result = sellListDao.deleteSellList(sPno);
-		if(result==1) {
+		System.out.println("deleteSellList  result1  : "+result);
+		if(result>0) {
+			buyListDao.deleteBuyList(sPno);
 			result = 0;
-			result = buyListDao.deleteBuyList(sPno);
-			if(result==1) {
-				result = 0;
-				ProductDTO product = productDao.getProduct(sPno);
-				if(product.getpState().equals("sold"))
-					return false;
-				result = productDao.deleteProduct(sPno);
-				if(result==1) {
-					return true;
-				}
-				else {
-					return false;
-				}
+			ProductDTO product = productDao.getProduct(sPno);
+			if(product.getpState().equals("sold"))
+				return false;
+			result = productDao.deleteProduct(sPno);
+			System.out.println("deleteSellList  result3  : "+result);
+			
+			if(result>0) {
+				return true;
 			}
 			else {
 				return false;

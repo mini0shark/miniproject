@@ -40,7 +40,6 @@ public class SellListRestController {
 	@PostMapping("/delete")
 	public String postDeleteSellList(@RequestBody Map<String, Integer> map) {
 		int sPno = map.get("pNo");
-		System.out.println(sPno);
 		if(sellListService.deleteSellList(sPno))
 			return "success";
 		else

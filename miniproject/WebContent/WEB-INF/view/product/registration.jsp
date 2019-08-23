@@ -150,15 +150,16 @@
 	const p_category = document.querySelector("#pCategory");
 	const submit_btn = document.querySelector("#submit_btn");
 	const upload = document.querySelector("#upload");
+	const cancel_btn = document.querySelector("#cancel_btn");
 	const req = new XMLHttpRequest();
 	submit_btn.addEventListener('click', function() {
 		CKEDITOR.instances.pInfo.updateElement();
 		req.addEventListener('load', function() {
 			const responseMsg = this.responseText;
-
+			console.log(responseMsg);
 			if(responseMsg ==='register'){
 				alert('등록되었습니다.');
-				location.href= '../';
+				history.back();
 			}
 			else if(responseMsg ==='notImage'){
 				alert('대표이미지를 등록하세요!');
@@ -174,6 +175,11 @@
 		req.open('post',
 				'http://117.17.143.71:8080/miniproject/api/product/registration');
 		req.send(formData);
+	});
+	
+	
+	cancel_btn.addEventListener('click',function(){
+		history.back();
 	});
 </script>
 </html>

@@ -12,7 +12,7 @@
 	<select id="getProducts" resultType="productDTO">
 		SELECT
 		p_no,p_name,p_price,p_info,p_loc,p_img,p_seller,p_state,p_category,p_time
-		FROM product
+		FROM product ORDER BY p_no DESC
 	</select>
 
 	<select id="getProductsSearching" parameterType="map"
