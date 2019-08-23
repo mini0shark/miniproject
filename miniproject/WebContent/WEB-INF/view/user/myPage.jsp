@@ -347,7 +347,7 @@ table {
 				<h1>구매 내역</h1>
 				<div class="bodytexts">
 					<br> <br>
-					<table style="width: 80%" id="buyTable">
+					<table style="width: 80%; margin: 0 auto;" id="buyTable">
 						<tr>
 							<td>구매번호</td>
 							<td>상품명</td>
