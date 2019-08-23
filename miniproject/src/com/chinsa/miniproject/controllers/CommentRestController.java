@@ -34,7 +34,7 @@ public class CommentRestController {
 		int number = Integer.parseInt(pNo);
 		return commentService.getComments(number);
 	}
-	
+
 
 	@PostMapping("/commentresister")
 	public CommentDTO postCommentResister(@RequestBody Map<String, String> map, final HttpSession session) {
@@ -47,18 +47,31 @@ public class CommentRestController {
 		commentDto.setcUid(id);
 		return commentService.getComment(commentService.insertComment(commentDto).getcNo());
 	}
-	
-	
+
+
 
 	@DeleteMapping("/deletecomment")
-	public String deleteDeleteComment(@RequestBody Map<String, Integer> map) {
+	public String deleteDeleteComment(@RequestBody Map<String, Integer> map, final HttpSession session) {
 		int cNo = map.get("cNo");
-		
-		int result = commentService.deleteComment(cNo);
-		
-		if(result > 0) {
-			return "deleted";
+		String id =(String)session.getAttribute("id");
+		String auth = (String)session.getAttribute("auth");
+
+
+		if(auth=="admin") {
+			if(commentService.deleteComment(cNo)==1)
+				return "deleted";
+			else
+				return "err";
 		}
-		return "err";
+		else {
+			if(commentService.getComment(cNo).getcUid().equals(id)) {
+				if(commentService.deleteComment(cNo)==1)
+					return "deleted";
+				else
+					return "err";
+			}
+			else
+				return "auth";
+		}
 	}
 }

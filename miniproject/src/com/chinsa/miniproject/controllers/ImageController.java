@@ -29,9 +29,7 @@ public class ImageController {
 		InputStream in = null;
 		System.out.println(iFilename);
 		ImageDTO image = imageService.getImageName(iFilename+".jpg");
-		System.out.println(image.getiPath()+" 되는건가");
 		in = new BufferedInputStream(new FileInputStream(image.getiPath()));
-		System.out.println("제발되라");
 		return IOUtils.toByteArray(in);
 	}
 	

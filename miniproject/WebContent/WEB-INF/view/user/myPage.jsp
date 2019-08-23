@@ -544,7 +544,7 @@ table>tr>td {
 								alert('취소 완료헀습니다.');
 								button.parentNode.remove();
 							}
-							else{
+							else {
 								alert("취소할 수 없습니다.");
 							}
 						});

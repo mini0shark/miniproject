@@ -127,46 +127,43 @@ a.join:hover {
 				<td>
 					<table style="height: 300px; width: 400px;">
 						<tr align="center">
-							<td><font id="pNo">상품명</font></td>
+							<td id="pNo"><b>상품명</b></td>
 							<td>${vo.pName}</td>
 						</tr>
 						<tr align="center">
-							<td>가격</td>
-							<td>${vo.pPrice}</td>
+							<td><b>가격</b></td>
+							<td id = 'price'></td>
 						</tr>
 						<tr align="center">
-							<td>판매자</td>
+							<td><b>판매자</b></td>
 							<td>${vo.pSeller}/${user.uName}</td>
 						</tr>
 						<tr align="center">
-							<td>전화번호</td>
+							<td><b>전화번호</b></td>
 							<td>${user.uPhone}</td>
 						</tr>
 						<tr align="center">
-							<td>E-mail</td>
+							<td><b>E-mail</b></td>
 							<td>${user.uEmail}</td>
 						</tr>
 						<tr align="center">
+						<td></td>
 							<td colspan="2">
 								<form name="form1" method="post" action="">
-									<input type="hidden" name="productId" value=""> <select
-										name="method" id="method">
+									<input type="hidden" name="productId" value=""> 
+									<!-- <select name="method" id="method">
 										<option value="">--구매방법--</option>
 										<option value="direct">직거래</option>
 										<option value="delivery">택배거래</option>
-									</select>
-									<button type="button" id="requestButton">구매 요청</button>
+									</select> -->
+									<button type="button" id="requestButton" style="text-align: right;">구매 요청</button>
 								</form>
 							</td>
-						</tr>
-						<tr>
-							<a href="#?pSeller=${vo.pSeller}">판매자의 판매목록</a>
 						</tr>
 					</table>
 			</tr>
 			<tr>
 				<td style="text-align: center;">
-					<button type="button" onclick="add()">등록</button>
 				</td>
 			</tr>
 		</table>
@@ -245,6 +242,9 @@ a.join:hover {
 
 	init();
 	function init(){
+		const price = document.querySelector('#price');
+		const priceTag = numberFormat('${vo.pPrice}');
+		price.innerHTML = priceTag;
 		const login = document.querySelector('.login');
 		const join = document.querySelector('.join');
 		var loginState = true;
@@ -334,8 +334,10 @@ a.join:hover {
 		    		button.parentNode.parentNode.remove();
 		    		resultMsg = '삭제되었습니다.';
 	    		}
-	    		else{
-	    			resultMsg = '정상적으로 삭제되지 뭇했습니다.';
+	    		else if(result === 'auth'){
+	    			resultMsg = '권한이 없습니다..';
+	    		}else{
+	    			resultMsg = '삭제되지 않았습니다.';
 	    		}
     			alert(resultMsg);
 	    	});
@@ -366,6 +368,9 @@ a.join:hover {
 	   	table.appendChild(tr);
 	}
 
+	function numberFormat(inputNumber) {
+		   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
 	</script>
 
 </body>
