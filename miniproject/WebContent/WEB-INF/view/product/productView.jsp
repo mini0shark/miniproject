@@ -126,7 +126,7 @@ a.join:hover {
 				<form name="form1" method="post" action="">
 					<input type="hidden" name="productId" value="">
 					
-					<input type="submit" value="장바구니에 담기">
+					
 				</form>
 				
 				</td>

@@ -165,6 +165,7 @@ a.home:hover {
 				
 			</table>
 			<center>
+			<br/>
 			<label for="checkStore">ID저장하기</label>
 			<c:choose>
 				<c:when test="${checked}">
