@@ -6,16 +6,20 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.chinsa.miniproject.dao.ProductMapper;
+import com.chinsa.miniproject.dao.SellListMapper;
 import com.chinsa.miniproject.dto.ProductDTO;
+import com.chinsa.miniproject.dto.SellListDTO;
 import com.chinsa.miniproject.dto.UserDTO;
 
 @Service
 public class ProductService {
 	@Autowired
 	ProductMapper productDao;
-
+	@Autowired
+	SellListMapper sellListDao;
 	public ProductDTO getProduct(int pNo) {
 		return productDao.getProduct(pNo);
 	}
@@ -40,17 +44,32 @@ public class ProductService {
 			return productDao.getProductsSearching(map);
 		return null;
 	}
+	@Transactional
 	public boolean insertProduct(ProductDTO productDTO) {
 		// TODO Auto-generated method stub
 		int result = 0;
-		try {
-			result = productDao.insertProduct(productDTO);
-		}catch(Exception e) {
-			e.printStackTrace();
+		result = productDao.insertProduct(productDTO);
+		if(result==1) {
+			SellListDTO sellList = new SellListDTO();
+			sellList.setsName(productDTO.getpName());
+			sellList.setsPno(productDTO.getpNo());
+			sellList.setsImg(productDTO.getpImg());
+			sellList.setsSeller(productDTO.getpSeller());
+			sellList.setsBuyer("");
+			sellList.setsState("ing");
+			sellList.setsCategory(productDTO.getpCategory());
+			sellList.setsPrice(productDTO.getpPrice());
+			result = 0;
+			result = sellListDao.insertSellList(sellList);
+			if(result==1) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
-		if(result==0)
+		else {
 			return false;
-		else
-			return true;
+		}
 	}
 }

@@ -187,14 +187,14 @@ a.head:visited {
 			<br>
 			<br>
 			<center>
-				<button id="signUpButton" type="button">수정</button>
+				<button id="updateButton" type="button">수정</button>
 				<button id="cancelButton" type="button">취소</button>
 			</center>
 		</div>
 	</form>
 
 	<script type="text/javascript">
-		const signUpButton = document.querySelector("#signUpButton");
+		const updateButton = document.querySelector("#updateButton");
 		const cancelButton = document.querySelector("#cancelButton");
 
 		const id = document.querySelector("#uId");
@@ -212,15 +212,22 @@ a.head:visited {
 		});
 
 		// 수정 버튼
-		signUpButton.addEventListener('click', function() {
+		updateButton.addEventListener('click', function() {
 			req.addEventListener('load', function() {
-				console.log(this.responseText);
-				location.href = "../user/mypage";
+				msg = this.responseText
+				if(msg === 'update'){
+					alert("수정이 완료되었습니다.");
+					location.href = "../user/mypage";
+				}
+				else if(msg === 'updateErr'){
+					alert("수정 실패(DB Err)");
+				}
+				
 			});
 
 			// 데이터 입력된 거 보내기
-			req.open("POST",
-					"http://117.17.143.71:8080/miniproject/api/user/signup");
+			req.open("put",
+					"http://117.17.143.71:8080/miniproject/api/user/update");
 			req.setRequestHeader("Content-Type",
 					"application/json;charset=UTF-8");
 			req.send(JSON.stringify({

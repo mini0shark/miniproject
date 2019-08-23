@@ -159,20 +159,6 @@ public class ProductRestController {
 		return result;
 	}
 
-	@PostMapping("/buyrequest")
-	public String postBuyRequest(@RequestBody Map<String, Integer> map, final HttpSession session) {
-		System.out.println("===============");
-		String buyer = (String) session.getAttribute("id");
-		int pNo = map.get("pNo");
-		// buylist에 잘 추가 되면 true 아니면 false;
-		System.out.println(buyer + "   " + pNo);
-
-		if (buyer == null) {
-			return "notLogin";
-		}
-		return "true";
-	}
-
 	@GetMapping("/initproduct")
 	public List<ProductDTO> getInitproduct() {
 		return productService.getProducts();

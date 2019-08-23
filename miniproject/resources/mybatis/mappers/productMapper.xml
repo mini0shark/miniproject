@@ -39,10 +39,14 @@
 
 
 
-	<insert id="insertProduct" parameterType="productDTO">
+	<insert id="insertProduct" parameterType="productDTO" keyProperty="pNo" useGeneratedKeys="true" keyColumn="pNo">
 		INSERT INTO
 		product(p_name,p_price,p_info,p_loc,p_img,p_seller,p_category)
 		values(#{pName},#{pPrice},#{pInfo},#{pLoc},#{pImg},#{pSeller},#{pCategory})
+		<selectKey keyProperty="pNo" resultType="java.lang.Integer"
+         order="AFTER">
+         SELECT LAST_INSERT_ID()   <!-- 나중에 id를 넣어준다고 명시(mysql이 지원하는 것) -->
+      </selectKey>
 	</insert>
 
 	<update id="updateProduct" parameterType="productDTO">

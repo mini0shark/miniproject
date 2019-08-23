@@ -233,19 +233,6 @@ input:nth-of-type(2):checked ~ article:nth-of-type(2) {
 	display: block;
 }
 
-/* 세 번째 탭 */
-input:nth-of-type(3) {
-	display: none;
-}
-
-input:nth-of-type(3) ~ article:nth-of-type(3) {
-	display: none;
-}
-
-input:nth-of-type(3):checked ~ article:nth-of-type(3) {
-	display: block;
-}
-
 /* 탭 모양 구성 */
 section.buttons {
 	overflow: hidden;
@@ -264,8 +251,8 @@ section.buttons>label {
 	box-sizing: border-box;
 	border: 1px solid black; /* #0A82FF */
 	/* 색상 지정*/
-	background: black;
-	color: white;
+	background: white;
+	color: black;
 }
 
 label {
@@ -273,24 +260,15 @@ label {
 }
 
 input:nth-of-type(1):checked ~ section.buttons>label:nth-of-type(1) {
-	background: white;
-	color: black;
+	background: black;
+	color: white;
 }
 
 input:nth-of-type(2):checked ~ section.buttons>label:nth-of-type(2) {
-	background: white;
-	color: black;
+	background: black;
+	color: white;
 }
 
-input:nth-of-type(3):checked ~ section.buttons>label:nth-of-type(3) {
-	background: white;
-	color: black;
-}
-
-input:nth-of-type(4):checked ~ section.buttons>label:nth-of-type(4) {
-	background: white;
-	color: black;
-}
 </style>
 
 <style>
@@ -313,7 +291,7 @@ table {
 	font-size: 12px;
 }
 
-#upgrade, #black, #back, #out {
+#upgrade, #black, #back, .delete {
 	float: right;
 }
 </style>
@@ -324,6 +302,7 @@ table {
 
 
 <body>
+	
 
 	<header>
 		<h1>
@@ -368,32 +347,32 @@ table {
 				<h1>구매 내역</h1>
 				<div class="bodytexts">
 					<br> <br>
-					<table style="width: 80%">
+					<table style="width: 80%" id="buyTable">
 						<tr>
-							<td>번호</td>
+							<td>구매번호</td>
 							<td>상품명</td>
+							<td>판매자</td>
+							<td>거래상태</td>
 							<td>가격</td>
-							<td>등록일</td>
-							<button id="back" type="button">복귀</button>
-							<button id="out" type="button">삭제</button>
+							<td>요청날짜</td>
 						</tr>
 					</table>
 				</div>
 	</article>
 
-
 			<article class="main_article">
 				<h1>판매 내역</h1>
 				<div class="bodytexts">
 					<br> <br>
-					<table style="width: 80%">
+					<table style="width: 80%" id="sellTable">
 						<tr>
-							<td>번호</td>
+							<td>구매번호</td>
 							<td>상품명</td>
+							<td>구매자</td>
+							<td>거래상태</td>
 							<td>가격</td>
-							<td>등록일</td>
-							<button id="back" type="button">복귀</button>
-							<button id="out" type="button">삭제</button>
+							<td>요청날짜</td>
+							<button class="delete" type="button">삭제</button>
 						</tr>
 					</table>
 				</div>
@@ -406,8 +385,8 @@ table {
 		const btn = document.querySelector("#edit");
 		const btn2 = document.querySelector("#out");
 		const btn3 = document.querySelector("#regi");
-
-		const req = new XMLHttpRequest();
+		const buyTable = document.querySelector("#buyTable");
+		const sellTable = document.querySelector("#sellTable");
 		
 		btn.addEventListener('click', function() {
 			location.href = "../user/update";
@@ -424,7 +403,6 @@ table {
 		
 		
 		
-
 		init();
 		function init(){
 			const login = document.querySelector('.login');
@@ -440,20 +418,147 @@ table {
 				loginState = false;
 
 				if(loginState){
-					login.setAttribute('href', "http://117.17.143.71:8080/miniproject/user/logout?id="+hasStoredId);
+					login.setAttribute('href', "http://117.17.143.71:8080/miniproject/user/logout");
 					login.innerHTML= "로그아웃";
 					join.setAttribute('href', "http://117.17.143.71:8080/miniproject/user/mypage");
 					join.innerHTML="마이페이지";
 				}
 				else{
 					alert("로그인이 필요한 서비스 입니다.");
-					location.href= "http://117.17.143.71:8080/miniproject";
+					location.href= "http://117.17.143.71:8080/miniproject/user/signin";
 				}
 
 			});
 			req.open('post', "http://117.17.143.71:8080/miniproject/api/user/checkLogin");
 			req.send();
 		}
+		getTable();
+		function getTable(){
+			
+			const req1 = new XMLHttpRequest();
+			req1.addEventListener('load', function(){
+				var json = JSON.parse(this.responseText);
+				const size = Object.keys(json).length;
+				for(i=0; i<size; i++){
+					const tr = document.createElement('tr');
+					let td = new Array(6);
+					for(j=0; j<6; j++)
+						td[j] = document.createElement('td');
+					td[0].appendChild(document.createTextNode(json[i].bNo));
+					td[1].appendChild(document.createTextNode(json[i].bName));
+					td[2].appendChild(document.createTextNode(json[i].bSeller));
+					td[3].appendChild(document.createTextNode(json[i].bState));
+					td[4].appendChild(document.createTextNode(json[i].bPrice));
+					td[5].appendChild(document.createTextNode(json[i].bTime));
+					for(j=0; j<6; j++){
+						tr.appendChild(td[j]);
+					}
+					const button = document.createElement('button');
+					button.type = 'button';
+					button.class = 'delete';
+					button.value = json[i].bPno;
+					button.appendChild(document.createTextNode("취소"));
+					button.addEventListener('click', function(){
+						const req2 = new XMLHttpRequest();
+						const button = event.target;
+						req2.addEventListener('load', function(){
+							if(this.responseText==='success'){
+								alert('취소 완료헀습니다.');
+								button.parentNode.remove();
+							}
+							else{
+								alert("삭제할 수 없습니다.");
+							}
+						});
+						req2.open('post', 'http://117.17.143.71:8080/miniproject/api/buylist/delete');
+						req2.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+						var pNo = event.target.value*= 1;
+						req2.send(JSON.stringify({
+							"pNo":pNo
+						}));
+					});
+					tr.appendChild(button);
+					buyTable.appendChild(tr);
+				}
+			});
+			req1.open("get", "http://117.17.143.71:8080/miniproject/api/buylist/getdata?bBuyer="+"${user.uId}");
+			req1.send();
+			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			const req4 = new XMLHttpRequest();
+			req4.addEventListener('load', function(){
+				var json = JSON.parse(this.responseText);
+				const size = Object.keys(json).length;
+				for(i=0; i<size; i++){
+					const tr = document.createElement('tr');
+					let td = new Array(6);
+					for(j=0; j<6; j++)
+						td[j] = document.createElement('td');
+					td[0].appendChild(document.createTextNode(json[i].sNo));
+					td[1].appendChild(document.createTextNode(json[i].sName));
+					td[2].appendChild(document.createTextNode(json[i].sSeller));
+					td[3].appendChild(document.createTextNode(json[i].sState));
+					td[4].appendChild(document.createTextNode(json[i].sPrice));
+					td[5].appendChild(document.createTextNode(json[i].sTime));
+					for(j=0; j<6; j++){
+						tr.appendChild(td[j]);
+					}
+					const button = document.createElement('button');
+					const button2 = document.createElement('button');
+					button.type = 'button';
+					button.class = 'delete';
+					button.value = json[i].sPno;
+					button.appendChild(document.createTextNode("판매완료"));
+					button.addEventListener('click', function(){
+						const req3 = new XMLHttpRequest();
+						const button = event.target;
+						req3.addEventListener('load', function(){
+							if(this.responseText==='success'){
+								alert('판매 확정했습니다.');
+								//button.parentNode.remove();
+							}
+							else{
+								alert("판매 확정을 못합니다.");
+							}
+						});
+						req3.open('post', 'http://117.17.143.71:8080/miniproject/api/selllist/update');
+						req3.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+						var pNo = event.target.value*= 1;
+						req3.send(JSON.stringify({
+							"pNo":pNo
+						}));
+					});
+
+					button2.value = json[i].sPno;
+					button2.appendChild(document.createTextNode("취소"));
+					button2.addEventListener('click', function(){
+						const req3 = new XMLHttpRequest();
+						const button = event.target;
+						req3.addEventListener('load', function(){
+							if(this.responseText==='success'){
+								alert('취소 완료헀습니다.');
+								button.parentNode.remove();
+							}
+							else{
+								alert("삭제할 수 없습니다.");
+							}
+						});
+						req3.open('post', 'http://117.17.143.71:8080/miniproject/api/selllist/delete');
+						req3.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+						var pNo = event.target.value*= 1;
+						req3.send(JSON.stringify({
+							"pNo":pNo
+						}));
+					});
+					tr.appendChild(button);
+					tr.appendChild(button2);
+					sellTable.appendChild(tr);
+				}
+			});
+			req4.open("get", "http://117.17.143.71:8080/miniproject/api/selllist/getdata?sSeller="+"${user.uId}");
+			req4.send();
+		}
+		
+		
 	</script>
 </body>
 </html>

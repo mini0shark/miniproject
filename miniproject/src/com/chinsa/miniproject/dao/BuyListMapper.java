@@ -7,9 +7,10 @@ import com.chinsa.miniproject.mapper.Mapper;
 
 @Mapper
 public interface BuyListMapper {
-	public List<BuyListDTO> getSellList(String bBuyer);
-	public List<BuyListDTO> getSellLists();
-	public int updateSellList(BuyListDTO buyList);
-	public int insertSellList(BuyListDTO buyList);
-	public int deleteSellList(int sPno);
+	public List<BuyListDTO> getBuyListsSeller(String bSeller);
+	public List<BuyListDTO> getBuyListsBuyer(String bBuyer);
+	public BuyListDTO getBuyList(int bPno);
+	public int updateBuyList(BuyListDTO buyList);
+	public int insertBuyList(BuyListDTO buyList);
+	public int deleteBuyList(int bPno);
 }

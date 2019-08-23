@@ -210,39 +210,24 @@ a.join:hover {
 	<script type="text/javascript">
 	const requestButton = document.querySelector('#requestButton');
 	requestButton.addEventListener('click', function(){
-		const checkpStateRequest = new XMLHttpRequest();
-    const pNo = document.querySelector('#pNo').innerHTML;
-		checkpStateRequest.addEventListener('load', function(){
+		const buyRequest = new XMLHttpRequest();
+		buyRequest.addEventListener('load', function(){
 			msg = this.responseText;
-			if(msg==='ing'){
-				const requestRequest = new XMLHttpRequest();
-				requestRequest.addEventListener('load',function(){
-					const result = this.responseText;
-					var resultText = '';
-					console.log('---')
-					if(result==='true'){
-						resultText = '요청에 성공했습니다. 거래 중 목록에서 확인하세요';
-						location.href='';
-					}
-					else if(result ==='notLogin'){
-						resultText = '로그인이 필요한 서비스 입니다.';
-					}
-					else{
-						resultText = '알수 없는 원인으로 중지됐습니다.';
-					}
-					alert(resultText);
-				});
-				requestRequest.open('post', 'http://117.17.143.71:8080/miniproject/api/product/buyrequest');
-				requestRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-				requestRequest.send(JSON.stringify({"pNo":"${vo.pNo}"}));
+			if(msg==='success'){
+				alert('구매요청이 완료되었습니다.');
 			}
-			else if(msg==='cancel')
-				console.log('판매자가 상품을 내렸습니다.');
-			else if(msg ==='sold')
-				console.log('이미 판매된 상품입니다.');
+			else if(msg==='fail')
+				alert('구매요청에 실패하였습니다.(DB Error)');
+			else if(msg ==='notIng')
+				alert('판매대기중인 상품이 아닙니다.');
+			else if(msg === 'notLogin'){
+				alert('로그인이 필요합니다.');
+				location.href='../user/signin';
+			}
 		});
-		checkpStateRequest.open('get', 'http://117.17.143.71:8080/miniproject/api/product/checkpstate?pNo=${vo.pNo}&method='+document.querySelector("#method").value);
-		checkpStateRequest.send();
+		buyRequest.open('post', 'http://117.17.143.71:8080/miniproject/api/buylist/add');
+		buyRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		buyRequest.send(JSON.stringify({"pNo":${vo.pNo}}));
 	});
 
 	init();

@@ -2,14 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chinsa.miniproject.dao.SellListMapper">
 
-	<select id="getSellList" parameterType="String"
+	<select id="getSellList" parameterType="java.lang.Integer"
 		resultType="sellListDTO">
-		SELECT s_no,s_name,s_pno,s_img,s_seller,s_buyer,s_state,s_category,s_time,s_price FROM sellList WHERE s_seller = #{sSeller}
+		SELECT s_no,s_name,s_pno,s_img,s_seller,s_buyer,s_state,s_category,s_time,s_price FROM sellList WHERE s_pno = #{sPno}
 	</select>
 	
-	<select id="getSellLists"
+	<select id="getSellListsSeller" parameterType="String"
 		resultType="sellListDTO">
-		SELECT s_no,s_name,s_pno,s_img,s_seller,s_buyer,s_state,s_category,s_time,s_price FROM sellList
+		SELECT s_no,s_name,s_pno,s_img,s_seller,s_buyer,s_state,s_category,s_time,s_price FROM sellList where s_seller = #{sSeller}
+	</select>
+	
+	<select id="getSellListsBuyer" parameterType="String"
+		resultType="sellListDTO">
+		SELECT s_no,s_name,s_pno,s_img,s_seller,s_buyer,s_state,s_category,s_time,s_price FROM sellList where s_buyer = #{sBuyer}
 	</select>
 	
 	<insert id="insertSellList" parameterType="sellListDTO">
@@ -21,6 +26,6 @@
 	</update>
 	
 	<delete id="deleteSellList" parameterType="java.lang.Integer">
-		delete from sellList where s_no=#{sNo}
+		delete from sellList where s_pno=#{sPno}
 	</delete>
 </mapper>
