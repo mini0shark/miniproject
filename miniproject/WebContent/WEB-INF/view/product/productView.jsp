@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -6,7 +7,7 @@
 <title>제품 상세 페이지</title>
 <style>
 body {
-
+	
 }
 
 header {
@@ -87,15 +88,15 @@ a.join:hover {
 	border: 1px solid black;
 }
 
-  .commentTh-th-1 {
-    width: 200px;
-    text-align: center;
-  }
+.commentTh-th-1 {
+	width: 200px;
+	text-align: center;
+}
 
-  .commentTh-th-2 {
-    width: 500px;
-    text-align: center;
-  }
+.commentTh-th-2 {
+	width: 500px;
+	text-align: center;
+}
 </style>
 </head>
 <script type="text/javascript">
@@ -140,7 +141,8 @@ a.join:hover {
 						<tr align="center">
 							<td>전화번호</td>
 							<td>${user.uPhone}</td>
-						</tr><tr align="center">
+						</tr>
+						<tr align="center">
 							<td>E-mail</td>
 							<td>${user.uEmail}</td>
 						</tr>
@@ -168,8 +170,7 @@ a.join:hover {
 				</td>
 			</tr>
 		</table>
-		<br>
-		<br> <br>
+		<br> <br> <br>
 		<div id="pInfo">${vo.pInfo}</div>
 		<br> <br>
 		<h1 align=center>Comment</h1>
@@ -184,8 +185,8 @@ a.join:hover {
 					<th style="text-align: center; width: 980px; height: 20px;"></th>
 				</tr>
 				<tr>
-					<td style="text-align: center; width: 980px; height: 50px;">
-						<input type="text" style="width: 980px; height: 50px;" id = "textarea">
+					<td style="text-align: center; width: 980px; height: 50px;"><input
+						type="text" style="width: 980px; height: 50px;" id="textarea">
 					</td>
 				</tr>
 				<tr>
@@ -200,20 +201,20 @@ a.join:hover {
 			<!-- 작성자 이름, 작성 날짜 -->
 			<table class="commentTable">
 				<tr style="text-align: center;">
-					<th class = "commentTh-th-1">번호</th>
-					<th class = "commentTh-th-1">작성자 </th>
-					<th class = "commentTh-th-2" width="500px">댓글</th>
-					<th class = "commentTh-th-1">시간</th>
-					<th class = "commentTh-th-1">/</th>
+					<th class="commentTh-th-1">번호</th>
+					<th class="commentTh-th-1">작성자</th>
+					<th class="commentTh-th-2" width="500px">댓글</th>
+					<th class="commentTh-th-1">시간</th>
+					<th class="commentTh-th-1">/</th>
 				</tr>
 			</table>
-			<table class="commentTable" id = "comment">
+			<table class="commentTable" id="comment">
 				<tr style="text-align: center;">
-					<th class = "commentTh-th-1"></th>
-					<th class = "commentTh-th-1"></th>
-					<th class = "commentTh-th-2" width="500px"></th>
-					<th class = "commentTh-th-1"></th>
-					<th class = "commentTh-th-1"></th>
+					<th class="commentTh-th-1"></th>
+					<th class="commentTh-th-1"></th>
+					<th class="commentTh-th-2" width="500px"></th>
+					<th class="commentTh-th-1"></th>
+					<th class="commentTh-th-1"></th>
 				</tr>
 			</table>
 		</div>
@@ -296,13 +297,15 @@ a.join:hover {
 	function add(){
 
 		const commentRegisterRequest = new XMLHttpRequest();
+		
 	    const comment = document.querySelector('#textarea').value;
+	    
 		commentRegisterRequest.addEventListener('load', function(){
 		    document.querySelector("#textarea").value = '';
 			const jsonData = JSON.parse(this.responseText);
-			;
 			createComment(jsonData.cNo, jsonData.cUid, jsonData.cContent, jsonData.cTime);
 		});
+		
 		commentRegisterRequest.open('post','http://117.17.143.71:8080/miniproject/api/comment/commentresister');
 		commentRegisterRequest.setRequestHeader("Content-Type","application/json;charset=UTF-8");
 		commentRegisterRequest.send(JSON.stringify({
