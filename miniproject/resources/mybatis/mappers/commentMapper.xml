@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinsa.miniproject.dao.CommentMapper">
+
+	<select id="getComments" parameterType="java.lang.Integer"
+		resultType="commentDTO">
+		SELECT c_no, c_pno, c_content, c_uid, c_time FROM comment where c_pno=#{cPno}
+	</select>
+	
+	<select id="getComment"  parameterType="java.lang.Integer"
+	resultType="commentDTO">
+		SELECT c_no, c_pno, c_content, c_uid, c_time FROM comment where c_no=#{cNo}
+	</select>
+	
+	
+	<insert id="insertComment" parameterType="commentDTO" keyProperty="cNo"
+		useGeneratedKeys="true" keyColumn="cNo">
+		INSERT INTO comment( c_pno, c_content, c_uid) values(#{cPno},#{cContent},#{cUid})
+		<selectKey keyProperty="cNo" resultType="java.lang.Integer"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()	<!-- 나중에 id를 넣어준다고 명시(mysql이 지원하는 것) -->
+		</selectKey>
+	</insert>
+	
+	<delete id="deleteComment" parameterType="java.lang.Integer">
+		delete from comment where c_no=#{cNo}
+	</delete>
+</mapper>
