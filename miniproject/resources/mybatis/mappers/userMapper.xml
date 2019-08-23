@@ -17,7 +17,7 @@
 	</insert>
 	
 	<update id="updateUser" parameterType="userDTO">
-		UPDATE user set u_pwd=#{uPwd},u_name=#{uName},u_phone=#{uPhone},u_address=#{uAddress},u_email=#{uEmail},u_level=#{uLevel} where id=#{uId}
+		UPDATE user set u_pwd=#{uPwd},u_name=#{uName},u_phone=#{uPhone},u_address=#{uAddress},u_email=#{uEmail},u_level=#{uLevel} where u_id=#{uId}
 	</update>
 	
 	<delete id="deleteUser" parameterType="String">

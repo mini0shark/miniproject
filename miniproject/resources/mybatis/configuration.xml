@@ -4,7 +4,7 @@
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
-	
+
 	<typeAliases>
 		<typeAlias type="com.chinsa.miniproject.dto.UserDTO"
 			alias="userDTO" />
@@ -14,7 +14,9 @@
 			alias="sellListDTO" />
 		<typeAlias type="com.chinsa.miniproject.dto.BuyListDTO"
 			alias="buyListDTO" />
-			<typeAlias type="com.chinsa.miniproject.dto.ImageDTO"
+		<typeAlias type="com.chinsa.miniproject.dto.ImageDTO"
 			alias="imageDTO" />
+		<typeAlias type="com.chinsa.miniproject.dto.CommentDTO"
+			alias="commentDTO" />
 	</typeAliases>
 </configuration>

@@ -13,9 +13,9 @@
 
 				header {
 					background: #fff;
-					
+
 					width: 100%;
-					
+
 					top: 0;
 					left: 0;
 					z-index: 1;
@@ -40,7 +40,7 @@
 					display: grid;
 					grid-template-columns: 350px 350px 350px 350px;
 					width: 1500px;
-					
+
 					margin: 0 13px;
 					margin-top: 50px;
 					text-align: center;
@@ -301,22 +301,18 @@
 					searchRequest.open('get', 'http://117.17.143.71:8080/miniproject/api/product/search?pName='+searchText.value);
 					searchRequest.send();
 				}
-				
 
 
-				(function category(){
-				})();
 
-				
-				
-				
+
+
 				function showList(jsonList){
 					const list = document.querySelector('.goods');
 					const jsonData = JSON.parse(jsonList);
 					const size = Object.keys(jsonData).length;
 					list.innerHTML="";
 					for(var i = 0; i<size; i++){
-						
+
 						const img = document.createElement('img');
 						const h3 = document.createElement('h3');
 						const p = document.createElement('p');

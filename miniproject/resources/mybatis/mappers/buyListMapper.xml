@@ -2,14 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chinsa.miniproject.dao.BuyListMapper">
 
-	<select id="getBuyList" parameterType="String"
+	<select id="getBuyList" parameterType="java.lang.Integer"
+		resultType="buyListDTO">
+		SELECT b_no,b_name,b_pno,b_img,b_seller,b_buyer,b_state,b_category,b_time,b_price FROM buyList WHERE b_pno = #{bPno}
+	</select>
+	
+	<select id="getBuyListsSeller" parameterType="String"
 		resultType="buyListDTO">
 		SELECT b_no,b_name,b_pno,b_img,b_seller,b_buyer,b_state,b_category,b_time,b_price FROM buyList WHERE b_seller = #{bSeller}
 	</select>
 	
-	<select id="getBuyLists"
+	<select id="getBuyListsBuyer" parameterType="String"
 		resultType="buyListDTO">
-		SELECT b_no,b_name,b_pno,b_img,b_seller,b_buyer,b_state,b_category,b_time,b_price FROM buyList
+		SELECT b_no,b_name,b_pno,b_img,b_seller,b_buyer,b_state,b_category,b_time,b_price FROM buyList WHERE b_buyer = #{bBuyer}
 	</select>
 	
 	<insert id="insertBuyList" parameterType="buyListDTO">
@@ -21,6 +26,6 @@
 	</update>
 	
 	<delete id="deleteBuyList" parameterType="java.lang.Integer">
-		delete from buyList where b_no=#{bNo}
+		delete from buyList where b_pno=#{bPno}
 	</delete>
 </mapper>

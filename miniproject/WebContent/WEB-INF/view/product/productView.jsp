@@ -6,7 +6,7 @@
 <title>제품 상세 페이지</title>
 <style>
 body {
-	
+
 }
 
 header {
@@ -86,6 +86,16 @@ a.join:hover {
 	width: 1000px;
 	border: 1px solid black;
 }
+
+  .commentTh-th-1 {
+    width: 200px;
+    text-align: center;
+  }
+
+  .commentTh-th-2 {
+    width: 500px;
+    text-align: center;
+  }
 </style>
 </head>
 <script type="text/javascript">
@@ -190,17 +200,20 @@ a.join:hover {
 			<!-- 작성자 이름, 작성 날짜 -->
 			<table class="commentTable">
 				<tr style="text-align: center;">
-					<th>작성자: </th>
-					<th>작성날짜:</th>
+					<th class = "commentTh-th-1">번호</th>
+					<th class = "commentTh-th-1">작성자 </th>
+					<th class = "commentTh-th-2" width="500px">댓글</th>
+					<th class = "commentTh-th-1">시간</th>
+					<th class = "commentTh-th-1">/</th>
 				</tr>
 			</table>
 			<table class="commentTable" id = "comment">
 				<tr style="text-align: center;">
-					<!-- 댓글 에리어, 수정 삭제 버튼 -->
-					<td style="text-align: center;">댓글이다</td>
-					<td style="text-align: center;">
-						<button>삭제</button>
-					</td>
+					<th class = "commentTh-th-1"></th>
+					<th class = "commentTh-th-1"></th>
+					<th class = "commentTh-th-2" width="500px"></th>
+					<th class = "commentTh-th-1"></th>
+					<th class = "commentTh-th-1"></th>
 				</tr>
 			</table>
 		</div>
@@ -209,39 +222,24 @@ a.join:hover {
 	<script type="text/javascript">
 	const requestButton = document.querySelector('#requestButton');
 	requestButton.addEventListener('click', function(){
-		const checkpStateRequest = new XMLHttpRequest();
-    const pNo = document.querySelector('#pNo').innerHTML;
-		checkpStateRequest.addEventListener('load', function(){
+		const buyRequest = new XMLHttpRequest();
+		buyRequest.addEventListener('load', function(){
 			msg = this.responseText;
-			if(msg==='ing'){
-				const requestRequest = new XMLHttpRequest();
-				requestRequest.addEventListener('load',function(){
-					const result = this.responseText;
-					var resultText = '';
-					console.log('---')
-					if(result==='true'){
-						resultText = '요청에 성공했습니다. 거래 중 목록에서 확인하세요';
-						location.href='';
-					}
-					else if(result ==='notLogin'){
-						resultText = '로그인이 필요한 서비스 입니다.';
-					}
-					else{
-						resultText = '알수 없는 원인으로 중지됐습니다.';
-					}
-					alert(resultText);
-				});
-				requestRequest.open('post', 'http://117.17.143.71:8080/miniproject/api/product/buyrequest');
-				requestRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-				requestRequest.send(JSON.stringify({"pNo":"${vo.pNo}"}));
+			if(msg==='success'){
+				alert('구매요청이 완료되었습니다.');
 			}
-			else if(msg==='cancel')
-				console.log('판매자가 상품을 내렸습니다.');
-			else if(msg ==='sold')
-				console.log('이미 판매된 상품입니다.');
+			else if(msg==='fail')
+				alert('구매요청에 실패하였습니다.(DB Error)');
+			else if(msg ==='notIng')
+				alert('판매대기중인 상품이 아닙니다.');
+			else if(msg === 'notLogin'){
+				alert('로그인이 필요합니다.');
+				location.href='../user/signin';
+			}
 		});
-		checkpStateRequest.open('get', 'http://117.17.143.71:8080/miniproject/api/product/checkpstate?pNo=${vo.pNo}&method='+document.querySelector("#method").value);
-		checkpStateRequest.send();
+		buyRequest.open('post', 'http://117.17.143.71:8080/miniproject/api/buylist/add');
+		buyRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		buyRequest.send(JSON.stringify({"pNo":${vo.pNo}}));
 	});
 
 	init();
@@ -274,44 +272,97 @@ a.join:hover {
 		req.open('post', "http://117.17.143.71:8080/miniproject/api/user/checkLogin");
 		req.send();
 
-		const initProductListRequest = new XMLHttpRequest();
-		initProductListRequest.addEventListener('load', function(){
-			const productListJson = this.responseText;
+		const commentRequest = new XMLHttpRequest();
+		commentRequest.addEventListener('load', function(){
+			showList(this.responseText);
 		});
-		initProductListRequest.open('get','http://117.17.143.71:8080/miniproject/api/product/initproduct');
-		initProductListRequest.send();
+		commentRequest.open('get', 'http://117.17.143.71:8080/miniproject/api/comment/load?pNo=${vo.pNo}');
+		commentRequest.send();
 	}
-	
-	
+
+
+	function showList(jsonList){
+		const jsonData = JSON.parse(jsonList);
+		const size = Object.keys(jsonData).length;
+		for(var i = 0; i<size; i++){
+			jsonData[i].pName
+			createComment(jsonData[i].cNo, jsonData[i].cUid, jsonData[i].cContent, jsonData[i].cTime);
+		}
+	}
+
+
+
+
 	function add(){
-		
+
 		const commentRegisterRequest = new XMLHttpRequest();
-	    const textarea = document.querySelector("#textarea").value;
+	    const comment = document.querySelector('#textarea').value;
 		commentRegisterRequest.addEventListener('load', function(){
-			const table = document.querySelector('#comment');
-		    const tr = document.createElement('tr');
-		    const td = document.createElement('td');
-		    const td2 = document.createElement('td');
-		    const button = document.createElement('button');
 		    document.querySelector("#textarea").value = '';
-		    tr.appendChild(td);
-		    td.appendChild(document.createTextNode(textarea));
-		    td2.appendChild(button);
-		    td.setAttribute('style','text-align: center;');
-		    td2.setAttribute('style','text-align: center;');
-		    tr.appendChild(td2);
-		    button.innerHTML = "삭제";
-		   	table.appendChild(tr);
-		   	
-		   	console.log(this.responseText);//==> 사용자 id 리턴
+			const jsonData = JSON.parse(this.responseText);
+			;
+			createComment(jsonData.cNo, jsonData.cUid, jsonData.cContent, jsonData.cTime);
 		});
-		commentRegisterRequest.open('post','http://117.17.143.71:8080/miniproject/api/product/commentresister');
+		commentRegisterRequest.open('post','http://117.17.143.71:8080/miniproject/api/comment/commentresister');
 		commentRegisterRequest.setRequestHeader("Content-Type","application/json;charset=UTF-8");
 		commentRegisterRequest.send(JSON.stringify({
-			"comment":textarea
+			"comment":comment,
+			"pNo":"${vo.pNo}"
 		}));
 		}
-	
+	function createComment(cNo, writer, comment, time){
+		const table = document.querySelector('#comment');
+	    const tr = document.createElement('tr');
+	    const cNoTd = document.createElement('td');
+	    const writeTd = document.createElement('td');
+	    const commentTd = document.createElement('td');
+	    const timeTd = document.createElement('td');
+	    const button = document.createElement('button');
+	    const buttonTd = document.createElement('td');
+	    button.innerHTML = "삭제";
+
+
+	    button.addEventListener('click', function(){
+	    	const deleteCommentRequest = new XMLHttpRequest();
+	    	deleteCommentRequest.addEventListener('load', function(){
+	    		const result = this.responseText;
+	    		var resultMsg = '';
+	    		if(result === 'deleted'){
+		    		button.parentNode.parentNode.remove();
+		    		resultMsg = '삭제되었습니다.';
+	    		}
+	    		else{
+	    			resultMsg = '정상적으로 삭제되지 뭇했습니다.';
+	    		}
+    			alert(resultMsg);
+	    	});
+	    	deleteCommentRequest.open('delete', 'http://117.17.143.71:8080/miniproject/api/comment/deletecomment');
+	    	deleteCommentRequest.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+	    	deleteCommentRequest.send(JSON.stringify({
+	    		"cNo":cNo
+	    	}));
+	    });
+
+	    cNoTd.appendChild(document.createTextNode(cNo));
+	    writeTd.appendChild(document.createTextNode(writer));
+	    commentTd.appendChild(document.createTextNode(comment));
+	    timeTd.appendChild(document.createTextNode(time));
+	    buttonTd.appendChild(button);
+	    cNoTd.setAttribute('style','text-align: center;');
+	    writeTd.setAttribute('style','text-align: center;');
+	    commentTd.setAttribute('style','text-align: center; word-break:break-all;');
+	    commentTd.setAttribute('width', "500px");
+	    timeTd.setAttribute('style','text-align: center;');
+	   	buttonTd.setAttribute('style','text-align: center;');
+
+	   	tr.appendChild(cNoTd);
+	    tr.appendChild(writeTd);
+	    tr.appendChild(commentTd);
+	    tr.appendChild(timeTd);
+	    tr.appendChild(buttonTd);
+	   	table.appendChild(tr);
+	}
+
 	</script>
 
 </body>

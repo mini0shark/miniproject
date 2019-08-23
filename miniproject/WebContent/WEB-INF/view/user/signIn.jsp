@@ -9,9 +9,9 @@
 <style>
 header {
 	background: #fff;
-	
+
 	width: 100%;
-	
+
 	top: 0;
 	left: 0;
 	z-index: 1;
@@ -131,7 +131,7 @@ a.home:hover {
 </style>
 </head>
 <body>
-	
+
 
 		<header>
 		<h1>
@@ -149,7 +149,7 @@ a.home:hover {
 			</nav>
 			<hr color=black>
 		</div>
-		
+
 		<br>
 		<br>
 		<form>
@@ -162,7 +162,7 @@ a.home:hover {
 					<th>비밀번호</th>
 					<th><input type="password" name="uPwd" id="uPwd" maxlength="100"></th>
 				</tr>
-				
+
 			</table>
 			<center>
 			<label for="checkStore">ID저장하기</label>

@@ -71,5 +71,11 @@ public class SellListDTO {
 	public void setsPrice(int sPrice) {
 		this.sPrice = sPrice;
 	}
+	@Override
+	public String toString() {
+		return "SellListDTO [sNo=" + sNo + ", sName=" + sName + ", sPno=" + sPno + ", sImg=" + sImg + ", sSeller="
+				+ sSeller + ", sBuyer=" + sBuyer + ", sState=" + sState + ", sCategory=" + sCategory + ", sTime="
+				+ sTime + ", sPrice=" + sPrice + "]";
+	}
 	
 }
