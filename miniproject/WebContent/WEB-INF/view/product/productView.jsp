@@ -120,7 +120,10 @@ a.join:hover {
 	<br>
 	<br>
 	<div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 		<table style="margin-left: auto; margin-right: auto;">
 			<tr>
 				<td><img src="${vo.pImg}" width="340px" height="300" /></td>

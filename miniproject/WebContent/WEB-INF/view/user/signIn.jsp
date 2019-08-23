@@ -165,11 +165,7 @@ a.home:hover {
 
 			</table>
 			<center>
-<<<<<<< HEAD
-			<br/>
-=======
 			<br>
->>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 			<label for="checkStore">ID저장하기</label>
 			<c:choose>
 				<c:when test="${checked}">
