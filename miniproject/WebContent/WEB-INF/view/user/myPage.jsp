@@ -7,9 +7,7 @@
 <style>
 header {
 	background: #fff;
-	
 	width: 100%;
-	
 	top: 0;
 	left: 0;
 	z-index: 1;
@@ -30,34 +28,34 @@ header {
 	text-align: right;
 }
 
-a.logout:link {
+a.login:link {
 	color: #CC0000;
 	text-decoration: none;
 	font-weight: bold;
 }
 
-a.logout:visited {
+a.login:visited {
 	color: #CC0000;
 	text-decoration: none;
 }
 
-a.logout:hover {
+a.login:hover {
 	color: black;
 	text-decoration: none;
 }
 
-a.home:link {
+a.join:link {
 	color: #CC0000;
 	text-decoration: none;
 	font-weight: bold;
 }
 
-a.home:visited {
+a.join:visited {
 	color: #CC0000;
 	text-decoration: none;
 }
 
-a.home:hover {
+a.join:hover {
 	color: black;
 	text-decoration: none;
 }
@@ -268,7 +266,6 @@ input:nth-of-type(2):checked ~ section.buttons>label:nth-of-type(2) {
 	background: black;
 	color: white;
 }
-
 </style>
 
 <style>
@@ -291,9 +288,19 @@ table {
 	font-size: 12px;
 }
 
+table>tr {
+	text-align: center;
+	margin: 0 auto;
+}
+
+table>tr>td {
+	text-align: center;
+}
+
 #upgrade, #black, #back, .delete {
 	float: right;
 }
+
 </style>
 </head>
 
@@ -302,7 +309,7 @@ table {
 
 
 <body>
-	
+
 
 	<header>
 		<h1>
@@ -311,18 +318,16 @@ table {
 	</header>
 	<div class="menu">
 		<nav>
-		<span class="search">
-				<input type='text' class='input_text'/>
-		</span>
-				<a class="login" href="http://117.17.143.71:8080/miniproject/user/signin">로그인</a>
-				<a class="join" href="http://117.17.143.71:8080/miniproject/user/signup">회원가입</a>
+			<span class="search"> <input type='text' class='input_text' />
+			</span> <a class="login" href="http://117.17.143.71:8080/miniproject/user/signin">로그인</a>
+			<a class="join" href="http://117.17.143.71:8080/miniproject/user/signup">회원가입</a>
 		</nav>
 		<hr style="border: 1px solid black;">
 	</div>
-	
+
 	<form>
-		<div id ="box">
-			
+		<div id="box">
+
 			<br>
 			<center>
 				<button id="edit" type="button">회원정보수정</button>
@@ -335,8 +340,8 @@ table {
 
 	<div id="content">
 		<aside id="main_aside">
-			<input id="first" type="radio" name="tab" checked="checked" />
-			<input id="second" type="radio" name="tab" />
+			<input id="first" type="radio" name="tab" checked="checked" /> <input
+				id="second" type="radio" name="tab" />
 
 			<section class="buttons">
 				<label for="first"><b>구매 내역</b></label>
@@ -345,9 +350,10 @@ table {
 
 			<article class="main_article">
 				<h1>구매 내역</h1>
+				<hr>
 				<div class="bodytexts">
 					<br> <br>
-					<table style="width: 80%; margin: 0 auto;" id="buyTable">
+					<table style="width: 80%; margin: 0 auto; text-align: center;" id="buyTable">
 						<tr>
 							<td>구매번호</td>
 							<td>상품명</td>
@@ -358,13 +364,14 @@ table {
 						</tr>
 					</table>
 				</div>
-	</article>
+			</article>
 
 			<article class="main_article">
 				<h1>판매 내역</h1>
+				<hr>
 				<div class="bodytexts">
 					<br> <br>
-					<table style="width: 80%" id="sellTable">
+					<table style="width: 80%; margin: 0 auto; text-align: center;" id="sellTable">
 						<tr>
 							<td>구매번호</td>
 							<td>상품명</td>
@@ -372,15 +379,14 @@ table {
 							<td>거래상태</td>
 							<td>가격</td>
 							<td>요청날짜</td>
-							<button class="delete" type="button">삭제</button>
 						</tr>
 					</table>
 				</div>
-	</article>
-	</aside>
+			</article>
+		</aside>
 	</div>
-	</form>	
-	
+	</form>
+
 	<script type="text/javascript">
 		const btn = document.querySelector("#edit");
 		const btn2 = document.querySelector("#out");
@@ -507,7 +513,7 @@ table {
 					button.type = 'button';
 					button.class = 'delete';
 					button.value = json[i].sPno;
-					button.appendChild(document.createTextNode("판매완료"));
+					button.appendChild(document.createTextNode("판매 완료"));
 					button.addEventListener('click', function(){
 						const req3 = new XMLHttpRequest();
 						const button = event.target;
@@ -539,7 +545,7 @@ table {
 								button.parentNode.remove();
 							}
 							else{
-								alert("삭제할 수 없습니다.");
+								alert("취소할 수 없습니다.");
 							}
 						});
 						req3.open('post', 'http://117.17.143.71:8080/miniproject/api/selllist/delete');

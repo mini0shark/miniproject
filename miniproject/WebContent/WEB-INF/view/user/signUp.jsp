@@ -8,10 +8,6 @@
 <style>
 header {
 	background: #fff;
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/mini0shark/miniproject.git
 	width: 100%;
 	top: 0;
 	left: 0;
